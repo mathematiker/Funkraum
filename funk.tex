@@ -1,0 +1,3109 @@
+\documentclass[
+paper=a4,
+bibtotocnumbered,
+liststotocnumbered,
+tablecaptionabove,
+pointlessnumbers,
+twoside,
+openright,
+10pt
+]
+{report}  
+\usepackage{mathtools}
+\mathtoolsset{showonlyrefs}
+
+\usepackage{etex}
+\usepackage[all]{xy}
+\usepackage[english, ngerman]{babel}
+\usepackage[utf8]{inputenc}
+%\usepackage[automark]{scrpage2}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{dsfont}
+\usepackage{tabularx}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{subfigure}
+%\usepackage{sidecap}
+\usepackage{lscape}
+%\usepackage{floatflt}
+\usepackage{geometry}
+%\usepackage{pdfpages}
+\usepackage{wasysym}
+\usepackage{cite}
+\usepackage[german]{egplot}
+\usepackage{color}
+%\usepackage{epsfig}
+%\usepackage{psfig}
+\usepackage{a4wide}
+\usepackage{totpages}
+\usepackage{latexsym}
+\usepackage{keyval}
+\usepackage{ifthen}
+\usepackage{moreverb}
+\usepackage{gnuplottex}
+\usepackage{enumerate}
+%\usepackage{atbegshi}
+\usepackage{listings}
+\usepackage{pst-circ}
+\usepackage{array}
+\usepackage{mhchem}
+\usepackage{lipsum}
+\usepackage{makeidx}
+\usepackage{tikz}\usetikzlibrary{shapes,arrows,automata,positioning}
+\usepackage{longtable}
+%\usepackage{natbib}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{remreset}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=mauve]{hyperref}
+%\usepackage{breakurl}
+\usepackage[sc]{mathpazo}
+%\usepackage{breakurl}
+% Palatino needs more leading (space between lines)
+\linespread{1.05}             
+\usepackage[T1]{fontenc}      
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{ulem}
+\usepackage{titlesec, blindtext, color}
+\usepackage{empheq}
+\usepackage{fancyref}
+\usepackage{sectsty}
+\usepackage{rotating}
+\usepackage{makeidx}
+\usepackage{xcolor}
+\usepackage{transparent}
+%\usepackage{setspace}
+%[onehalfspacing]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% COLORS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{dblue}{HTML}{003399}
+\definecolor{top}{HTML}{096B8F}
+\definecolor{code}{HTML}{7C0E78}
+\definecolor{dgray}{gray}{0.80}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{dkgray}{gray}{0.33}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CMD %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\cond}{\mathrm{cond}\,}
+\newcommand{\supp}{\mathrm{supp}\,}
+\newcommand{\myspan}{\mathrm{span}}
+\newcommand{\ox}{\overline{x}}
+\newcommand{\oy}{\overline{y}}
+\newcommand{\ou}{\overline{u}}
+\newcommand{\of}{\overline{f}}
+\newcommand{\oa}{\overline{a}}
+\newcommand{\ob}{\overline{b}}
+\newcommand{\os}{\overline{s}}
+\newcommand{\oc}{\overline{c}}
+\newcommand{\mysum}{\sum\limits}
+\newcommand{\myprod}{\prod\limits}
+\newcommand{\infint}{\int_{-\infty}^\infty}
+\newcommand{\mysim}{\quad\sim\quad}
+\newcommand{\strich}{\sideset{}{'}}
+\newcommand{\ggT}{\mathrm{ggT}}
+\newcommand{\diag}{\mathrm{diag}\,}
+\newcommand{\astleq}{\overset{(\ast)}{\leq}}
+\newcommand{\dist}{\mathrm{dist}}
+\newcommand{\D}{\mathrm{D}}\def\d{\;\mathrm{d}}
+
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\ess}{ess\,sup}
+
+\let\Re\relax\let\Im\relax
+\DeclareMathOperator{\Re}{Re}
+\DeclareMathOperator{\Im}{Im}
+
+\usepackage{esint}
+\let\oint\ointctrclockwise
+\let\phi\varphi
+\let\epsilon\varepsilon
+
+\newtheorem{thm}{Theorem}[chapter]
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{satz}[thm]{Satz}
+\newtheorem*{satzn}{Satz}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Korollar}
+\newtheorem{df}[thm]{Definition}
+\theoremstyle{definition}
+\newtheorem*{bspe}{Beispiele}
+\newtheorem*{bsp}{Beispiel}
+\newtheorem*{rem}{Bemerkung}
+\newtheorem*{rems}{Bemerkungen}
+\numberwithin{equation}{chapter}
+
+\geometry{top=2.0cm, bottom=2cm, left=3cm, right=3cm}
+
+\title{\fontsize{35pt}{60pt}\selectfont\color{dblue} Funktionenräume \\ \ \\ \Large \textbf{Dozent: } Prof. Dr. M. Griesemer}
+\author{\color{dkgray}\textbf{Vorlesungsmitschrieb} \ \\ \ \\\small{\color{dkgray}Stand \today}}
+\date{\Large\color{dkgray}\textbf{Universität Stuttgart, Sommersemester 2015}}
+
+\begin{document}
+\maketitle
+{\hypersetup{hidelinks}
+\tableofcontents
+}
+\newpage
+
+\section*{Motivation}
+\begin{enumerate}[\bf 1)]
+\item Elektron im Feld statischer Kerne. Suche $\phi\in L^2(\mathbb{R}^3)$ und $E\in\mathbb{R}$ mit
+\begin{equation}
+\left(-\Delta_x-\sum_{i=1}^N \frac{z_i}{|x-R_i|}\right)\phi = E\phi,
+\end{equation}
+wobei $z_i\in\mathbb{N}$ und $R_i\in\mathbb{R}^3$ für $i=1,\ldots,N$ ist. Die Lösungen sind im Allgemeinen nicht in $C^2(\mathbb{R}^3)$ sondern in $H^2(\mathbb{R}^3)$, d.h.
+\begin{equation}
+-\Delta\phi = -\sum_{i=1}^N \frac{\partial^2}{\partial_{x_i}^2}\phi
+\end{equation}
+ist im Sinn \textbf{schwacher Ableitungen} zu verstehen.
+\item Elektrostatik: Das Potential $\Phi$ zur Ladungsverteilung $\rho\in L^1(\Omega)$, für $\Omega\subset\mathbb{R}^3$, umgeben von einem Leiter $\Omega^c$, ist bestimmt durch das Randwertproblem (RWP)
+\begin{align}
+\left.
+\begin{array}{r l r}
+-\Delta\Phi &= 4\pi\rho &\mathrm{in}\;\Omega, \\
+\Phi &= 0 &\mathrm{auf}\;\partial\Omega.
+\end{array}
+\right\}
+\end{align}
+Die klassische $C^2$-Lösung minimiert das Funktional
+\begin{equation}
+\int_\Omega \left(|\nabla\Phi|^2 -8\pi\rho\Phi\right)\d x
+\end{equation}
+bezüglich allen Funktionen $\Phi$ aus $\{\Phi\in C^2(\Omega)\mid \Phi=0\text{ auf }\partial\Omega\}$, sofern sie existiert. Auch wenn der Minimierer existiert, so ist es doch einfacher, die Existenz zuerst im \textbf{Sobolev-Raum} $\mathring H^{1,2}(\Omega)$ nachzuweisen.\\
+\textbf{Frage:} Wie regulär sind Funktionen aus $H^2(\mathbb{R}^3)$, $\mathring H^{1,2}(\Omega)$, etc?
+\end{enumerate}
+
+\chapter{Vorbereitung}
+\begin{enumerate}[\quad\color{dblue}$\blacktriangleright$]
+\item Ein \textbf{Gebiet} $\Omega\subset\mathbb{R}^n$ ist offen und zusammenhängend und $\overline{\Omega}$ ist der \textbf{Abschluss} von $\Omega$ in $\mathbb{R}^n$.
+\item $G\subset\subset\Omega$ bedeutet, dass $\overline{G}\subset\Omega$ \textbf{kompakt} ist und somit $\dist(\overline{G},\Omega^c)>0$ gilt.
+\item Für $u:\Omega\rightarrow\mathbb{C}$ und $\Omega\subset\mathbb{R}^n$ ist der \textbf{Träger} von $u$ definiert durch
+\begin{equation}
+\supp u:= \overline{\{x\in\Omega\mid u(x)\neq 0\}}\subset\mathbb{R^n}.
+\end{equation}
+\end{enumerate}
+\subsection*{Multiindices}
+Seien $\alpha,\beta\in\mathbb{N}^n$, $x=(x_1,\ldots,x_n)\in\mathbb{R}^n$ und $y\in\mathbb{R}^n$. Wir verwenden folgende Notationen:
+\begin{enumerate}[\quad\color{dblue}$\blacktriangleright$]
+\item $\alpha\leq\beta\quad\Leftrightarrow\quad \alpha_i\leq\beta_i$ für alle $i=1,\ldots,n$
+\item $|\alpha|=\alpha_1+\cdots+\alpha_n$ und 
+\item $\alpha! = \alpha_1\cdots\alpha_n$
+\item $x^\alpha= x_1^{\alpha_1}\cdots x_n^{\alpha_n}$
+\item $\partial^\alpha = \frac{\partial^{|\alpha|}}{\partial_{x_1}^{\alpha_1}\cdots\partial_{x_n}^{\alpha_n}}$
+\item $\binom{\alpha}{\beta}=\prod_{i=1}^n \binom{\alpha_i}{\beta_i}=\prod_{i=1}^n \frac{\alpha_i!}{\beta_i!(\alpha_i-\beta_i)!}= \frac{\alpha !}{\beta!(\alpha-\beta
+)!}$ für $\alpha\geq\beta$
+\end{enumerate}
+Damit lässt sich nun der Binomische Lehrsatz verallgemeinern:
+\begin{align}
+(x+y)^\alpha &= \sum_{\beta\leq\alpha} \binom{\alpha}{\beta} x^\beta y^{\alpha-\beta}, \\
+\partial^\alpha (fg) &= \sum_{\beta\leq\alpha} \binom{\alpha}{\beta} (\partial^\beta f)(\partial^{\alpha-\beta}g)
+\end{align}
+
+\subsection*{Funktionenräume}
+Für $\Omega\subset\mathbb{R}^n$ offen und $m\in\mathbb{N}_0$ setzen wir
+\begin{enumerate}[\quad\color{dblue}$\blacktriangleright$]
+\item $C^m(\Omega):=\{u:\Omega\rightarrow\mathbb{C}\mid u\text{ hat stetige partielle Ableitungen }\partial^\alpha u\text{ bis zur Ordnung }|\alpha|=m\}$
+\item $C(\Omega):= C^0(\Omega):=\{u:\Omega\rightarrow\mathbb{C}\mid u\text{ ist stetig}\}$
+\item $C_0^m(\Omega):=\{u\in C^m(\Omega)\mid \supp u\subset\subset\Omega\}$
+\item $C^\infty(\Omega):=\bigcap_{m\geq 0} C^m(\Omega)$
+\item $C_0^\infty(\Omega):=\bigcap_{m\geq 0} C_0^m(\Omega)=C^\infty(\Omega)\cap C_0(\Omega)$
+\end{enumerate}
+Seien $\Omega\subset\mathbb{R}^n$ (Lebesgue-)messbar und $p\geq 1$. $L^p(\Omega)$ besteht aus Äquivalenzklassen messbarer Funktionen $u:\Omega\rightarrow\mathbb{C}$ mit
+\begin{equation}
+\int_\Omega |u(x)|^p\d x<\infty\quad
+\end{equation}
+falls $1\leq p<\infty$ und
+\begin{equation}
+\underset{x\in\Omega}{\ess} |u(x)|:= \inf\{\alpha\geq 0\mid  |u(x)|\leq\alpha\;\mathrm{f."u.}\}<\infty
+\end{equation}
+falls $p=\infty$. Zwei Funktionen $u,v$ heißen \textbf{äquivalent} genau dann wenn
+\begin{equation}
+u\propto v\quad\Leftrightarrow\quad u(x)=v(x)\quad\text{f."u. in }\Omega.
+\end{equation}
+$L^p$ versehen mit den Normen
+\begin{align}
+\|u\|_p&:=\left(\int_\Omega |u(x)|^p\d x\right)^{1/p}\quad (1\leq p<\infty), \\
+\|u\|_\infty:=\ess |u(x)|\quad(p=\infty)
+\end{align}
+ist ein \textbf{Banachraum}. Es gilt die \textbf{Höldersche Ungleichung}:
+\begin{satzn}
+Seien $f\in L^p(\Omega)$, $g\in L^q(\Omega)$ und $1\leq p,q\leq\infty$ mit $1/p+1/q=1$, dann ist $fg\in L^1(\Omega)$ und es gilt
+\begin{equation}
+\|fg\|_1\leq \|f\|_p\|g\|_q.
+\end{equation}
+\end{satzn}
+
+\begin{thm}\label{thm1}
+Ist $\Omega\subset\mathbb{R}^n$ offen und $1\leq p<\infty$, dann ist $C_0(\Omega)$ dicht in $L^p(\Omega)$.
+\end{thm}
+
+\begin{satz}\label{satz2}
+Sei $u\in L^p(\mathbb{R}^n)$, $1\leq p<\infty$ und $u_h(x):= u(x-h)$. Dann gilt $\|u_h-u\|_p\rightarrow 0$ für $h\rightarrow 0$.
+\end{satz}
+\begin{proof}
+Sei $\epsilon >0$ und wähle (siehe Theorem \ref{thm1}) $\phi\in C_0^\infty(\mathbb{R}^n)$ mit $\|u-\phi\|_p<\epsilon/3$. Dann gilt
+\begin{align}
+\|u_h-u\|_p &\leq \|\phi_h-\phi\|_p+ \underbrace{\|u_h-\phi_h\|_p}_{=\|u-\phi\|_h} +\|u-\phi\|_p \\
+&< \|\phi_h-\phi\|_p +\frac{2}{3}\epsilon <\epsilon
+\end{align}
+für $|h|$ klein genug, da $\supp\phi$ kompakt und somit $\phi$ gleichmäßig stetig ist.
+\end{proof}
+
+\subsection*{Faltung und Glättung}
+Seien $f,g:\mathbb{R}^n\rightarrow\mathbb{C}$ messbar, $x\in\mathbb{R}^n$ und sei $y\mapsto f(x-y)g(y)$ integrierbar, dann ist
+\begin{equation}
+(f\ast g)(x):= \int_{\mathbb{R}^n} f(x-y)g(y)\d y=(g\ast f)(x)
+\end{equation}
+die \textbf{Faltung} von $f$ mit $g$.
+
+\begin{satz}\label{satz3}
+Sei $1\leq p\leq \infty$. Falls $f\in L^p(\mathbb{R}^n)$ und $g\in L^1(\mathbb{R}^n)$, dann ist auch $f\ast g\in L^p(\mathbb{R}^n)$ und es gilt
+\begin{equation}
+\|f\ast g\|_p\leq \|f\|_p\|g\|_1.
+\end{equation}
+\end{satz}
+\begin{proof}
+Der Fall $p=1,\infty$ verbleibt als Übung. Sei also $1<p<\infty$ und $q$ so, dass $1/p+1/q=1$ gilt. Dann ist
+\begin{align}
+|f\ast g(x)| &\leq \int_{\mathbb{R}^n} |f(x-y)|\cdot |g(y)|^{1/p}\cdot |g(y)|^{1/q}\d y \\
+&\leq \|g\|_1^{1/q}
+\left(
+\int_{\mathbb{R}^n} |f(x-y)|^p\cdot  |g(y)\d y
+\right)^{1/p}
+\end{align}
+und somit
+\begin{align}
+\int_{\mathbb{R}^n}|f\ast g(x)|^p\d x 
+&\leq \int_{\mathbb{R}^n} \left(\int_{\mathbb{R}^n} |f(x-y)|^p\cdot |g(y)|\d y\right)\cdot \|g\|_1^{p/q} \d x \\
+&= \|f\|_p^p\cdot \|g\|_1^{1+p/q} <\infty.
+\end{align}
+Durch Wurzelziehen folgt die Behauptung.
+\end{proof}
+
+\begin{thm}[Young'sche Ungleichung]\label{thm4}
+Seien $1\leq p,q\leq\infty$ und $1/p+1/q=1+1/r$. Falls $f\in L^p(\mathbb{R}^n)$ und $g\in L^q(\mathbb{R}^n)$, dann ist $f\ast g\in L^r\mathbb{R}^n$ und es gilt
+\begin{equation}
+\|f\ast g\|_r\leq \|f\|_p\|g\|_q.
+\end{equation}
+\end{thm}
+\begin{proof}
+Siehe \cite{AF}.
+\end{proof}
+
+Sei im Folgenden
+\begin{equation}
+L_\mathrm{loc}^p(\Omega):=\{u:\Omega\rightarrow\mathbb{C}\mid u\text{ ist messbar mit }u\in L^p(K)\text{ für beliebige }K\subset\subset\Omega\}.
+\end{equation}
+
+\begin{lem}\label{lem5}
+Sei $J\in C_0^\infty(\mathbb{R}^n)$, dann gilt für $u\in L_\mathrm{loc}^1(\mathbb{R}^n)$
+\begin{enumerate}[\bf (a)]
+\item $J\ast u\in C^\infty(\mathbb{R}^n)$ und $\partial^\alpha(J\ast u)=(\partial^\alpha J)\ast u$ für $\alpha\in\mathbb{N}_0^n$.
+\item Falls $\supp J\subset \overline{B_\epsilon(0)}$, dann gilt $\supp (J\ast u)\subset\supp (u)_\epsilon$\footnote{Dies ist die Menge aller $x$ mit $\dist(x,\supp u) <\epsilon$ gemeint.}
+\end{enumerate}
+\end{lem}
+\begin{proof}
+\begin{enumerate}[\bf (a)]
+\item Skizze: (1) $J\ast u\in C(\mathbb{R}^n)$, (2) $\partial_{x_i}(J\ast u)=(\partial_{x_i} J)\ast u$ mit Satz von Lebesgue, (3) Induktion.
+\end{enumerate}
+\end{proof}
+
+\begin{bspe}
+\begin{enumerate}[\bf (a)]
+\item Für die Funktion $J$ gegeben durch
+\begin{equation}
+J(x):=
+\begin{cases}
+\exp\left(-\frac{1}{1-|x|^2}\right) &\mathrm{falls}\; |x|<1,\\
+0 &\mathrm{falls}\; |x|\geq 1
+\end{cases}
+\end{equation}
+gilt $J\in C_0^\infty(\mathbb{R}^n)$.
+\item Sei $0\leq J\in C_0^\infty(\mathbb{R}^n)$ mit $\supp J\subset \{|x|\leq 1\}$ und $\int J(x)\d x=1$. Für $\epsilon>0$ setzen wir
+\begin{equation}
+J_\epsilon(x):=\epsilon^{-n} J(x/\epsilon).
+\end{equation}
+Dann gilt
+\begin{enumerate}[(i)]
+\item $J_\epsilon\in C_0^\infty(\mathbb{R}^n)$, $J_\epsilon\geq 0$ und $\supp J_\epsilon\subset\overline{B_\epsilon(0)}$,
+\item $\int J_\epsilon(x)\d x =1$.
+\end{enumerate}
+\end{enumerate}
+\end{bspe}
+
+\begin{lem}\label{lem6}
+Sei $u\in L_\mathrm{loc}^1(\mathbb{R}^n)$ stetig in der offenen Menge $\Omega\subset\mathbb{R}^n$. Dann gilt für jede kompakte Menge $K\subset\Omega$
+\begin{equation}
+\sup\limits_{x\in K} |J_\epsilon\ast u(x)-u(x)|\rightarrow 0\qquad (\epsilon\rightarrow 0^+).
+\end{equation}
+\end{lem}
+
+\begin{proof}
+Es ist
+\begin{align}
+J_\epsilon\ast u(x)-u(x)
+&= \int J_\epsilon(x-y)u(y)\d y - \underbrace{\int J_\epsilon(x-y)\d y}_{=1} u(x) \\
+&= \int J_\epsilon(x-y)\big( u(y)-u(x)\big)\d y
+\end{align}
+und somit
+\begin{align}
+\left |J_\epsilon\ast u(x)-u(x)\right| 
+&\leq \int_{|x-y|\leq\epsilon} J_\epsilon(x-y) |u(y)-u(x)| \d y \\
+&\leq\sup\limits_{y:|y-x|\leq \epsilon} |u(y)-u(x)|.
+\end{align}
+Sei $\epsilon <\epsilon_0:=\dist(K,\Omega^c)$. Dann ist
+\begin{align}
+\sup\limits_{x\in K} \left |J_\epsilon\ast u(x)-u(x)\right|  
+\leq \sup\limits_{x\in K_\epsilon,\; y\in K_\epsilon,\;|x-y|\leq\epsilon} \left |J_\epsilon\ast u(x)-u(x)\right|   \rightarrow0 \qquad (\epsilon\rightarrow 0^+),
+\end{align}
+da $u$ auf $K_\epsilon$ gleichmäßig stetig ist. 
+\end{proof}
+
+\begin{thm}\label{thm7}
+Sei $\Omega\subset\mathbb{R}^n$ offen,  $1\leq p <\infty$ und $u\in L^p(\Omega)$. Dann gilt
+\begin{enumerate}[\bf (a)]
+\item $J_\epsilon \ast u \in C^\infty(\Omega)\cap L^p(\Omega)$,
+\item $\|J_\epsilon\ast u\|_{p,\Omega}\leq \|u\|_{p,\Omega}$,
+\item $\|J_\epsilon\ast u -u\|_{p,\Omega}\rightarrow 0$ für $\epsilon\rightarrow 0^+$,
+\end{enumerate}
+wobei $J_\epsilon\ast u(x)=\int_\Omega J_\epsilon(x-y)g(y)\d y$ ist, d.h. setze $u$ in $\mathbb{R}^n\backslash\Omega$ durch $u(x)=0$ fort.
+\end{thm}
+
+\begin{proof}
+\begin{enumerate}[\bf (a)]
+\item Aus $u\in L^p(\Omega)$ folgt $u\in L_{\mathrm{loc}}^1(\mathbb{R}^n)$ (siehe Blatt 1). Also ist nach Lemma \ref{lem5} und Satz \ref{satz3} $J_\epsilon\ast u\in C^\infty(\Omega)\cap L^p(\mathbb{R}^n)$. 
+\item Aus Satz \ref{satz3} folgt weiter, dass
+\begin{equation}
+\|J_\epsilon\ast u\|_{p,\Omega} 
+\leq \|J_\epsilon\ast u\|{p,\mathbb{R}^n}
+\leq \underbrace{\|J_\epsilon\|_1}_{=1}\underbrace{\|u\|_{p,\mathbb{R}^n}}_{=\|u\|{p,\Omega}}.
+\end{equation}
+\item Nach Theorem \ref{thm1} existiert ein $\Phi\in C_0(\Omega)$ mit 
+\begin{equation}
+|u-\Phi\|_p <\delta/3 \quad\mathrm{f"ur}\;\delta >0.
+\end{equation}
+ Nach Lemma \ref{lem6} konvergiert dann
+\begin{equation}
+|J_\epsilon\ast \Phi -\Phi|\rightarrow 0\qquad (\epsilon\rightarrow 0^+)
+\end{equation}
+gleichmäßig auf $K:=\supp (\Phi)_1=\{x\mid \dist(x,\supp\Phi)\leq 1\}$. Also ist
+\begin{align}
+\|J_\epsilon\ast \Phi-\Phi\|_p^p 
+&= \int \big| J_\epsilon\ast\Phi(x)-\Phi(x) \big|^p\d x \\
+&\leq \sup\limits_{x\in K} \big| J_\epsilon\ast\Phi(x)-\Phi(x) \big|^p \int_K 1\d x\rightarrow 0 \qquad (\epsilon\rightarrow 0^+).
+\end{align}
+Somit existiert ein $\epsilon_0 >0$ so, dass $\|J_\epsilon\ast \Phi-\Phi\|_p <\delta/3$ für $\epsilon<\epsilon_0$ und es folgt
+\begin{align}
+\|J_\epsilon\ast u-u\|_p 
+&\leq \|J_\epsilon\ast (u-\Phi)\|_p +\|J_\epsilon\ast \Phi-\Phi\|_p +\|\Phi-u\|_p \\
+&\leq \|J_\epsilon\|_1\cdot \|u-\Phi\| +\frac{2}{3}\delta <\delta.
+\end{align}
+\end{enumerate}
+\end{proof}
+
+
+\begin{satz}\label{satz8}
+Sei $\Omega\subset\mathbb{R}^n$ offen und $1\leq p<\infty$. Dann ist $C_0^\infty(\Omega)$ dicht in $L^p(\Omega)$.
+\end{satz}
+
+\begin{proof}
+Nach Theorem \ref{thm1} ist $C_0(\Omega)\subset L^p(\Omega)$ dicht. Sei also $u\in L^p(\Omega)$, $\delta>0$ und $\Phi\in C_0(\Omega)$ mit $\|u-\Phi\|_p<\delta/2$. Nach Lemma \ref{lem5} ist dann $J_\epsilon\ast\Phi\in C_0^\infty(\Omega)$ falls $\epsilon<\dist(\supp\Phi,\Omega^c)$ und
+\begin{align}
+\|J_\epsilon\ast\Phi-\Phi\|_p <\frac{\delta}{2}
+\end{align}
+für $\epsilon$ klein genug (Theorem \ref{thm7}(c)). Also ist
+\begin{align}
+\|J_\epsilon\ast\Phi-u\|_p 
+\leq \|J_\epsilon\ast\Phi-\Phi\|_p+\|\Phi-u\|_p 
+< \frac{\delta}{2}+\frac{\delta}{2}=\delta
+\end{align}
+für $\epsilon$ klein genug.
+\end{proof}
+
+\begin{satz}\label{satz9}
+Sei $\Omega\subset\mathbb{R}^n$ offen und $u\in L_{\mathrm{loc}}^1(\Omega)$. Falls
+\begin{equation}
+\int_\Omega u\phi\d x=0\quad\text{f"ur alle }\phi\in C_0^\infty(\Omega),
+\end{equation}
+dann ist $u(x)=0$ fast überall in $\Omega$.
+\end{satz}
+
+\begin{proof}
+Für $n\in\mathbb{N}$ sei
+\begin{equation}
+K_n=\{x\in\Omega\mid |x|\leq n\text{ und }\dist(x,\Omega^c)\geq 1/n\}.
+\end{equation}
+Also ist $K_n\subset\Omega$ kompakt, $K_n\subset K_{n+1}$ und $\bigcup_{n\geq 1} K_n=\Omega$. Weiter ist
+\begin{equation}
+\dist(K_n,K_{2n}^c)\geq \frac{1}{2n}.
+\end{equation}
+Sei
+\begin{equation}
+u_n(x)=
+\begin{cases}
+u(x)\chi_{K_n}(x), &\mathrm{falls}\; x\in\Omega ,\\
+0, &\mathrm{falls}\; x\notin\Omega.
+\end{cases}
+\end{equation}
+Dann ist$u_n\in L^1(\Omega)$ und für $x\in K_n$ und $\epsilon\leq 1/(2n)$ gilt
+\begin{align}
+J_\epsilon\ast u_{2n}(x) 
+= \int_{|x-y|\leq\frac{1}{2n}} J_\epsilon(x-y)u_{2n}(y)\d y 
+= \int_\Omega J_\epsilon(x-y)u(y)\d y 
+=0,
+\end{align}
+da $y\mapsto J_\epsilon(x-y)$ in $C_0^\infty(\Omega)$ liegt. Es folgt $\chi_{K_n}(J_\epsilon\ast u_{2n})\equiv 0$, wobei
+\begin{equation}
+J_\epsilon\ast u_{2n} \rightarrow u_{2n}\quad\mathrm{in}\; L^1(\Omega). 
+\end{equation}
+Also gilt
+\begin{align}
+\|\chi_{K_n}u\|_1 
+= \|\chi_{K_n}u_{2n}\|_1
+= \lim\limits_{\epsilon\rightarrow 0^+} \|\chi_{K_n}(J_\epsilon\ast u_{2n})\|_1 =0,
+\end{align}
+d.h. $u(x)=0$ fast überall in $K_n$ und somit auch
+\begin{equation}
+u(x)=0\quad\mathrm{fast\;"uberall\; in} \bigcup\limits_{n\geq 1} K_n =\Omega.
+\end{equation}
+\end{proof}
+
+
+
+
+\chapter{Sobolev-Räume}
+\section*{Schwache Ableitung}
+Sei $\Omega\subset\mathbb{R}^n$ offen und $u\in C^k(\Omega)$ für $k\in\mathbb{N}$. Dann gilt für alle $\alpha\in\mathbb{N}_0^n$ mit $|\alpha|\leq k$ und für alle $\phi\in C_0^\infty(\Omega)$ die Identität
+\begin{equation}
+\int_\Omega u\partial^\alpha\phi\d x= (-1)^{|\alpha|}\int_\Omega (\partial^\alpha u)\phi \d x.
+\end{equation}
+Das motiviert folgende Definition:
+
+\begin{df}
+Sei $\alpha\in\mathbb{N}_0^n$ und $u,b\in L_{\mathrm{loc}}^1(\Omega)$, $\Omega\subset\mathbb{R}^n$ offen mit
+\begin{equation}
+\int_\Omega u\partial^\alpha\phi\d x= (-1)^{|\alpha|}\int_\Omega v\phi \d x
+\end{equation}
+für alle $\phi\in C_0^\infty(\Omega)$. Dann heißt $v$ \textbf{schwache} $\boldsymbol{\alpha}$\textbf{-Ableitung} von $u$ und man schreibt $v=\partial^\alpha u$.
+\end{df}
+
+\begin{rems}
+\begin{enumerate}[\bf 1)]
+\item Die schwache $\alpha$-Ableitung ist eindeutig, falls sie exisitiert: Sind $v,\tilde{v}$ schwache $\alpha$-Ableitungen von $u$, dann gilt
+\begin{equation}
+\int_\Omega (v-\tilde{v})\phi\d x =0\quad\mathrm{f"ur\; alle\;}\phi\in C_0^\infty(\Omega)
+\end{equation}
+und somit $v=\tilde{v}$ f.ü. in $\Omega$. D.h. $v=\tilde{v}$ in  $L_{\mathrm{loc}}^1(\Omega)$. 
+\item Falls $u\in C^k(\Omega)$, dann ist $\partial^\alpha u$ für $|\alpha|\leq k$ die klassische $\alpha$-Ableitung von $u$.
+\item Es ist möglich, dass $\partial^\alpha u$ existiert aber $\partial^\beta u$ für ein $\beta\leq \alpha$ nicht existiert.
+\end{enumerate}
+\end{rems}
+
+\begin{bspe}
+\begin{enumerate}[\bf 1)]
+\item Sei $u(x)=x\cdot \chi_{\{x\geq 0\}}(x)$. Dann ist $u'=\Theta$ die \textit{Heaviside Funktion} aber $\Theta$ hat keine schwache Ableitung ($\Theta '=\delta$ im Distributionssinn).
+\begin{proof}
+\begin{align}
+\int\limits_{-\infty}^\infty u\phi' \d x=\int\limits_0^\infty x\phi'(x)\d x= x\phi(x)\Big|_0^\infty -\int\limits_0^\infty \phi(x)\d x =-\int\limits_{-\infty}^\infty \Theta(x)\phi(x)\d x
+\end{align}
+\end{proof}
+\item Sei $u(x,y)=\Theta(x)$ für $(x,y)\in\mathbb{R}^2$. Sei $\alpha=(1,1)$, dann gilt $\partial^\alpha u=0$ aber $\partial_x u$ existiert nicht.
+\begin{proof}
+\begin{align}
+\int u\partial^\alpha \phi \d x\d y 
+&= \int\limits_{-\infty}^\infty\d x \int\limits_{-\infty}^\infty\d y\Theta(x) \frac{\partial}{\partial y}\left(\frac{\partial\phi}{\partial x}\right)\\
+&= \int\limits_{-\infty}^\infty \d x\Theta(x) \underbrace{\int\limits_{-\infty}^\infty\d y \frac{\partial}{\partial y}\left(\frac{\partial\phi}{\partial x}\right)}_{=0} =0.
+\end{align}
+Also ist $\partial^\alpha u =0$.
+\end{proof}
+\item Für $\kappa<n-1$ gilt
+\begin{align}
+\partial_i |x|^{-\kappa} =-\kappa \frac{x_i}{|x|^{\kappa +2}}.
+\end{align}
+\end{enumerate}
+\end{bspe}
+
+\subsection{Sobolevräume}
+Sei $\Omega\subset\mathbb{R}^n$ offen, $1\leq p\leq\infty$ und $m\in\mathbb{N}$. Dann ist
+\begin{equation}
+W^{m,p}(\Omega):=\{u\in L^p(\Omega)\mid \partial^\alpha u\in L^p(\Omega)\text{ f"ur }\alpha:\;|\alpha|\leq m\}
+\end{equation}
+mit
+\begin{align}
+\|u\|_{m,p}&:=\left(\sum\limits_{|\alpha|\leq m}\|\partial^\alpha u\|_p^p\right)^{1/p}\qquad (1\leq p<\infty) \\
+\|u\|_{m,\infty} &:= \max\limits_{|\alpha|\leq m} \|\partial^\alpha u\|_\infty \qquad (p=\infty)
+\end{align}
+ist ein normierter Vektorraum.
+
+\begin{thm}\label{thm2_1}
+Für $1\leq p\leq\infty$ ist $W^{m,p}(\Omega)$ ein Banachraum.
+\end{thm}
+
+\begin{proof}
+Sei $(u_k)_{k=1}^\infty$ eine Cauchy-Folge in $W^{m,p}(\Omega)$, dann ist $(\partial^\alpha u_k)$ für jedes $|\alpha|\leq m$ eine Cauchy-Folge in $L^p(\Omega)$ (dieser ist vollständig). Also existiert ein $u_\alpha$ mit
+\begin{equation}
+\partial^\alpha u_k \rightarrow u_\alpha\quad\mathrm{in}\; L^p(\Omega)
+\end{equation}
+für alle $\alpha$ mit $|\alpha|\leq m$. Sei $u=u_{\alpha =0}$. Zu zeigen ist $u_\alpha=\partial^\alpha u$ für alle $\alpha$ mit $|\alpha|\leq m$. \\\\
+Sei $\phi\in C_0^\infty(\Omega)$, dann
+\begin{align}
+\int_\Omega u\partial^\alpha u\d x 
+&\overset{(\ast)}{=} \lim\limits_{k\rightarrow\infty} \int_\Omega u_k\partial^\alpha\d x \\
+&= \lim\limits_{k\rightarrow\infty} (-1)^{|\alpha|}\int_\Omega \partial^\alpha u_k\phi\d x \\
+&= (-1)^{|\alpha|} \int_\Omega u_\alpha\phi \d y .
+\end{align}
+Also ist $u_\alpha =\partial^\alpha u$ und somit $\partial^\alpha u_k\rightarrow\partial^\alpha u$ in $L^p(\Omega)$ für alle $\alpha$ mit $|\alpha|\leq m$ und somit $\|u_k-u\|_{m,p}\rightarrow 0$ für $k\rightarrow\infty$.
+Zu $(\ast)$:
+\begin{align}
+\left| \int_\Omega\left( u\partial^\alpha\phi-u_k\partial^\alpha\phi \right)\d x \right| 
+\leq \|u-u_k\|_p \|\partial^\alpha \phi\|_q\rightarrow 0 \qquad (k\rightarrow\infty),
+\end{align}
+wobei $1/q+1/q=1$.
+\end{proof}
+
+\begin{bspe}
+\begin{enumerate}[1)]
+\item Sei $\Omega = B_R(0)\subset \mathbb R^n$ und $$u(x)=|x|^{-\alpha} \quad \alpha <n$$
+
+Dann ist $u\in L_{\text{loc}}^1(\Omega)$ und 
+$$\nabla u(x)= - \alpha \frac{x}{|x|^{\alpha+2}} \quad \alpha < n-1$$
+(Blatt 1). Es gilt
+\begin{align*}
+\int_{|x|<R} |\nabla u|^p \, \mathrm dx &= \alpha \int_{|x|<R} \frac{1}{|x|^{(\alpha+1)p}} \, \mathrm d^n x\\
+&= \begin{cases}
+\alpha \omega_n \frac{R^{n-(\alpha+1)p}}{n-(\alpha+1)p} &\ \quad \alpha < \frac{n}{p} -1\\
+\infty &\ \quad \alpha \ge \frac{n}{p} -1
+\end{cases}
+\end{align*}
+wobei $\omega_n = \int_{|x|=1}$ der Flächeninhalt der Einheitssphäre in $\mathbb R^n$ ist. Im Fall $\alpha < \frac{n}{p}-1$ folgt $u\in W^{1,p}(B_R(0))$ (dann $u\in L^p(B_R(0))$ Übung). Es gilt auch $u\in W^{1,p}(B_R(0))$. Dann folgt $\alpha < \frac{n}{p}-1$ (Übung). 
+
+Also
+$$
+u \in W^{1,p}(B_R(0)) \iff \alpha < \frac{n}{p}-1
+$$
+\item Sei $(d_k)_{k\ge 1}$ dicht in $B_1(0)$ und 
+\begin{equation}\label{bsp1-eq1}
+u(x) = \sum_{k\ge 1} 2^{-k} |x-a_k|^{-\alpha}
+\end{equation}
+Dann ist $u\in W^{1,p}(B_1(0))$ genau dann wenn $\alpha < \frac{n}{p}-1$.
+\begin{proof}
+Falls $\alpha < \frac{n}{p}-1$, dann ist $u(x)=2^{-k} |x-a_k|^{-\alpha}$ in $W^{1,p}(B_1(0))$ und $\| u_k\|_{1,p} \le i^k C_{\alpha, p,n}$, also ist die Reihe $\sum_{k\ge 1} \| u_k \|_{W^{1,p}(B_1(0))} < \infty$, d.h. \eqref{bsp1-eq1} ist absolut konvergent in $W^{1,p}(B_1(0))$ und somit $u\in W^{1,p}(B_1(0))$ denn $W^{1,p}$ ist vollständig. Übung: $u\in W^{1,p}(B_1(0))\implies \alpha < \frac{n}{p}-1$. 
+\end{proof}
+\end{enumerate}
+\end{bspe}
+
+\begin{prop}
+Falls $n>p$ und $0<\alpha < \frac{n}{p}-1$ dann ist $u\in W^{1,p}(B_1(0))$ und trotzdem in jedem Punkt $d_k$ divergent.
+\end{prop}
+%\end{enumerate}
+Wir wollen nun zeigen, dass $C^\infty(\Omega) \cap W^{1,p}(\Omega)$ dicht ist in $W^{1,p}(\Omega)$, $1\le p <\infty$. Dazu brauchen wir einige Vorbereitungen:
+
+\begin{satz}
+Seien $u,v\in W^{m,p}(\Omega)$, $1\le p \le \infty$ und $|\alpha |\le m$. Dann gilt
+\begin{enumerate}[i)]
+\item $\partial^\alpha u\in W^{m-|\alpha|, p}(\Omega)$ und $\partial^\beta(\partial^\alpha u) = \partial^\alpha (\partial^\beta u) = \partial^{\alpha + \beta} u$ falls $|\alpha|+|\beta|\le m$.
+\item $\lambda u + \mu v\in W^{m,p}(\Omega)$ und $\partial^\alpha (\lambda u + \mu v)= \lambda \partial^\alpha u + \mu \partial^\alpha v$ für $\lambda, \mu \in \mathbb C$.
+\item Ist $v\subset \Omega$ offen, dann ist $u\upharpoonright V\in W^{m,p}(V)$. 
+\item Ist $\gamma \in C_0^\infty(\Omega)$, dann ist $\gamma u \in W^{m,p}(\Omega)$ und
+$$
+\partial^\alpha (\gamma u) = \sum_{\beta \le \alpha} \binom{\alpha}{\beta} (\partial^\beta \gamma) ( \partial^{\alpha-\beta}u)
+$$ 
+\end{enumerate}
+\end{satz}
+\begin{proof}
+(i)-(iii) Übung (L.C. Evans).\\
+(iv) Beweis der  Leibniz-Regel
+\begin{align*}
+\int(\gamma u) \partial_i \phi \, \mathrm dx &= \int u (\gamma \partial_i \phi) \\
+&= \int u (\partial_i (\gamma \phi) - (\partial_i \gamma) \phi) \\
+&= - \int (\partial_i u) (\gamma \phi) + u(\partial_i \gamma) \phi \\
+&= - \int ((\partial_i u) \gamma + u\partial_i \gamma)) \phi.
+\end{align*}
+Per Induktion bekommt man nun die Leibnizregel für $\partial^\alpha$ (s. Evans).
+Aus der Leibniz-Regel folgt $\gamma u \in W^{m,p}(\Omega)$ denn $\partial^\beta \gamma\in C_0^\infty$ und $\partial^{\alpha-\beta}u \in L^p(\Omega)$.
+\end{proof}
+
+\begin{lem}
+Ist $K\subset \Omega$ kompakt, dann existiert $\phi \in C_0^\infty(\Omega)$ mit $0\le \phi \le 1$ und $\phi \equiv 1$ auf $K$ und
+$$
+\sup_{x\in \Omega} |\partial^\alpha \phi(x)|\le c_\alpha \delta^{-|\alpha|}
+$$ 
+wobei $\delta = \dist(K, \Omega^c)$ und $c_\alpha$ ist unabhängig von $K, \Omega$.
+\end{lem}
+\begin{proof}
+Sei $X_\delta$ die charakteristische FUnktion von $K_{\delta/2}:= \{x\in \Omega|\text{dist} (x,K) \le \frac{\delta}{2}\}$. Sei $\varepsilon = \frac{\delta}{3}$ und $\phi:= J_\varepsilon * \chi_\delta$. Dann ist $0 \le \phi \le 1, \phi \in C_0^\infty(\mathbb R^n)$ und $\text{supp}(\phi) \subset \text{supp}(\chi_\delta) \subset K_{\delta/2+ \varepsilon} \subset \Omega$ nach Lemma 1.5. Außerdem gilt
+$$
+\partial^\alpha \phi = (\partial^\alpha J_\varepsilon) * \chi_\delta,
+$$ 
+wobei $\partial^\alpha J_\varepsilon(x) = \varepsilon^{-|\alpha|} (\partial_\alpha J)_\varepsilon (x)$ und somit
+\begin{align*}
+\|\partial^\alpha \phi\|_\infty &\le \| \partial^\alpha J_\varepsilon \|_1 \underbrace{\| \chi_\delta\|_\infty}_{=1} \\
+&= \varepsilon^{-|\alpha|} \| (\partial^\alpha J)_\varepsilon\|_1 = \varepsilon^{-|\alpha|} \| \partial^\alpha J\|_1
+\end{align*} 
+\end{proof}
+
+\begin{satz}[Zerlegung der Eins]
+Sei $\Omega \subset \mathbb R^n$ und $\Omega = \bigcup_{U\in \mathcal O} U$ eine offene Überdeckung von $\Omega$, $U\subset \mathbb R^n$ offen. Dann existiert eine Folge $\psi_k \in C_0^\infty(\Omega), k \in \mathbb N$ mit
+\begin{enumerate}[(i)]
+\item $0 \le \psi_k\le 1$.
+\item $\text{supp}(\psi_k) \subset U$ für ein $u\in \mathcal O$.
+\item Ist $K\subset \Omega$ kompakt, dann existiert $W\supset K$ offen, $K\subset W\subset \Omega$ und $m\in \mathbb N$, so dass
+$$
+\sum_{k=1}^m \psi_k(x) =1 \quad x\in W
+$$
+(bzw. $\sum_{k\ge 1} \psi_k(x) =1$ in $\Omega$).  $(\psi_k)$ heißt eine \textbf{der offene Überdeckung $\Omega = \bigcup_{U\in \mathcal O} U$ untergeordnete, lokal endliche Zerlegung der Eins}.
+\end{enumerate} 
+\end{satz}
+\begin{proof}
+Sei $D\subset \Omega$ eine abzählbar und dicht und sei $(B(x_j, r_j))_{j\in \mathbb N}$ die Folge der abgeschlossenen Kugeln welche alle Kugeln $\overline{B(x, r)}$ mit $X\subset D, r\in \mathbb Q$ und $\overline{B(x,r)}\subset U$ für ein $U\in \mathcal O$ umfasst.
+
+
+Sei $V_j= \{x||x-x_j|<\frac{r_j}{2}\} \subset B(x_j, r_j)$.  Dann existiert $\phi_j \in C_0^\infty(\Omega)$ mit
+\begin{enumerate}[(i)]
+\item $0\le \phi_j \le 1$
+\item $\phi_j \equiv 1$ auf $V_j$
+\item $\supp(\phi_j) \subset B(x_j, r_j)$
+\end{enumerate}
+(vgl. Lemma 4). Definiere
+\begin{align*}
+\psi_1&:= \phi_1 \\
+\psi_2 &:= (1-\phi_1) \phi_2\\
+&\vdots \\
+\psi_j &:= (1-\phi_1)(1-\phi_2) \cdots (1- \phi_{i-1}) \phi_i.
+\end{align*}
+
+Dann gilt $0 \le \psi_j \le 1$, $\text{supp}(\psi_j) \subset \text{supp}(\phi_j) \subset \overline{B(x_i, r_i)}$ und
+$$
+\psi_1 + \psi_2 + \ldots + \psi_i = 1- \prod (1-\phi_i)
+$$
+(FIXME)
+Da $\phi_i =1$ in $V_i$ folgt $\psi_1 + \psi_2 + \cdots + \psi_i =1$ in $V_1 \cup V_2 \cup V_3 \cup \ldots \cup V_j$. Sei $K\subset \Omega$ kompakt, dann existiert $m\in \mathbb N$ mit $K\subset \bigcup_{j=1}^m V_j =:W $ denn
+\end{proof}
+
+\begin{lem}\label{2.6}
+Sei $u\in W^{m,p}(\Omega), 1 \le p <\infty$ und sei $V\subset \subset \Omega$ offen. Dann gilt
+$$
+\| J_\varepsilon * u - u\|_{W^{m,p}(V)} \to 0 \quad (\varepsilon \rightarrow 0 +)
+$$
+\end{lem}
+\begin{proof}
+Wir zeigen zuerst, dass
+$$
+\partial^\alpha (J_\varepsilon * u) = J_\varepsilon * (\partial^\alpha u)
+$$
+in $V$ für $|\alpha|\le m$ und $\varepsilon < \text{dist} (V, \Omega^c)$. Nach Lemma 1.5 ist $J_\varepsilon * u\in C^\infty(\Omega)$ und 
+$$
+\partial^\alpha (J_\varepsilon * u) = ( \partial^\alpha J_\varepsilon) * u.
+$$
+Sei $x\in V$ und $\varepsilon < \text{dist}(V, \Omega^c)$ Dann ist die Funktion 
+$y\mapsto J_\varepsilon(x-y)$ in $C_0^\infty(\Omega)$ und somit 
+\begin{align*}
+(\partial^\alpha J_\varepsilon * u) (x)&= \int \partial^\alpha J_\varepsilon (x-y) u(y) \, \mathrm dy\\
+&= (-1)^{|\alpha|} \int \partial_y^\alpha J_{\varepsilon} (x-y) u(y) \, \mathrm dy \\
+&= \int J_\varepsilon (x-y) \partial^\alpha u(y) \, \mathrm dy \\
+&= J_\varepsilon * (\partial^\alpha u) (x).
+\end{align*}
+$\partial^\alpha u \in L^p(V)$, $1\le p <\infty$. Also nach Theorem 1.7, $J_\varepsilon * \partial^\alpha u \to \partial^\alpha u$ in $L^p(V)$ ($\varepsilon \to 0 +$). Es folgt
+\begin{align*}
+\| J_\varepsilon * u - u \|_{W^{1,p}(V)} = \sum_{|\alpha \le m} \| \partial^\alpha (J_\varepsilon * u) - \partial^\alpha u \|^p_{p,V}\\
+&= \sum_{|\alpha|\le m} \| J_\varepsilon * (\partial^\alpha u) - \partial^\alpha u \|_{p,V}^p \to 0 (\varepsilon 0 +),
+\end{align*}
+\end{proof}
+
+\begin{thm}[Meyers, Serrin 1964]
+Für $1\le p <\infty$ ist $C^\infty(\Omega) \cap W^{m,p}(\Omega)$ dicht in $W^{m,p}(\Omega)$.
+\end{thm}
+\begin{proof}
+Für $k\in \mathbb N$ sei
+$$
+\Omega_k = \{x\in \Omega |\text{dist} (x, \Omega^c) >\frac{1}{k} \quad \text{ und } |x| <k\}.
+$$
+Dann $\Omega_1 \subset \Omega_2 \subset \cdots \subset \Omega$ und $\bigcup_{k\ge 1} \Omega_k = \Omega$ für 
+$k\ge 2$. Sei $$U_k = \Omega_{k+1} \cap \overline{\Omega_{k-1}}^c = \Omega_{k+1} \setminus \overline{\Omega_{k-1}}$$
+und $U_1= \Omega_1$ Dann $\Omega = \bigcup_{k=1}^\infty U_k$. Sei $(\phi_j)$ eine der offene Überdeckung $\Omega = \bigcup_{i \ge 1} U_i$ untegeordnete lokal endliche Zerlegung der Eins (Satz 5) und sei $(\psi_k)_{k\ge 1}$ wie folgt definiert. $\psi_1$ ist die Summe der $\phi_i$ mit $\supp(\phi_i) \subset U_1$. $\phi_2$ ist die Summe der $\phi_i$ mit $\text{supp}(\phi_i) \subset U_2$ aber $\text{supp}(\phi_i) \not \subset U_1$ etc.  Dann ist $\psi_k \in C_0^\infty(\Omega)$ dann $\overline U_k$ kompakt und somit ist $\psi_k$ eine endliche Summe. Außerdem $0 \le \psi_k \le 1, \sum \psi_k(x)=1$ in $\Omega$, $\text{supp}(\psi_k) \subset U_k$.  Sei $\varepsilon>0$ und $\varepsilon_k >0$ so klein, dass  
+$$
+\text{supp}(J_{\varepsilon_k} * ( \psi_k U)) \subset U_k
+$$
+und $$\| J_{\varepsilon_k}*\underbrace{(\psi_k u)}_{\in W^{m,p}}- \psi_k u\|_{W^{m,p}(\Omega_k)} < 2^{-k}\varepsilon$$
+(nach Lemma 6). Definiere 
+$$
+\phi:= \sum_{k\ge 1} J_{\varepsilon_k} * (\psi_\varepsilon U)
+$$
+auf jeder kompakten Menge $K\subset \Omega$ sind nur endlich viele Summanden $\neq 0$ also $\phi \in C^\infty(\Omega)$. In $\Omega_k$ gilt
+\begin{align*}
+u(x) &= \sum_{j=1}^{k+1} \psi_j(x) u(x)\\
+\phi(x) &= \sum_{j=1}^{k+1} J_{\varepsilon_i} * (\psi_j u) (x).
+\end{align*}
+Also gilt 
+\begin{align*}
+\| \phi - u \| _{W^{m,p}(\Omega_k)} &\le \sum_{i=1}^{k+2} \| J_{\varepsilon_i} * (\psi_i u) - \psi_i u\|_{W^{m,p}(\Omega_k)} \\
+&\le \sum_{i=1}^{k+1} \varepsilon \cdot 2^{-j} < \varepsilon
+\end{align*}
+Mit monotoner Konvergenz folgt $\|\phi- u\|_{W^{m,p}(\Omega)}\le \varepsilon$.
+\end{proof}
+\section{Einbettungssätze}
+\subsection{Sobolev-Ungleichungen}
+\begin{bsp}
+	Es gilt
+	\begin{equation}
+		u: x \mapsto \frac{1}{|x|^\alpha} \in W^{1,p}(B_1(0)) \iff \alpha < \frac{n}{p}-1
+	\end{equation}
+\end{bsp}
+Dieses Beispiel zeigt, dass mit steigender Dimension $n$ FUnktionen mit "'schlimmeren`` Singularitäten immer noch in $W^{1,p}(\Omega)$ liegen können. In diesem Kapitel ist immer $p<n$ (später $p>n$, dann $W^{m,p}(\Omega) \subset C^k(\Omega)$ für $k<m-\frac{n}{p}$).
+
+Sei $1\le p <n$. Gibt es ein $q\ge 1$ und ein $C\in \mathbb R$, so dass
+\begin{equation}\label{sobolev1}
+\| u\|_q \le C \| \nabla u \|_p \quad \forall u\in C_0^1(\mathbb R^n)
+\end{equation}
+gilt?  Falls \eqref{sobolev1} stimmt, dann gilt auch 
+\begin{equation}\label{sobolev2}
+\| u_\lambda\|_q \le C \| \nabla u_\lambda\|_p
+\end{equation}
+für alle $\lambda>0$, wobei $u_\lambda(x):= u(\lambda x)$ ist. Es gilt
+\begin{itemize}
+\item $\int_{\mathbb R^n} |u_\lambda(x)|^p \, \mathrm dx = \int_{\mathbb R^n} |u(x)|^q \, \mathrm dx \cdot \lambda^{-n}$\\
+\item $\int_{\mathbb R^n} |\nabla u_\lambda(x)|^p \, \mathrm dx = \lambda^{p-n} \int_{\mathbb R^n} |\nabla u(x)|^p \, \mathrm dx$.
+\end{itemize}
+Einsetzen in \eqref{sobolev2} liefert $\| u\|_q \le \lambda^{1-\frac{n}{p} + \frac{n}{q}} \cdot C \| \nabla u \|_p \quad \forall \lambda>0$.
+
+Falls $1-\frac{n}{p} + \frac{n}{q} \neq 0$, dann liefert $\lambda \to 0$ (bzw. $\lambda \to \infty$), dass $\| u\|_q=0$ für alle $u\in C_0^1(\mathbb R^n)$. Ein Widerspruch. Somit ist
+\begin{equation}
+	1- \frac{n}{p} + \frac{n}{q}=0 \iff \frac{1}{q}=\frac{1}{p} - \frac{1}{n}
+\end{equation}
+notwendig für die Gültigkeit von \eqref{sobolev1}. 
+\begin{df}
+Sei $1\le p <n$. Dann ist $p^* >p$ gegeben durch
+\begin{equation}
+	\frac{1}{p*}= \frac{1}{p} - \frac{1}{n},
+\end{equation}
+d.h. $p^* = \frac{np}{n-p}$.
+\end{df}
+
+\begin{thm}[Gagiardo-Nirenberg-Sobolev]
+	Sei $q\le p <n$. Dann exististiert $C=C_{n,p}\in \mathbb R$, so dass gilt
+	\begin{equation}
+	\|u\|_p^* \le C \| \nabla u\|_p \quad \forall u \in C_0^1(\mathbb R^n).
+	\end{equation}
+\end{thm}
+\begin{rem}
+ \begin{itemize}
+	\item Die Konstante $C= C_{n,p}$ hängt nicht von $\supp u$ ab, dennoch kann man die Bedingung $\supp u\subset \subset \mathbb R^n$ nicht ersatzlos streichen (vgl $u\equiv 1$).
+	\item Unser Beweis liefert $C= \frac{p(n-1)}{n-p}$. Der bestmögliche Wert von $C$ ist jedoch  $C= \sup_u \frac{\|u\|_{p^*}}{\|\nabla u\|_p}$ (dies lässt sich explizit berechnen und nimmt sogar ein Maximum an).
+ \end{itemize}
+\end{rem}
+\begin{proof}
+	Sei $p=1$ und somit $p^*= \frac{n}{n-1}$. Sei $U\in C_0^1(\mathbb R^n)$, dann gilt 
+	\begin{equation}
+		u(x)=u(x_1, \cdots, x_n) = \int_{-\infty}^{x_i} \partial_i u(x_1, \ldots, x_{i-1}, y_i, x_{i+1}, \ldots, x_n) \, \mathrm dy_i \quad (i\in \{1, \ldots, n\}).
+	\end{equation}
+	und somit 
+	\begin{equation}
+		|u(x)| \le \int_{-\infty}^\infty | \nabla u(x_1, \ldots, y_i, \ldots, x_n)|\, \mathrm dy_i
+	\end{equation}
+	bzw.
+	\begin{align}
+		|u(x)|^{n}{n-1} &\le \left ( \int_{-\infty}^\infty | \nabla u(x)|\, \mathrm dy_i\right ) ^{1/(n-1)}\\
+		&\le \prod_{i=1}^n \left ( \int_{-\infty}^\infty |\nabla u(x)|\, \mathrm dx_i \right )^{1/(n-1)}.
+	\end{align}
+	Wir integrieren beide Seiten bzgl. $x_1$ und verwenden die verallgemeinerte Hölderungleich. Wir bekommen so
+	\begin{align}
+		\left ( \int_{-\infty}^\infty | u(x)|^{n/(n-1)} \, \mathrm dx_1 \right ) &\le \left ( \int_{-\infty} |\nabla u(x)|\, \mathrm dy_1 \right )^{\frac{1}{n-1}} \cdot \int_{-\infty}^\infty \prod_{i=2}^n \left ( \int_{-\infty}^\infty | \nabla u(x)| \, \mathrm dx \right )
+	\end{align}
+\end{proof}
+
+(FIXME)
+
+Sei $m>\frac{n}{p}$ bzw $1 > \frac{n}{p}\iff p>n$.
+\begin{thm}[Morrey]\label{3.4}
+	$n<p\le \infty$ und $u\in C^1(\mathbb R^n)\cap W^{1,p}(\mathbb R^n)$. Dann ist $u$ beschränkt, Hölderstetig mit Exponent $\gamma =1 - \frac{n}{p}$ und
+	\begin{equation}
+		\| u\|_{\alpha, \gamma} \le C \| u \|_{1,p}
+	\end{equation}
+	wobei $C$ nur von $n,p$ abhängt.
+\end{thm}
+\begin{proof}
+	$B(x,r) \subset \mathbb R^n$ gilt: (FIXME)
+	\begin{equation}
+		\not\int_{B(x,r)} | u(y)- u(x) |\, \mathrm dy \le \frac{1}{\omega_n} \int_{B(x,r)} \frac{|\nabla u(x)|}{|y-x|^{n-1}}\, \mathrm dy.
+	\end{equation}
+	\textbf{Hölderstetigkeit:} Seien $x,y\in \mathbb R^n$ und $r=|x-y|>0$. Sei $W:= B(x,r) \cap B(y,r)$. Für $z\in W$
+	\begin{equation}
+	|u(y)-u(x)|\le |u(y)-u(z)|+ |u(x)-u(z)|.
+	\end{equation}
+	Also
+	\begin{equation}
+		|u(x)-u(y)| \le \not \int_W | u(x) - u(z)| \, \mathrm dz + \not \int_W |u(y)-u(z)|\, \mathrm dz
+	\end{equation}
+	wobei 
+	\begin{align*}
+	\not \int_W |u(x)-u(z)|\, \mathrm dz &\le \frac{|B(x,r)|}{|W|} \frac{1}{|B(x,r)|} \int_{B(x,r)} |u(x)- u(z)|\, \mathrm dz\\
+	&= C_n \not \int_{B(x,r)} |u(x)-u(z)|\, \mathrm dz \\
+	&\le \frac{c_n}{\omega_n} \int_{B(x,r)} \frac{|\nabla u(y)|}{|x-y|^{n-1}} \, \mathrm dy \\
+	&\le \frac{c_n}{\omega_n} \left ( \int_{B(x,r)} |\nabla u(y)|^p \, \mathrm dy \right )^{1/p} \left ( \underbrace{\int_{B(x,r)} \frac{1}{|x-y|^{(n-1) p/(p-1)}}\, \mathrm dy}_{=I(r)} \right )^{(p-1)/p}\\
+\end{align*}
+wobei
+\begin{align*}
+	I(r) &= \omega_n \int_0^r \, \mathrm dt \, t^{n-1} \frac{1}{t^{(n-1) p/(p-1)}} \\
+	&= \omega_n \int_0^r \, \mathrm dt \frac{1}{t^{(n-1)/(p-1)}}\, \mathrm dt = \omega_n r^{1-(n-1)/(p-1)} \frac{1}{1-\frac{n-1}{p-1}} \\
+	&= \omega_n r^{(p-n)/(p-1)}\frac{p-1}{p-n}.
+\end{align*}
+Es folgt
+\begin{align*}
+	|u(x)-u(y)| &\le c_n \| \nabla u\|_{L^p(B(x,r))} |x-y|^{1-n/p} +\| \nabla u\|_{L^p(B(y,r))} |x-y|^{1-\frac{1}{p}}\\
+&\le C_{n,p} |x-y|^{1-\frac{1}{p}}\|\nabla u \|_{L^p(B(x,r)\cup B(x,r))}.
+\end{align*}
+Somit gilt
+\begin{equation}
+	\sup_{x\ne y} \frac{|u(x)-u(y)|}{{|x-y|}^{1-\frac{n}{p}}} \le C_{n,p} \| \nabla u\|_{L^p(\mathbb R^n)}.
+\end{equation}
+
+\end{proof}
+
+\begin{thm}\label{3.5}
+	Sei $\Omega \subset \mathbb R^n$ offen, $n<p<\infty$ und $\gamma = 1- n/p$, dann gilt $W_0^{1,p}(\Omega) \to C^{0,\gamma}(\overline{\Omega})$
+\end{thm}
+\begin{proof}
+	Sei $u\in W_0^{1,p}(\Omega)$ und $(u_n)$ eine Folge in $C_0^\infty(\Omega)$ mit $u_n \to u$ in $W^{1,p}$. Wir setzen $u_n$ durch $0$ zu einer Funktion auf $\mathbb R^n$ fort. Dann gilt nach Theorem \ref{3.4} ...
+
+	Da $C^{0,\gamma}$ ein Banachraum ist, existiert $\tilde u \in C^{0,\gamma}(\mathbb R^n)$ mit $u_n\to \tilde u$ bezechnet $\| \cdot \|_{0,\gamma}$ und insbesondere gleichmäßig. Da $u_n \to u$ in $L^p$ folgt $\tilde u =u$ f.ü. Aus 
+	\begin{equation}
+		\|u_n\|_{0,\gamma} \le C \|u_n\|_{1,p}
+	\end{equation}
+folgt im Limes $h\to \infty$
+	\begin{equation}
+		\|\tilde u \|_{0,\gamma} \le C\| \tilde u\|_{1,p}
+	\end{equation}
+	wobei $\tilde u$ der stetige Repräsentant von $u$ ist.
+\end{proof}
+\begin{thm}
+	Sei $\Omega \subset \mathbb R^n$ offen, $1\le p < \infty$ und sei $m>\frac{n}{p}$. Dann gilt
+	\begin{equation}
+	W_0^{m,p}(\Omega) \to C^{k, \gamma}(\overline{\Omega})
+	\end{equation}
+	für alle $k\in \mathbb N_0$, $\gamma \in (0,1)$ mit 
+	\begin{equation}
+	m-\frac{n}{p} \ge k + \gamma
+\end{equation}
+\end{thm}
+\begin{rem}
+Ist $n/p \not\in \mathbb N$ dann können wir $k=\left [m-\frac{n}{p}\right ] = m- \left [\frac{n}{p}\right ] -1$ und $\gamma = \left ( m- \frac{n}{p} \right )-k = \left [\frac{n}{p} \right ]+1 - \frac{n}{p}$ wählen.
+
+Ist $\frac{n}{p}\in \mathbb N$ dann gilt die Einbettung für $k=m-\frac{n}{p}-1$ und jedes $\gamma \in (0,1)$.
+\end{rem}
+ \begin{proof}
+ \begin{enumerate}
+ 	\item Falls $p>n$ dann ist $W_0^{m,p}(\Omega) \to C^{m-1, \gamma} (\overline\Omega)$ mit $\gamma = 1- \frac{k}{p}$. (FIXME: überprüfen)
+ 	\begin{proof}
+		Sei $u\in C_0^\infty(\Omega)$. Dann gilt für $|\alpha|\le m-1$ nach Theorem \ref{3.5}.
+		\begin{equation}
+			\|\partial^\alpha u\|_{0,\gamma} \le C \| \partial^\alpha u\|_{1,p} \le C\| u \|_{m,p}.
+		\end{equation}
+		Also
+		\begin{equation}\label{3.6.1}
+			\|u\|_{m-1,p} = \max_{|\alpha|\le m-1} \| \partial^\alpha u \|_\infty + \max_{|\alpha < m-1} | \partial^\alpha u|_\gamma \le C\| u \|_{m,p}
+		\end{equation}
+		Sei $u\in W_0^{m,p}(\Omega)$, $U_k \in C_0^\infty(\Omega)$ mit $\| u_n - u\|_{m,p} \to 0$. Dann folgt aus \eqref{3.6.1}
+		\begin{equation}
+			\| u_n - u_m \|_{m-1, \gamma} \le C \| u_n - u_m \|_{m,p} \to 0 \quad (n,m\to \infty)
+		\end{equation}
+		D.h. $(u_n)$ ist CF in $C^{m-1, \gamma}(\overline{\Omega})$ mit $u_n \to \tilde u$ in $C^{m-1, \gamma}(\overline{\Omega})$. Da $u_n \to u$ in $L^p$ folgt $\tilde u = u$ fast überall und aus
+		\begin{equation}
+			\| u_n \|_{m-1, \gamma} \le C \| u_n \|_{m,p}
+		\end{equation}
+		folgt im Limes $n\to \infty$: $\| \tilde u\|_{m-1, r} \le C\| \tilde u \|_{m,p}$.
+ 	\end{proof}
+ \item $W_0^{m,p}(\Omega) \to W_0^{m-l,r}(\Omega)$ falls $\frac{1}{r} = \frac{1}{p} - \frac{l}{n}$ ($l < \frac{n}{p})$.
+	\begin{proof}
+		Für $|\alpha|\le m-l$, $n\in W_0^{m,p}(\Omega)$ gilt $\partial^\alpha u \in W_0^{l,p}(\Omega) \to L^r(\Omega)$ nach Theorem \ref{3.3}. insbesondere
+		\begin{align*}
+			\|\partial^\alpha u \| \le C\| \partial ^\alpha u\|_{l,p}&\le C\sum_{|\alpha|\le m-l} \| \partial^\alpha u\|_{l,p}\\
+										 &\le C' \sum_{|\alpha | \le m} \| \partial^\alpha u \|_p \le C'' \| u\|_{m,p} 
+		\end{align*}
+		Somit $\|u\|_{m-l, r} \le \tilde c \| u\|_{m,p}$ für $\tilde c>0$.
+	\item Für $p<n$, $\frac{n}{p} \not\int \mathbb N$, gilt die Behauptung des Theorems in der Form der Bemerkung nach dem Theorem
+ 		\begin{proof}
+			Wähle $l\in \mathbb N$ mit
+			\begin{equation}
+				l < \frac{n}{p} < l+1
+			\end{equation}
+			d.h. $l= \left [ \frac{n}{p}\right ]$. dann gilt
+			\begin{equation}
+			\frac{1}{r} = \frac{1}{p} - \frac{l}{n} = \frac{1}{n} \left ( \frac{n}{p} -l\right ) \in (0, \frac{1}{n}).
+			\end{equation}
+			Also ist $r>n$ und $l < \frac{n}{p} <m$. Aus (2) und (1) folgt also
+			\begin{equation}
+				W_=^{m,p}(\Omega) \to W_0^{m-l,r}(\Omega) \to C^{m-l-1, \gamma}(\overline{\Omega})
+			\end{equation}
+			wobei 
+			\begin{equation}
+				\gamma = 1-\frac{n}{r} = 1-(\frac{n}{p}-l) = l+1 - \frac{n}{p} = [\frac{n}{p}] + 1 - \frac{n}{p}.
+			\end{equation}
+ 		\end{proof}
+ 	\item Für $p <n$ und $\frac{n}{p} \in \mathbb N$ gilt die Behauptung des Theorems in der Form der Bemerkung:
+ 		\begin{equation}
+ 		W^{m,p}(\Omega) \to C^{k,\gamma}(\overline{\Omega}) \quad k=m-\frac{n}{p} -1, \gamma \in (0,1).
+ 		\end{equation}
+ 		Beweis beruht auf Theorem \ref{3.7} bzw auf
+ 		\begin{equation}
+ 			W_=^{1,n}(\Omega) \to L^q(\Omega) \quad n \le q <\infty.
+ 		\end{equation}
+ 		(falls $\Omega$ beschränkt ist braucht man das nicht vgl. Evans.) Wähle $l=\frac{n}{p}-1$. Dann gilt
+		\begin{equation}
+			\frac{1}{r} = \frac{1}{p} - \frac{l}{n} = \frac{1}{p} - \frac{1}{n} \left ( \frac{n}{p} -1 \right ) = \frac{1}{n}
+		\end{equation} (FIXME)
+		und somit $r=n$. Nach (2), Theorem \ref{3.7} und (1) gilt
+		\begin{equation}
+			W_0^{m,p}(\Omega) \to W_0^{m-l,n}(\Omega)\to W_=^{m-l-1,n,q}(\Omega) \to C^{m-\frac{n}{p}-1, \gamma} (\overline \Omega)
+		\end{equation}
+		wobei $\gamma = 1- \frac{n}{q} \in (0,1)$ und $n<q<\infty$.
+\end{proof}
+ \end{enumerate}
+ \end{proof}
+(FIXME) Korrekturen In Theorem 2 und Theorem 3 braucht $\Omega$ nicht beschränkt zu sein! 
+
+\begin{thm}\label{3.7}
+ Sei $\Omega\subset \mathbb R^n$ offen und $m=\frac{n}{p}$. Dann gilt
+ \begin{equation}
+  W_0^{m,p}(\Omega) \to L^q(\Omega)
+ \end{equation}
+ für alle $q\in [p,\infty)$.
+\end{thm}
+\begin{proof}
+ Das Theorem sei richtig für $m=1$ und $p=n$, d.h.
+ \begin{equation}\label{3.7.1}
+  W_0^{1,n}(\Omega) \to L^q(\Omega)\quad q \in [n,\infty)
+ \end{equation}
+Dann gilt für $m=\frac{n}{p}>1$ nach Theorem \ref{3.3}
+\begin{equation}
+ W_0^{m,p}(\Omega) \to W_0^{1,r}
+\end{equation}
+\begin{equation}
+ \frac{1}{r} = \frac{1}{p} - \frac{m-1}{n} = \frac{1}{n} \left ( \frac{n}{p} -m+1 \right )= \frac{1}{n}
+\end{equation}
+für $q\in [n,\infty)$. Da $W_0^{m,p}(\Omega)\to L^q(\Omega)$ (FIXME)
+
+$n=1$: $W_0^{1,1}(\Omega) \to L^\infty(\Omega)$ (Blatt 3) also gilt sogar $W_0^{1,1}(\Omega) \to L^q(\Omega)$ 
+für alle $u\in C_0^\infty(\Omega)$.
+\begin{equation}\label{3.7.2}
+ \left ( \int |u|^{\gamma n/(n-1)} \, \mathrm dx \right )^{(n-1)/n} \le \gamma \left ( \int |u|^{(\gamma-1)n/(n-1)}\, \mathrm dx\right )^{(n-1)/n} (\int |\nabla u|^n \, \mathrm dx)^{1/n} \quad \gamma>1
+\end{equation}
+(FIXME)
+Wir zeigen induktiv, dass
+\begin{equation}
+ W_0^{1,p}(\Omega) \to L^{q_j}(\Omega), \quad q_j = \frac{(n+j-1)n}{n-1}\quad j=0,1,2,\ldots.
+\end{equation}
+\textbf{Verankerung:} 
+\begin{equation}
+ W_0^{1,n}(\Omega) \to L^n(\Omega) = L^{q_0}(\Omega)
+\end{equation}
+\textbf{Schritt:} Angenommen $W_0^{1,n}(\Omega) \to L^{q_j}(\Omega), j\ge 0$. Wähle $\gamma$ so, dass 
+\begin{equation}
+ (\gamma-1) \frac{n}{n-1} = q_j = \frac{(n+i-1)n}{n-1}. 
+\end{equation}
+D.h. $\gamma=n+j$. Dann $\gamma \frac{n}{n-1} = (n+i) \frac{n}{n-1} = q_{i+1}$ und somit nach  \eqref{3.7.2}
+\begin{equation}
+ (\int |u|^{q_j+1} \, \mathrm dx)^{(n-1)/n} \le (n+j) ( \int |u|^{q_j}\, \mathrm dx)^{(n-1)/n} \| \nabla u\|_n
+\end{equation}
+d.h.
+\begin{equation}
+ \|u\|_{q_{j+1}}^{q_{i+1} (n-1)/n} \le ( n+i) \| u\|_{q_i}^{q_i \frac{n-1}{n}} \| \nabla u\|_n 
+\end{equation}
+oder
+\begin{equation}
+ \| u\|^{n+i}_{q_{i+1}} \le (n+i) \| u\|_{q_i}^{q_i (n-1)/n}\| \nabla u\|_n
+\end{equation}
+Dann folgt
+\begin{align*}
+ \|u\|_{q_{i+1}} &\le (n+j)^{q_i (n-1)/n}\| \nabla u\|_n\\
+ &\le (n+j)^{1/(n-i)}\\ % vor allem hier
+ &\le c_{n,j} \| u \|_{1,n}
+\end{align*}(FIXME)
+nach Induktionsannahme. Durch das übliche Approximationsargument ($C_0^\infty(\Omega) \subset L^{q_j}(\Omega)$ dicht) folgt nun $W^{1,n}(\Omega) \to L^{q_{i+1}}(\Omega)$.
+
+Da $q_j \to \infty$ ($j\to \infty$) und $W_0^{1,n}(\Omega) \to L^n(\Omega)$ folgt die Behauptung \eqref{3.7.1}.
+\end{proof}
+\begin{thm}[Rellich-Kondrachov]
+ Sei $\Omega \subset \mathbb R^n$ offen und beschränkt. Sei $p\le n$. Dann ist die Einbettung 
+ \begin{equation}
+  W_0^{1,p}(\Omega) \to L^q(\Omega) \quad (1\le q < p^*)
+ \end{equation}
+ kompakt wobei
+ \begin{align*}
+  \frac{1}{p^*} = \frac{1}{p} - \frac{1}{n} &\ \quad p<n\\
+  p^*=\infty &\ \quad p=n
+ \end{align*}
+\end{thm}
+\begin{proof}
+Sei zuerst $p<n$. Wir zeigen zuerst, dass $W_0^{1,1}(\Omega) \to L^1(\Omega)$ kompakt. Da $\Omega$ beschränkt ist, gilt $W_0^{1,p}(\Omega) \to W_0^{1,1}(\Omega)$ und somit $W_0^{1,p}(\Omega) \to L^1(\Omega)$ kompakt. Sei $A=\{u\in W^{1,1}(\Omega) |\|u\|_{1,1} \le 1\}$. Wir zeigen, dass $\overline{A}^{\|\cdot\|_1}$ in $L^1(\Omega)$ kompakt ist. Sei $A_\varepsilon = \{u_\varepsilon\big |_\Omega |u\in A\}$ wobei
+\begin{equation}
+ u_\varepsilon = (J_\varepsilon * u) \quad J_\varepsilon(x) = \varepsilon^{-n} J( \frac{x}{\varepsilon}), \|J\|_1=1. 
+\end{equation}
+\textbf{Schritt 1:} Für jedes $\varepsilon >0$ ist $\overline{A_{\varepsilon}}^{\|\cdot\|_1}$ kompakt in $L^1(\Omega)$.
+\begin{proof}
+Es gilt für $u\in A$:
+\begin{align*}
+ |u_\varepsilon(x)| &= |\int J_\varepsilon(x-y) u(y) \, \mathrm dy| \\
+ &\le \| J_\varepsilon \|_\infty \| u \|_1 \le \varepsilon^{-n} \| J\|_\infty\|u\|_1
+\end{align*}
+und 
+\begin{align*}
+ |\nabla u_\varepsilon(x)| &\le \int |\nabla J_\varepsilon(x-y)||u(y)|\, \mathrm dy\\
+ &\le \| \nabla J_{\varepsilon}\|_\infty \cdot \|u\|_1 \le c \varepsilon^{-n-1}.
+\end{align*}
+Somit ist $A_\varepsilon$ gleichmäßig beschränkt und gleichgradig stetig und somit ist
+$\overline{A_\varepsilon}^{\|\cdot \|_\infty}$ kompakt in $C(\overline{\Omega})$ (Arzela-Acoli). Daraus folgt dass $\overline{A_\varepsilon}^{\| \cdot \|_1}$ kompakt ist in $L^1(\Omega)$.
+(\textbf{Beweis:} Sei $(u_n)$ eine Folge in $\overline{A_\varepsilon}^{\|\cdot \|_1}$. Dann existiert $(v_n)$ in $A_\varepsilon$ mit $\| u_n - v_n\|_1 < \frac{1}{n}$ Da $\overline{A_\varepsilon}^{\|\cdot \|_\infty}$ kompakt ist, existieren Teilfolgen $(v_{n_k})$ und $v\in C(\overline{\Omega})$ mit $\| v_{n_k} -v\|_\infty \to 0$. $\overline \Omega$ beschränkt, so folgt $v\in L^1(\overline{\Omega})$ underbrace
+\begin{align*}
+ \|u_{n_k}-v\|_{L^1(\Omega)} &\le \| v_{n_k}-v\|_{L^1(\Omega)} + \frac{1}{n_k}\\
+ &\le c\| v_{n_k}-v\|_\infty + \frac{1}{n_k} \to 0 \quad (k\to \infty)
+\end{align*}
+\end{proof}
+\textbf{Schritt 2:} Für alle $u\in A$ gilt
+\begin{equation}
+ \|u_\varepsilon -u\|_{L^1(\Omega)} \le \varepsilon.
+\end{equation}
+\begin{proof}
+Sei zuerst $u\in C_0^\infty(\Omega) \cap A$. Dann gilt
+\begin{align*}
+ u_\varepsilon(x) &= \int J_\varepsilon(x-y) u(y) \, \mathrm dy \\
+ &= \int \varepsilon^{-n} J(\frac{y}{\varepsilon}) u(x-y)\, \mathrm dy \quad z=\frac{y}{\varepsilon}\\
+ &= \int J(z) u(x-\varepsilon z) \, \mathrm dz.
+\end{align*}
+\begin{align*}
+ |u_\varepsilon(x) -u(x)| &= | \int J(z) ( u(x-\varepsilon z) - u(x)) \, \mathrm dz| \\
+ &\le \int J(z) |u(x- \varepsilon z) - u(x)|\, \mathrm dz
+\end{align*}
+wobei
+\begin{align*}
+ |u(x-\varepsilon z) - u(x) | &\le \int_0^1 |\nabla u(x-t\varepsilon z) | |\varepsilon z|\, \mathrm dt\\
+ &= \varepsilon |z| \int_0^1 |\nabla u(x-t\varepsilon z) |\, \mathrm dt.
+\end{align*}
+Also
+\begin{equation}
+ \int | u_\varepsilon(x) - u(x)|\, \mathrm dx\le \varepsilon \int_{|z|\le 1} \mathrm dz J(z) |z| \int |\nabla u(x)|\, \mathrm dx \le \varepsilon \| \nabla u\|_1\le \varepsilon \| u\|_1\le \varepsilon.
+\end{equation}
+(FIXME)
+Sei nun $u\in A$. Dann existiert $\phi \in C_0^\infty(\Omega)$ mit $\|u-\phi\|_1 <\delta$ und $\| \phi\|_{1,1} \le 1$ denn $C_0^\infty(\Omega) \subset L^1(\Omega)$ dicht. Dann gilt
+\begin{equation}
+ \|J_\varepsilon* \phi - \phi \|_1 \le \varepsilon.
+\end{equation}
+Also 
+\begin{align*}
+ \| J_\varepsilon*u -u\|_1 &\le \underbrace{\|J_\varepsilon * \phi - \phi\|_1}_{\le \|u-\phi\|_1} + \| J_\varepsilon Ü (u-\phi)\|_1 + \| u-\phi\|_1\\
+ &\le \varepsilon + 2\delta.
+\end{align*}
+Da $\delta >0$ belibig war, folgt
+\begin{equation}
+ \| J_\varepsilon * u - u \|_1 \le \varepsilon.
+\end{equation}
+Wir zeigen jetzt, dass $A$ total beschränkt ist in $L^1(\Omega)$. Dann ist $\overline{A}^{\|\cdot\|_1}$ total beschränkt und abgeschlossen also kompakt in $L^1(\Omega)$.
+
+Wir zeigen: $\forall \varepsilon >0 \exists N \in \mathbb N$ und $u_1, \ldots, u_n \in A$ mit
+\begin{equation}
+ A \subset \bigcup_{i=1}^N B(u_i, \varepsilon)
+\end{equation}
+(Kugeln in $L^1$-Norm). Wir wissen, dass $\overline{A_\varepsilon}^{\|\cdot \|_1}$ kompakt ist. Aus
+\begin{equation}
+ \overline{A_\varepsilon}^{\|\cdot\|_1} \subset\bigcup_{U\in A} B(u_\varepsilon, \varepsilon)
+\end{equation}
+folgt dass
+\begin{equation}
+ \overline{A_\varepsilon}^{\|\cdot \|_1} \subset \bigcup_{i=1}^N B(u_{i,\varepsilon}, \varepsilon)
+\end{equation}
+für $u_1,\ldots, u_N \in A$. Nach Schritt 2 ist $\| u_{i,\varepsilon} - u_i \| \le \varepsilon$. Also
+\begin{equation}
+ B(u_{i,\varepsilon}, \varepsilon) \subset B(u_i, 3\varepsilon)
+\end{equation}
+und aus $u\in A$ folgt $u_\varepsilon \in A_\varepsilon$ wobei $\| u_\varepsilon - u\| \le \varepsilon$. Also
+\begin{equation}
+ A\subset \bigcup_{i=1}^N B(u_i, \psi_\varepsilon).
+\end{equation}
+Also ist $A$ total beschränkt. Wir haben also gezeigt, dass $W_0^{1,1}(\Omega) \to L^1(\Omega)$ kompakt für $p<n$.
+
+Sei $p>1$.  Da $\Omega$ beschränkt ist, ist $L^p(\Omega)\to L^1(\Omega)$ stetig und somit auch 
+$W_0^{1,p}(\Omega) \to W_0^{1,1}(\Omega)$ stetig. Also ist $W_0^{1,p}(\Omega) \to L^{1}(\Omega)$ kompakt. Im Fall $p<n$ ist $W_0^{1,p}(\Omega) \to L^{p^*}(\Omega)$ stetig und für $1\le q<p^*$ gilt
+\begin{equation}
+ \frac{1}{q} = \theta + \frac{1-\theta}{p^*} \quad \text{ mit } \theta\in (0,1]
+\end{equation}
+und 
+\begin{equation}
+ \| u\|_q \le \|u\|_1 \| u\|_{p^*}
+\end{equation}
+für $u\in W_0^{1,p}(\Omega)$.  Sei $(u_k)$ eine beschränkte Folge in $W_0^{1,p}(\Omega)$, z.B. $\|u_k\|_{1,p}\le M$. Dann folgt
+\begin{equation}\label{3.8kompakt}
+ \|u_k - u_l\| \le c \|u_k - u_l\|_1 (2M)^{1-\varepsilon}.
+\end{equation}
+Da $W_0^{1,p}(\Omega) \to L^1(\Omega)$ kompakt ist, enthält $u_k$ eine $L^1$-Cauchyfolge. Diese sei auch mit $(u_k)$ bezeichnet. Dann zeigt \eqref{3.8kompakt}, dass $(u_k)$ eine $L^q$-Cauchyfolge ist. Also ist $W_0^{1,p}(\Omega) \to L^q(\Omega)$ kompakt.
+
+Im Fall $p=n>1$ ist $1\le p - \varepsilon <n$ für geeignetes $\varepsilon>0$ und daher ist 
+\begin{equation}
+ W_0^{1,p}(\Omega) \stackrel{\text{stetig}}{\to} W_0^{1,p-\varepsilon}(\Omega) \stackrel{\text{kompakt}}{\to} L^q(\Omega)
+\end{equation}
+kompakt für $1\le q < \frac{n(p-\varepsilon)}{n-(p-\varepsilon)} = \frac{n(n-\varepsilon)}{\varepsilon}$.
+\end{proof}
+\begin{rem}
+ Für $p>n$ ist $W_0^{1,p}(\Omega) \to L^q(\Omega)$ kompakt für $1\le q \le\infty$ denn 
+ \begin{equation}
+  W_0^{1,p}(\Omega) \to C^{0,\gamma}(\overline{\Omega}), \quad \gamma = 1-\frac{n}{p}.
+ \end{equation}
+ stetig sowie 
+ \begin{equation}
+  C^{0,\gamma}(\overline{\Omega}) \to C^0(\overline{\Omega})
+ \end{equation}
+kompakt und
+ \begin{equation}
+  C^0(\overline{\Omega}) \to L^q(\Omega)
+ \end{equation}
+ stetig.
+ 
+ \chapter{Fortsetzungs- und Randoperatoren}
+
+ Wir wollen nun Einbettungssätze für $W^{m,p}(\Omega)$ beweisen. Diese führen wir auf Einbettungssätze für $W^{1,p}(\Omega)$ zurück.  
+
+ Die Idee ist die Funktion $u\in W^{1,p}(\Omega)=W_0^{1,p}(\mathbb R^n)$ fortzusetzen zu Funktionen $\tilde u \in W^{1,p}(\tilde \Omega)$ mit $\tilde u = u$ in $\Omega\subset \tilde \Omega$.   Dann können wir die bekannten Sätze auf $W_0^{1,p}(\tilde \Omega)$ anwenden.   Genauer suchen wir eine beschränkte lineare Abbildung $E: W^{1,p}(\Omega)\to W_0^{1,p}(\tilde \Omega)$ mit $Eu=u$ in $\Omega$.  Die Existenz von $E$ impliziert dass $C^\infty(\overline{\Omega}) \cap W^{1,p}(\Omega)$ in $W^{1,p}(\Omega)$ dicht ist.
+ 
+ \textbf{Erinnerung:} Nach Meyers-Serrin ist $C^\infty(\Omega) \cap W^{1,p}(\Omega)$ dicht in $W^{1,p}(\Omega)$ wobei $C^\infty(\Omega) \supset C^\infty(\overline{\Omega})$.
+
+Diese Dichtheit brauchen wir für die Konstruktion von E:
+\end{rem}
+
+\begin{df}
+ Der Rand von $\Omega\subset \mathbb R^n$ ist von der Klasse $C^\infty$ falls zu jedem $x_0 \in \partial \Omega$ eine Umgebung $U\subset \mathbb R^n$ und eine stetige Abbildung
+ \begin{equation}
+  h: B(0, \eta) \to \mathbb R \quad B(0,\eta) \subset \mathbb R^{n-1}
+ \end{equation}
+existiert so, dass (nach Verschiebung und Rotation des Koordinatensystems).
+\begin{equation}
+ \Omega \cap U = \{ (x', x_n) \in U| x_n >h(x') , x'\in B(0, \eta)\}
+\end{equation}
+\end{df}
+\begin{thm}\label{thm3.9}
+ Ist $\Omega \subset \mathbb R^n$ offen, beschränkt und $\partial \Omega$ von der Klasse $C^0$, dann ist $C^\infty(\overline{\Omega}) \cap W^{m,p}(\Omega)$ dicht in $W^{m,p}(\Omega)$ für $m\in \mathbb N$, $1\le p <\infty$.
+\end{thm}
+
+\begin{proof}
+Da $\partial \Omega$ kompakt ist, existieren $U_1,..., U_N \subset \mathbb R^n, N<\infty$ mit
+\begin{equation}
+ \partial \Omega \subset \bigcup_{i=1}^N U_i
+\end{equation}
+so dass $\partial\Omega \cap U_i$ (nach Verschiebung un Rotation) als Graph einer stetigen Funktion $h_i$ dargestellt werden kann. Sei $U_0\subset \Omega$ offen mit $U_0\supset \Omega \setminus (\bigcup_{i=1}^N U_i)$ so dass
+\begin{equation}\label{3.9kompakt}
+ \overline{\Omega} \subset \bigcup_{i=0}^N U_i.
+\end{equation}
+Sei $\phi_0, \phi_1,\ldots, \phi_N \in C_0^\infty(\mathbb R^n)$ eine der offenen Überdeckung $(*)$ untergeordnete Zerlegung der Eins, d.h.
+\begin{equation}
+ \supp(\phi_i) \subset U_i \quad \sum_{i=0}^N \phi_i =1 \quad{auf } \overline{\Omega}
+\end{equation}
+(vgl. Satz 2.5).
+
+Sei $u\in C^\infty(\Omega) \cap W^{m,p}(\Omega)$. Wir wollen $u$ approximieren durch Elemente aus $C^\infty(\overline{\Omega})\cap W^{m,p}(\Omega)$.  Sei $u_i = \phi_i u, i=0,\ldots, N$.  Dann ist $\phi_0 \in C_0^\infty(\Omega) \subset C^\infty(\overline{\Omega})$ und 
+\begin{equation}
+ \sum_{i=0}^N u_i = u, \supp(u_i) \subset U_i
+\end{equation}
+Für $i=1,\ldots, N$ setzen wir $u_i$ durch $0$ auf $\mathbb R^n$ fort und definieren
+\begin{equation}
+ u_{i,\tau}(x) =u_i(x+ \tau e_n) \quad \tau >0
+\end{equation}
+wobei $e_n=(0,\ldots,0,1)$.
+
+FIXME(BILD?)
+
+$u_i$ ist $C^\infty$ in 
+\begin{equation}
+U_i \cap \Omega = \{(x', x_n) \in U_i | x_n > h(x'), x' \in B(0,\eta_i)\}.
+\end{equation} 
+$u_i$ ist $C^\infty$ in 
+\begin{equation}
+ \{(x', x_n) \in U_i | x_n > h(x') - \tau \quad x'\in B(0,\eta_i)\}
+\end{equation}
+was eine offene Umgebung der kompakten Menge $\supp(u_{i,\tau}) \cap \overline{\Omega}$. Also ist $u_{i,\tau}\in C^\infty(\overline{\Omega})$. Es folgt $u_0 + \sum_{i=1}^N u_{i,\tau} \in C^\infty(\overline{\Omega})$ wobei
+\begin{align*}
+ \| u_0 + \sum_{i=1}^N u_{i,\tau} -u\|_{m,p} &= \| \sum_{i=1}^N (u_{i,\tau} - u_i)\|_{m,p}\\
+ &\le \sum_{i=1}^N \| u_{i,\tau} - u_i \|_{m,p, \Omega} \to 0 (\tau \to 0).
+\end{align*}
+Wenn
+\begin{equation}
+ \| u_{i,\tau} - u_i \|^p_{m,p, \Omega} = \sum_{|\alpha|\le m} \int_\Omega | \partial^\alpha u_i (x+ \tau e_n) - \partial^\alpha u_i (x)|^p \to 0 (\tau \to 0). 
+\end{equation}
+Da $C^\infty(\Omega) \cap W^{m,p}(\Omega)$ dicht ist in $W^{m,p}(\Omega)$ folgt daraus die Behauptung des Theorems.
+\end{proof}
+\end{proof}
+
+\begin{lem}\label{4.2}
+ Seien $\Omega, \Omega'\subset \mathbb R^n$ offen und sei $g: \Omega' \to \Omega$ ein $C^1$-Diffeomorphismus
+ mit beschränkten Ableitungen $\partial_i g, \partial_i g^{-1}, i,j=1,\ldots, n$. Dann wird durch $Tu=u\circ g$
+ eine bijektive, beschränkte, lineare Abbildung $T: L^p(\Omega) \to L^p(\Omega'), 1 \le p \le \infty$ mit beschränkter Inversen definiert.
+\end{lem}
+\begin{proof}
+ Sei $u\in L^p(\Omega)$. Dann gilt 
+ \begin{align*}
+  \int_{\Omega'} |u(g(x))|^p\, \mathrm dx &\stackrel{x=g^{-1}(y)}{=} \int_\Omega |u(y)|^p | \det Dg^{-1}(y)|\,\mathrm dy\\
+  &\le C\int_\Omega |u(y)|^p\, \mathrm dy
+ \end{align*}
+Also $\|Tu\|_p \le C' \|u\|_p$.  Ebenso
+\begin{align*}
+ \int_\Omega |u(y)|^p\, \mathrm dy &= \int |u(g(x))|^p |\det Dg(x)|\,\mathrm dx \\
+ \le C\int_\Omega' |u(g(x))|^p\, \mathrm dx = C\|Tu\|_p^p.
+\end{align*}
+$T$ ist bijektiv, denn für $u\in L^p(\Omega')$ ist $u\circ g^{-1} \in L^p(\Omega)$ und  $T(u\circ g^{-1})=u$.
+\end{proof}
+
+\begin{satz}
+ Seien $\Omega, \Omega'\subset \mathbb R^n$ offen und $g: \Omega'\to \Omega$ sei wie in Lemma 2. 
+ Dann ist $T: W^{1,p}(\Omega) \to W^{1,p}(\Omega'), 1\le p <\infty,$ bijektiv und beschränkt mit 
+ beschränkter Inversen. Die Ableitung von $Tu, u \in W^{1,p}(\Omega)$, sind durch die Kettenregel gegeben.
+\end{satz}
+\begin{proof}
+ Sei $u\in W^{1,p}(\Omega)$. Nach Meyer-Serrin existiert eine Folge $u_k \in C^\infty(\Omega \cap W^{1,p}(\Omega)$ mit $u_k \to u in W^{1,p}(\Omega)$. 
+ $Tu_k=u_k \circ g$ ist in $C^1$ und nach der Kettenregel gilt
+ \begin{equation}
+  \partial_i (u_k \circ g) = \sum_{l=1}^n ((\partial_l u_k)\circ g)\cdot(\partial_i g_l).
+ \end{equation}
+ bzw.
+ \begin{equation}\label{eq:4.1}
+  \partial_i (Tu_k) = \sum_{l=1}^n T(\partial_l u_k) (\partial_i g_l)
+ \end{equation}
+Da $u_k \to u$ in $W^{1,p}(\Omega)$ also nach Lemma \eqref{4.2}
+\begin{align}
+ T u_k \to Tu &\ \quad \text{ in } L^p, \label{eq:4.2} \\ \quad T(\partial_l u_k) \to T(\partial_l) &\ \quad \text{ in } L^p \label{eq:4.3}
+\end{align}
+
+Da $\partial_i g_l \in L^\infty$ folgt aus \eqref{eq:4.1}, \eqref{eq:4.3} dass
+\begin{equation}
+ \partial_i(Tu_k) \to \sum_{l=1}^n T(\partial_l u) ( \partial_i g_l) \quad ( k\to \infty)
+\end{equation}
+in $L^p$. Also ist $Tu\in W^{1,p}(\Omega')$ und 
+\begin{equation}
+ \partial_i(Tu) = \sum_{l=1}^n T(\partial_l u) (\partial_i g_l)
+\end{equation}
+Daraus folgt
+\begin{align*}
+ \|\partial_i(Tu)\|_p &\le \sum_{l=1}^n \|T\partial_l u \|_p \| \partial_i g_l\|_\infty\\
+ &\stackrel{Lm \ref{4.2}}\le C \sum_{l=1}^n \| \partial_l u\|_p \| \partial_i g_l\|_\infty \le \tilde C \|u\|_{1,p}.
+\end{align*}
+Es folgt
+\begin{equation}
+ \|Tu\|_{1,p}^p = \|Tu\|_p^p + \sum_{i=1}^n \| \partial_i Tu\|_p^p \le \overline C \|u\|_{1,p}.
+\end{equation}
+\end{proof}
+
+\begin{satz}
+ Sei $\Omega\subset \mathbb R^n$ offen. Dann gilt $C^{0,1}(\overline{\Omega})\subset W^{1,\alpha}(\Omega)$ und für $u\in C^{0,1}(\overline{\Omega}$ und für $u\in C^{0,1}(\overline{\Omega})$ und für $u\in C^{0,1}(\overline{\Omega})$ gilt
+ \begin{equation}
+  \max_{i=1,\ldots, n} \| \partial_i u\|_\infty\le |u|_{0,1}.
+ \end{equation}
+\end{satz}
+
+\begin{proof}
+ Sei $\Omega_c \subset \subset \Omega$ und offen. Sei $e_i = (0,\ldots, 1, \ldots, 0)$ der $i-te$ Einheitsvektor von $\mathbb R^n$.
+ 
+ Für $x\in \Omega_0$ und $\varepsilon >0$ klein genug gilt
+ \begin{align*}
+  \partial_i(J_\varepsilon * u) (x)&= \lim_{h\to 0} \frac{1}{h} \left [ (J_\varepsilon * u) (x+he_i) - (J_\varepsilon*u) (x)\right ] \\
+  &\stackrel{x\in \Omega_c}=\lim_{h\to 0} \int J_{varepsilon}(y) \left [ \frac{u(x+he_i -y) - u(x-y)}{h} \right ]\, \mathrm dy.
+ \end{align*}
+ Also gilt
+ \begin{equation}\label{eq:4.4}
+  \|\partial_i (J_\varepsilon * u) \|_\infty \le |u|_{0,1} \quad u\in C^{0,1}(\Omega).
+ \end{equation}
+ Da $L^\infty(\Omega_0) = L^1(\Omega_0)^*$ und $L^1(\Omega_0)$ seperabel ist, ist jede abgeschlossene Kugel in $L^\infty(\Omega_c)$ schwach-$*$-folgenkompakt. Wegen \eqref{eq:4.4} existiert somit eine Folge $\varepsilon_k \downarrow 0$, so dass 
+ \begin{equation}
+  \partial_i (J_{\varepsilon_k} * u) \stackrel{*}{\to} u_i \in L^\infty(\Omega_0)
+ \end{equation}
+ Also für alle $\phi \in C_0^\infty(\Omega_c) \subset L^1(\Omega_0)$
+ \begin{equation}
+  \int \partial_i (J_{\varepsilon_k} *u) \phi \, \mathrm dx \stackrel{(k\to \infty}{\to} \int u_i \phi \, \mathrm dx.
+ \end{equation}
+ Anderersets,
+ \begin{equation}
+  \int \partial_i (J_{varepsilon_k} * u) \phi \, \mathrm dx = - \int (J_{\varepsilon_k} * u) \partial_i \phi \, \mathrm dx \to - \in u\partial_i \phi \, \mathrm dx.
+ \end{equation}
+Also ist $u_i = \partial_i u$ in $\Omega_0$ und 
+\begin{equation}\label{eq:4.5}
+\begin{split}
+\| \partial_i u\|_{L^\infty(\Omega_0)} &= \| u_i \|_{L^\infty(\Omega_0)} \\
+&\le \liminf_{k\to \infty} \| \partial_i (J_{\varepsilon_k} * u) \|_{L^\infty(\Omega_0)} \le |u|_{0,1}. 
+\end{split}
+\end{equation}
+Diese Ergebnisse sind anwendbar auf jede Teilmenge $\Omega_n\subset \subset \Omega$ eine Folge $\Omega_1 \subset \Omega_2 \subset \Omega_3 \subset \ldots \subset \Omega$ mit
+\begin{equation}
+ \bigcup_{n=1}^\infty \Omega_n = \Omega.
+\end{equation}
+Für jedes $\Omega_n$ existert also eine schwache Ableitung $\partial_i u^{(n)}$ von $u$ in $\Omega_n$-
+
+Für $l<n$ gilt 
+\begin{equation}
+  \partial_i u^{(n)} \big |_{\Omega_l} = \partial_i u^{(l)}
+\end{equation}
+wegen der Eindeutigkeit der schwachen Ableitung von $u$ in $\Omega_l$.
+
+Wir definieren $\partial_i u$ durch
+\begin{equation}
+ \partial_i u\big |_{\Omega_l}  = \partial_i u^{(l)}
+\end{equation}
+Dann ist $\partial_i u$ wohldefiniert, $\partial_i u\in L^1_{\text{loc}}(\Omega)$ und $\partial_i u$ ist die schwache Ableitung von $u$ nach $x_i$.  Aus \eqref{eq:4.5} folgt $\|\partial_i u\|_\infty \le |u|_{0,1}$.
+\end{proof}
+\begin{satz}\label{4.5}
+ Seien $\Omega, \Omega'\subset \mathbb R^n$ offen, $g: \Omega' \to \Omega$ bijektiv mit $g, g^{-1}$ Lipschitz. Sei $u\in W^{1,p}(\Omega)$ mit $\supp(u) \subset \subset \Omega$. Dann ist $Tu=u\circ g \in W^{1,p}(\Omega')$ und es gilt
+ \begin{equation}
+  \partial_i (Tu) = \sum_{l=1}^n T(\partial_l u) \cdot (\partial_i g_l)
+ \end{equation}
+und $\|Tu\|_{W^{1,p}(\Omega')} \le C\|u\|_{W^{1,p}(\Omega)}$.
+\end{satz}
+\begin{proof}
+ Für einen Beweis verweisen wir auf Dobrowolski: Lemma 6.9.
+\end{proof}
+
+\begin{df}
+ Der Rand vn $\Omega \subset \mathbb R^n$, ist von der Klasse $C^{0,1}$ (Lipschitz-Rand) für jedes $x_0 \in \partial \Omega$ eine Umgebung $U\subset \mathbb R^n$ und Abbildung $h: B(0, \eta) \to \mathbb R$, $B(0,\eta) \subset \mathbb R^{n-1}$ von der Klase $C^{0,1}$ existiert, so dass
+ \begin{equation}
+  \Omega \cap U = \{(x', x_n) | x_n > h(x'), x'\in B(0,\eta)\}.
+ \end{equation}
+ Nach Verschiebung nach Verschiebung und Rotation des Koordinatensystems.
+\end{df}
+
+\begin{thm}\label{4.6}
+ Sei $\Omega\subset \mathbb R^n$ offen und beschränkt mit Rand der Klasse $C^{0,1}$. Sei $\Omega \subset \subset \Omega_1$. Dann existiert eine stetige lineare Abbildung
+ \begin{equation}
+ E: W^{1,p}(\Omega) \to W_{0}^{1,p}(\Omega_1), \quad 1\le p <\infty,
+ \end{equation}
+ mit $Eu\big|_\Omega=u$ für alle $u\in W^{1,p}(\Omega)$.
+\end{thm}
+\begin{proof}
+ Sei zuerst $\Omega=\{(x', x_n) |x_n >0\}$ und $u\in C^1(\overline{\Omega} \cap W^{1,p}(\Omega)$. und $u\in C^1(\overline{\Omega}) \cap W^{1,p}(\Omega)$. Seien $u^+, \partial_i u^+$ die stetigen Fortsetzungne von $u_i \partial_i u$ auf $\overline{\Omega}$. Wir definieren für $x_n \le 0$
+ \begin{equation}
+  u^{-}(x', x_n) = - 3 u^+(x', -x_n) + 4u^+\left (x_1' - \frac{1}{2} x_n\right )
+ \end{equation}
+ Dann gilt $u^{-1}(x',0)=u^+(x',0)$ und für
+ $i=1, \ldots, n-1$ gilt
+ \begin{align*}
+  \lim_{x_n\to 0-} \partial_i  u^{-1}(x', x_n) &= - 3\partial_i u^{+}(x',0) + 4\partial_i u^+(x',0) \\
+  &=\partial_i u^+ (x',0).
+ \end{align*}
+und 
+\begin{align*}
+ \lim_{x_n\to 0-} \partial_n u^{-} (x', x_n) &= \lim_{x_n\to 0} (3(\partial_n u^+) (x', -x_n) - 2(\partial_n u^+) (x', -\frac{x_n}{2}))\\
+ &=\partial_n u^{-}(x',0)
+\end{align*}
+Wir definieren
+\begin{equation}
+ (Eu)(x', x_n) = \begin{cases}
+                  u^{+}(x', x_n) \quad x_n \ge 0 \\
+                  u^{-}(x', x_n) \quad x_n <0.
+                 \end{cases}
+\end{equation}
+Dann ist $Eu\in C^1(\overline{\mathbb R^n})$. und 
+\begin{equation}
+ \| Eu\|_{W^{1,p}(\mathbb R^n)} \le C\|u\|_{W^{1,p}(\Omega)}.
+\end{equation}
+\end{proof}
+FIXME: Es fehlen drei Vorlesung. Heute ist der 9.6.15
+\begin{thm}\label{4.6}
+Jede Distribution $u\in H^{-s}(\mathbb R^n)$ lässt sich erweitern zu einem (eindeutig bestimmten linearen Funktional $L_u \in (H^s)^*$ wobei 
+\begin{equation}
+L_u(v) = \int \hat u(p) \hat v(-p)\, \mathrm dp \quad v\in H^s.
+\end{equation}
+Die Abbildung $L: H^{-s}\to (H^s)^*$, $u\mapsto L_u$ ist ein isometrischer Isomorphismus. 
+\end{thm}
+\begin{proof}
+Sei $L\in H^s(\mathbb R^n)^*$. Nach dem Satz von Riesz existiert $g\in H^s(\mathbb R^n)$ mit $\|g\|_s = \|L\|$ und für alle $v\in H^s$:
+\begin{align*}
+L(v) &= \langle g,v\rangle_s \\
+&= \int \overline{\hat g(p)} \hat v(p) (1+p^2)^s \, \mathrm dp\\
+&\stackrel{p\to -p}= \int \overline{\hat g(-p)} (1+p^2)^s \hat v(p) \, \mathrm dp\\
+&= \int \hat u(p) \hat v(-p) \, \mathrm dp
+\end{align*}
+wobei $\hat u(p):= \overline{\hat g(-p)} (1+p^2)^s$.
+
+$\hat u\in \mathcal S'$, denn $\hat g(p) (1+p^2)^{s/2}$ ist in $L^2$. Also ist $u:= \mathcal F^{-1}\hat u \in \mathcal S'$ und
+\begin{align}
+\int|\hat u (p)|^2 (1+p^2)^{-s}\, \mathrm dp&=\int |\hat g(-p)|^2 (1+p^2)^{2s-s}\, \mathrm dp\\
+&= \int |\hat g(p)|^2(1+p^2)^s\, \mathrm dp = \| g\|_s^2 <\infty.
+\end{align}
+D.h. $u\in H^{-s}(\mathbb R^n)$ und $L= L_u$ und
+\begin{equation}
+\|L\| = \|g\|_s = \|u\|_{-s}.
+\end{equation}
+
+\textbf{Frage:} Wie sehen die Elemente von $H^{-m}$, $m\in \mathbb N$ aus?
+
+\begin{satz}\label{4.7}
+Sei $m\in \mathbb N$ und $u\in H^{-m}(\mathbb R^n)$. Dann existiert $f_\alpha, |\alpha|\le m$, mit
+\begin{equation}\label{eq:4.?}
+u = \sum_{|\alpha|\le m} \partial^\alpha f_\alpha \quad \text{in } \mathcal S'.
+\end{equation}
+Umgekehrt ist jede Distribution der Form \eqref{eq:4.?} in $H^{-m}$.
+\end{satz}
+\begin{proof}
+Sei $u\in H^{-m}$. Nach Theorem \ref{4.6} und nach Riesz existiert $v\in H^m$ so dass für alle $\phi \in \mathcal S$:
+\begin{align}
+u(\phi) &= \langle v, \phi\rangle_m\\
+&= \sum_{|\alpha|\le m} \int \overline{\partial^\alpha v}(x) \partial^\alpha \phi(x)\, \mathrm dx\\
+&= \sum_{|\alpha|\le m} (-1)^{|\alpha|} \int \underbrace{f_\alpha(x)}_{in L^2} \partial^\alpha \phi(x) \, \mathrm dx\\
+&= \sum_{|\alpha|\le m} \partial^\alpha f_\alpha (\phi).
+\end{align}
+Sei $f_\alpha= (-1)^{|\alpha|} \overline{\partial^\alpha v} \in L^2(\mathbb R^n)$.
+
+Sei $f\in L^2$ und
+\begin{equation}
+u:= \sum_{|\alpha|\le m} \partial^\alpha f_\alpha \quad \text{in } \mathcal S'.
+\end{equation}
+Dann ist
+\begin{equation}
+\hat u= \sum_{|\alpha|\le m} \widehat{\partial^\alpha f_\alpha} = \sum_{|\alpha|\le m} (ip)^\alpha \hat f_\alpha
+\end{equation}
+wobei $\hat f_\alpha\in L^2$. Also 
+\end{proof}
+\begin{align}
+|\hat u(p)| (1+p^2)^{-m/2} &\le \sum_{|\alpha|\le m} |\hat f_\alpha (p)| |p|^{|\alpha|} \frac{1}{(1+p^2)^{m/2}} \\
+&\le \sum_{|\alpha\le m} 
+\end{align}
+was quadratintegrierbar ist. Also $u\in H^{-m}$
+\end{proof}
+\section{Elliptische Regularität}
+
+\begin{lem}
+Sind $u,v\in H^s$ und $\Delta u=v$ dann gilt $u\in H^{s+2}$.
+\end{lem}
+\begin{proof}
+Aus $\Delta u=v$ folgt $\widehat{\Delta u} (p) = \hat v(p)$, also
+\begin{equation}
+-p^2 \hat u(p) = \widehat{\Delta u} (p) = \hat v(p)
+\end{equation}
+und somit
+\begin{equation}
+(1+p^2) \hat u(p) = \hat u(p) - \hat v(p).
+\end{equation}
+Daraus folgt
+\begin{align}
+(1+p^2)^{(s+2)/2} \hat u(p) &= (1+p^2)^{s/2} (1+p^2) \hat u(p) \\
+&= (1+p^2)^{s/2} (\hat u(p) -  \hat v(p))
+\end{align}
+was in $L^2$ ist, denn $u,v\in H^s$.
+\end{proof}
+\begin{thm}\label{4.9}
+Seien $u\in H^s(\mathbb R^n)$ eine Lösung der Schrödingergleichung
+\begin{equation}
+-\Delta u + Vu = Eu
+\end{equation}
+wobei $E\in \mathbb C$ und $V: \mathbb R^n\to \mathbb C$ messbar ist wenn $\Omega \subset \mathbb R^n$ offen ist und $V\big|_\Omega \in C^m(\Omega)$. Dann ist
+\begin{equation}
+u\big|_\Omega = C^k(\Omega) \quad \text{für } k<m+2-\frac{n}{2}.
+\end{equation}
+\end{thm}
+\begin{proof}
+Nach Theorem \ref{4.5} (Sobolev-Lemma) genügt es zu zeigen, dass
+\begin{equation}
+\phi u \in H^{m+2}(\mathbb R^n) \quad \text{für alle } \phi \in C_c^\infty(\Omega).
+\end{equation}
+Dann folgt $\phi u \in C^k(\mathbb R^n)$ für alle $\phi \in C_c^\infty(\Omega)$ und somit $u\in C^k(\Omega)$.
+
+Wir zeigen induktiv, dass
+\begin{equation}
+\phi u \in H^k(\mathbb R^n) \quad \text{alle } \phi \in C_0^\infty(\Omega)
+\end{equation}
+für $k=2, \ldots, m+2$.
+
+Aus $u\in H^3$ folgt $\phi u\in H^2$ für alle $\phi \in C_0^\infty(\Omega)$. Also gilt \eqref{4.?} für $k=2$. Wir rechnen nun den Induktionsschritt von $k=m+1$ auf $k=m+2$.
+
+Sei \eqref{4.?} richtig für $k=m+1$. Dann gilt für $\phi \in C_0^\infty(\Omega)$
+\begin{align}
+\Delta(\phi u) &= (\Delta \phi u) + 2\underbrace{\nabla \phi \cdot \nabla u}_{\div(\nabla \phi \cdot u)- \Delta \phi u} + \phi \Delta u\\
+&= - \Delta \phi u + 2\div (\nabla \phi \cdot u) + \phi(v-E) u
+\end{align}
+Nach Induktionsannahme gilt
+\begin{equation}
+\Delta \phi \cdot u, \nabla \phi \cdot u, \phi u \in H^{m+1}
+\end{equation}
+und somit
+\begin{equation}
+\div(\nabla \phi \cdot u) \in H^m, \quad (v-E) \phi u \in H^m
+\end{equation}
+denn $V-E\in C^m(\Omega)$ und $\partial^\alpha(v-E)\in L^\infty(\supp \phi)$ für $|\alpha|\le m$.
+
+Also $\Delta (\phi u) \in H^m$ und somit $\phi u\in H^{m+2}$ nach Lemma \ref{4.8}. Das beweist \eqref{eq:4.?} für $k=m+2$.
+
+\end{proof}
+
+
+\section{Das Dirichlet Prinzip}
+Sei $\Omega \subset \mathbb R^n$ offen beschränkt oder enthalten in einem Streifen, z.B. $\Omega \subset \{ x\in \mathbb R^n| 0 \le x_n \le d\}$.  Wir betrachten das RWP
+\begin{equation}\label{eq:4.??}
+\begin{cases}
+-\Delta u&= f \quad \text{in } \Omega,\\
+u&=0 \quad \text{auf } \partial \Omega
+\end{cases}
+\end{equation}
+mit gegebener Funktion $f: \Omega \to \mathbb C$ und gesuchter Funktion $u$. Eine klassische Lösung von \eqref{eq:4.??} liegt in $C^2(\Omega) \cap C(\overline{\Omega})$.
+
+Das fordert $f\in C(\Omega)$ was oft zu restriktiv ist. Sei $u$ dennoch klassische Lösung von \eqref{eq:4.??}. 
+
+Wir multiplizieren $-\Delta u=f$ mit $\phi \in C_0^\infty(\Omega)$ und benutzen dass
+\begin{equation}
+\div(\phi \nabla u) = \nabla \phi \nabla u + \phi \Delta u
+\end{equation}
+wegen $\int_{\partial\Omega} \phi \overline{\nabla u} \cdot \overline u \, \mathrm d\sigma =0$ folgt aus Gauß
+\begin{equation}
+-\int_\Omega \phi \cdot \Delta u \, \mathrm dx = \int_\Omega \nabla \phi \nabla u \, \mathrm dx.
+\end{equation}
+Somit
+\begin{equation}
+\int \nabla \phi \nabla u \, \mathrm dx = \int \phi f \, \mathrm dx \quad \forall \phi \in C_0^\infty(\Omega)
+\end{equation}
+was auch für $u\in H_0^1(\Omega)$ sinnvoll ist und sich auf alle $\phi \in H_0^1(\Omega)$ ausdehnen lässt (wegen $C_0^\infty(\Omega)\subset H_0^1(\Omega)$ dicht).  Das motiviert:
+\begin{df}
+Eine schwache Lösung von \eqref{4.??} ist eine Funktion $u\in H_0^1(\Omega)$ mit
+\begin{equation}
+\int \nabla u \cdot \nabla u \, \mathrm dx = \int v f\, \mathrm dx
+\end{equation}
+für alle $v\in H_0^1(\Omega)$.
+\end{df}
+
+\begin{thm}[Dirichlet--Riemann--Hilbert]
+Sei $\Omega \subset \mathbb R^n$ offen und enthalten in einem Streifen, z.B. $\Omega \in \mathbb R^n|0\le x_n\le d\}$. Dann hat das RWP \eqref{eq:4.??} genau dann eine schwache Lösung $U\in H_0^1(\Omega)$ und dieses $u$ ist der eindeutige Minimierer des Funktional $F: H_0^1(\Omega) \to \mathbb R$ definiert durch
+\begin{equation}
+F(v) = \frac{1}{2} \int_\Omega |\nabla|^2\, \mathrm dx - \Re \int \overline v f\, \mathrm dx
+\end{equation}
+\end{thm}
+\begin{proof}
+Aus der Poincar\'e-Ungleichung (s. Blatt 3) folgt
+\begin{equation}
+\int_\Omega |\nabla u|^2\, \mathrm dx \ge c \int |v|^2\, \mathrm dx
+\end{equation}
+für alle $v\in H_0^1(\Omega)$ wobei $C>0$. Daher ist
+\begin{equation}
+\langle v,w\rangle := \int_\Omega \overline{\nabla v(x)} \cdot \nabla w(x) \, \mathrm dx
+\end{equation}
+ein Skalarprodukt in $H_0^1(\Omega)$ und $\| \cdot \| = \langle\cdot ,\cdot \rangle ^{1/2}$ ist äquivalent zur Norm von $H_=^1(\Omega)$. Sei $H= H_0^1(\Omega)$ versehen mit dem Skalarprodukt $\langle \cdot, \cdot \rangle$. Dann ist $H$ ein Hilbertraum und 
+\begin{equation}
+H\to \mathbb C: v\mapsto \int \overline v f\, \mathrm dx
+\end{equation}
+ist ein beschränktes antilineares Funktional. Nach Riesz existiert $u\in H=H_0^1(\Omega)$ mit
+\begin{equation}
+\int \overline v f \, \mathrm dx = \langle v, u\rangle = \int \overline{\nabla v(x)} \cdot \nabla u(x) \, \mathrm dx
+\end{equation}
+für alle $v\in H=H_0^1(\Omega)$. Also ist $u$ schwache Lösung von \eqref{eq:4.??}.
+
+Nach Definition von $F$ gilt
+\begin{align}
+F(v) &= \frac{1}{2} \langle v,v\rangle - \Re \langle v, u\rangle\\
+&= \frac{1}{2} \left ( \langle v,v\rangle - \langle v, u\rangle - \langle u,v\rangle + \langle u,u\rangle \right ) - \frac{1}{2} \langle u,u\rangle\\
+&= \frac{1}{2} \langle v-u, v-u \rangle - \frac{1}{2} \langle u, u\rangle \\
+&= \frac{1}{2} \langle v-u, v-u\rangle + F(u)
+\end{align}
+denn
+\begin{equation}
+F(u) = \frac{1}{2} \langle u, u\rangle - \Re \langle u, u\rangle = - \frac{1}{2} \langle u, u \rangle.
+\end{equation}
+\end{proof}
+
+\section{Der Satz von Rellich für $H^s$-Räume}
+
+Wir erinnern
+\begin{equation}
+H^s(\mathbb R^n) = \{I\in \mathcal S'(\mathbb R^n): I \text{ regulär und } \int (1+x^2)^0 |I(x)|^2\, \mathrm dx <\infty\} (s\in \mathbb R) 
+\end{equation}
+und insbesondere $C_c^\infty(\Omega) \subset C_c^\infty(\mathbb R^n) \subset H^s(\mathbb R^n) (s\in \mathbb R)$.
+
+\begin{df}
+$H_0^s(\Omega) := \overline{C_c^\infty(\Omega)}^{\|\cdot\|_s}$
+\end{df}
+\begin{rem}
+\begin{enumerate}
+\item $H_0^s(\Omega) \to H_0^t (\mathbb R)$ für $s\ge t$ (denn $H^0(\mathbb R^n\subset H^t(\mathbb R^n)$ und $\|\cdot \|_t \le \| \cdot \|_s$ für $s\ge t$)
+
+\item $H_0^s(\Omega) \subset \{f\in \mathcal S'(\mathbb R^n)|\supp f\subset \overline{\Omega}\}$
+(Sei $f\in H_0^s(\Omega)$ mit $f=\lim_{k\to \infty} f_k$ in $H^s$ mit $f_k \in C_c^\infty(\Omega)$, dann gilt $f(\phi)=0$ für alle $\phi \in C_{\overline{\Omega}^c}^\infty$. Sei nämlich $\phi \in C_{\overline{\Omega}^c}^\infty$, dann $f_k(\phi) =0 (k\in \mathbb N)$
+
+Wegen 
+\begin{align*}
+|f_k(\phi)-f(\phi)| &=|I_k(\check \phi) - I(\check \phi)| = |\int (I_k(x)-I(x))\check \phi(x)\, \mathrm dx|\\
+ &\le \underbrace{\|f_k-f\|_s}_{\to 0} \left ( \int (1+x^2)^{-s} |\check \phi(x)|^2 \right )^{1/2}
+\end{align*}
+gilt $f(\phi) = \lim_{k\to \infty} f_k(\phi) =0$)
+\end{enumerate}
+\end{rem}
+
+\begin{lem}
+$(1+x^2)^s\le 2^{|s|} (1+(x-y)^2)^{|s|} (1+y^2)^s \quad (x,y\in \mathbb R^n, s\in \mathbb R)$
+\end{lem}
+\begin{proof}
+Sei $s\ge 0$, dann 
+\begin{equation}
+1+x^2 \le 1+ 2((x-y)^2+y^2 \le 2 (1+(x-y)^2)(1+y^2).
+\end{equation}
+Sei $s\ge 0$, dann folgt
+\begin{equation}
+\frac{(1+x^2)^s}{(1+y^2)^s} = \frac{(1+y^2)^{|s|}}{(1+x^2)^{|s|}} \le 2^{|s|} (1+(y-x)^2)^{|s|}.
+\end{equation}
+\end{proof}
+\begin{lem}
+Sei $\phi \in C_c^\infty(\mathbb R^n)$ und $f\in H^s(\mathbb R^n)$ ($s\in \mathbb R$). Dann gilt
+\begin{equation}
+\widehat{\phi f} = (2\pi)^{-n/2} \hat \phi * \hat f\in \mathcal S' \cap C^\infty
+\end{equation}
+und $(\hat \phi * \hat f) (x) = \int \hat \phi(x-y) \hat f(y)\, \mathrm dx$ ($x\in \mathbb R^n$)
+\end{lem}
+\begin{proof}
+\textbf{Schritt 1:} $y\mapsto \hat \phi(x-y) \hat f(y)$ integrierbar und $\hat \phi * \hat f \in C^\infty(\mathbb R^n)$.
+\begin{align}
+(1+x^2)^{s/2} \int |\hat \phi(x-y)| |\hat f(y)|\, \mathrm dy & \\stackrel{\text{Lem.} 1}\le 2^{|s/2|} \int (1+(x-y)^2)^{|s/2|} |\hat \phi(x-y)|\cdot (1+y^2)^{s/2} |\hat f(y)|\, \mathrm dy\\
+&\le 2^{|s/2|} \| \phi\|_{|s|} \|f\|_s <\infty (x\in \mathbb R^n)\label{eq:5.1}
+\end{align}
+1.2. $\hat \phi * \hat f$ stetig. Sei $x\in \mathbb R^n$, denn 
+\begin{equation}
+(1+x^2)^{s/2} |(\hat \phi * \hat f) (x+h) - \hat \phi * \hat f(x) | \le 2^{|s/2|} \underbrace{\left ( \int (1+y^2)^{|s|} |\hat \phi(yh) - \hat \phi(y)|^2 \right )^{1/2}}_{\to 0\; (h\to 0)} \cdot \| f\|_s
+\end{equation}
+nach Lebesgue unter Ausnutzung von Lemma 1. %Tatsächlich gilt
+%\begin{equation}
+%(1+y^2)^{|s|+m} |\hat \phi(y+h)|^2 \cdot (1+y^2)^{-m} \le 2^{|s|} (1+(y+h)^2
+%\end{equation}
+1.3 $\hat \phi*\hat f$ partiel differenzierbar mit $$\partial_i (\hat \phi * \hat f) = (\partial_i \hat \phi)*\hat f.$$
+Sei $x\in \mathbb R^n$, dann ist 
+\begin{gather}
+(1+x^2)^{s/2} |(\hat \phi * \hat f) (x+h e_i) - (\hat \phi * \hat f)(x) - (\partial_i \hat \phi) * \hat f) (x)|\\
+2^{|s/2|} \underbrace{\left ( (1+y^2)^{|s|} \left | \frac{\hat \phi (y+he_i) - \hat \phi(y)}{h} - (\partial_i \hat \phi)(y) \right |^2\, \mathrm dy \right )^{1/2}}_{to 0 \, (h\to 0)}\| f\|_s
+\end{gather}
+1.4 Iterativ $\hat \phi * \hat f\in C^\infty$ mit $\partial^\alpha(\hat \phi * \hat f) = (\partial^\alpha \hat \phi)*\hat f$.
+
+\textbf{Schritt 2:} $\widehat{\phi f} = (2\pi)^{-n/2} \hat \phi * \hat f$
+
+2.1 $(x,y) \mapsto \hat \phi(y-x) \hat f(x) \psi(y)$ integrierbar $(x\in \mathcal S)$
+\begin{gather}
+\int \underbrace{\int (1+y^2)^{s/2} |\hat \phi(y-x) \hat f(x)\, \mathrm dx}_{\le 2^{|s/2|} \|\phi\|_{|s|} \|f\|_s \, (y\in \mathbb R^n)} (1+y^2)^{-s/2} |\psi(y)|\, \mathrm dy \le 2^{|s/2|} \| \phi\|_{|s|} \|\check \psi\|_{-s} <\infty.
+\end{gather}
+
+2.2 Sei  $\psi\in \mathcal S$,
+\begin{gather}
+\widehat{f\phi}(\psi) = (\phi f) \hat \psi) = f(\phi \hat \psi) = (2\pi)^{-n/2} I(\check \phi * \psi) = (2\pi)^{-n/2} \int \hat f(x) \cdot (\check \phi * \psi)(x) \, \mathrm dx =\ldots
+\end{gather}
+denn  $\hat f$ ist regulär und $\hat f \cdot (\check \phi * \psi)$ integrierbar nach Schritt 2.1. Mit Fubini folgt
+\begin{gather}
+\widehat{f\phi} (x) = (2\pi)^{-n/2} \int\int \hat f(x) \underbrace{\check \phi(x-y)}_{=\hat \phi(y-x)} \psi(y) \, \mathrm dy \, \mathrm dx\\
+\stackrel{\text{Schritt 2.1}, \text{ Fubini}}= (2\pi)^{-n/2}\int \int \hat f(x) \hat (y-x) \, \mathrm dx \psi(y) \, \mathrm dy = (2\pi)^{-n/2} (\hat \phi * \hat f)(\psi).
+\end{gather}
+\end{proof}
+
+\begin{satz}
+Sei $\Omega$ offen und beschränkt in $\mathbb R^n$, dann gilt $H_0^s(\Omega) \to H_0^1(\Omega)$ kompakt für $s>t$.
+\end{satz}
+
+\begin{proof}
+Sei $(f_k)$ beschränkt in $H_0^s(\Omega) \subset \{f\in \mathcal S': \supp f\subset \overline \Omega \}$, dann gilt $f_k=\phi \cdot f_k (k\in \mathbb N)$, wobei $\phi \in C_c^\infty(\mathbb R^n)$ mit $\phi|_{\Omega} =1$ ($\Omega \subset \subset \Omega_1 \subset \subset \mathbb R^n$) (weil $\supp f_k \subset \overline \Omega$)
+
+und außerdem
+\begin{gather}
+\hat f_k = (2\pi)^{-n/2} \hat \phi * \hat f_k \in C^\infty
+\end{gather}
+nach Lemma 2.
+
+\textbf{Schritt 1:} $\mathcal M_k:= \{\hat f_k\big |_K : k\in \mathbb N\}$ beschränkt in $C(K)$ und gleichmäßig gleichgradig stetig ($K\subset \subset \mathbb R^n$)
+
+1.1
+\begin{equation}
+(1+x^2)^{s/2} | \hat f_k(x)| \le C \| \phi\|_{|s|} \underbrace{\| f_k\|_s}_{\le M} \quad (x\in \mathbb R^n)
+\end{equation}
+und $$\| \hat f_k\big |_K\|_\infty \le \frac{CM\|\phi\|_{|s|}}{\inf_{x\in K} (1+x^2)^{s/2}} <\infty \quad (k\in \mathbb N).$$
+Also ist $\mathcal M_k$ beschränkt in $C(K)$.
+
+1.2 
+\begin{gather}
+(1+x^2)^{s/2} |\underbrace{\partial_i \hat f_k(x)}_{= (2\pi)^{n} \partial_i(\hat \phi * \hat f_k)=(2\pi)^{-n} (\partial_i \hat \phi) * \hat f_k}|
+\end{gather}
+Also
+\begin{equation}
+\|\partial_i \hat f_k)\big |_K \|_\infty \le C_K' <\infty \quad (k\in \mathbb N)
+\end{equation}
+damit ist $\mathcal M_k$ gleichmäßig und gleichgradig stetig.
+
+Wegen Arzela Ascoli existiert Teilfolge $(\hat f_k$) so dass ($\hat f_{k_i}\big |_K$) Cauchyfolge in $C(K)$.
+
+\textbf{Schritt 2:} $(f_{k_i})$ Cauchyfolge in $H_0^t$ für alle $t<s$. Sei $\varepsilon>0$
+\begin{equation}
+\|f_{k_i} - f_{k_j}\|_t^2 = \underbrace{\int (1+x^2)^t |\hat f_{k_i}(x) - \hat f_{k_j}(x)|^2\, \mathrm dx}_{:=(I)} + \underbrace{\int_{|x|>R} (1+x^2)^t | \hat f_{k_i}(x) - \hat f_{k_j} (x) |^2\, \mathrm dx}_{:=(II)}.
+\end{equation}
+Es folgt 
+\begin{equation}
+(I) \le \underbrace{\int_{|x|le R} (1+x^2)^t\, \mathrm dx}_{<\infty} | \hat f_{k_i}\big |_{B_R} - \hat f_{k_j}\big |_{B_R} \|_\infty.
+\end{equation}
+bzw.
+\begin{equation}
+(II) \le \underbrace{(\sup_{|x|\ge R} (1+x^2)^{t-s} )}_{\le (1+R^2)^{-|t-s|} \to 0} \underbrace{\| f_{k_i} - f_{k_j}\|_s^2}_{\le (2M)^2} \to 0 \quad (R\to \infty)
+\end{equation}
+\end{proof}
+
+\chapter{Interpolationstheorie}
+Sei $S:=\{z\in \mathbb C|0\le \Re z \le 1\}$
+\begin{lem}\label{4.1}
+Sei $F:S\to \mathbb C$ beschränkt stetig und analytisch im Inneren von $s$. Für $0\le \theta\le 1$. Sei 
+\begin{equation}
+M_\theta:= \sup_{<\in \mathbb R} |F(\theta+iy)|.
+\end{equation}
+Dann gilt
+\begin{equation}
+M_\theta \le M_0^{1-\theta} M_1^\theta.
+\end{equation}
+\end{lem}
+
+\begin{proof}
+Sei zuerst $M_0=1=M_1$. Also $|F(z)|\le 1$ für $z\in \partial S$. Falls $F(z)\to 0$ für $z\to \infty$. Dann gilt $|F(z)|\le 1$ für alle $z\in \partial S_R$ wobei
+\begin{equation}
+S_R = \{z\in S| |\Im(z)|\le R\}
+\end{equation} 
+und $R\ge R_0$ mit $R_0$ groß genug. Also $|F(z)|\le 1$ für alle $z\in S_R$ da der Betrag einer analytischen Funktion das Maximum auf dem Rand annimmt. Da $R\ge R_0$ beliebig groß gewählt werden kann folgt $|F(z)|\le 1$ für alle $z\in S$.
+
+Falls $F(z)\not \to 0$ ($|z|\to \infty$) dann sei
+\begin{equation}
+F_n(z):= F(z) e^{(z^2-1)/n}
+\end{equation}
+für $n\in \mathbb N$. Dann gilt
+\begin{align}
+|F_n(\theta + i y)| &= \left | F(\theta + i y) e^{(\theta+iy)^2/n -1/n} \right |\\
+&\le | F(\theta + iy) | e^{-y^2/n} \le C e^{-y^2/n}
+\end{align}
+da $F$ beschränkt ist.  Außerdem ist $F_n: S\to \mathbb C$ stetig und in $\operatorname{int} S$ analytisch. Außerdem
+\begin{align}
+\left|F_n(\theta + iy)\big| _{\theta=0,1}\right| \le | F(\theta +iy)\big |_{\theta=0,1} || e^{-y^2/n} \le 1
+\end{align}
+
+Aus obigem folgt somit $|F_n(z)|\le 1$ für alle $n\in \mathbb N$. Somit gilt
+\begin{equation}
+|F(z)|=\lim_{n\to \infty} |F_n(z)|\le 1.
+\end{equation}
+Seien $M_0, M_1>0$ und sei
+\begin{equation}
+G(z) = \frac{F(z)}{M_0^{1-z} M_1^z}.
+\end{equation}
+Dann ist $G: S\to \mathbb R$ stetig, analytisch in $\operatorname{int} S$ und
+\begin{equation}
+G(\theta +iy) = \frac{F(\theta +iy)}{M_0^{1-\theta-iy} M_1^{\theta+iy}}.
+\end{equation} 
+
+Dann folgt
+\begin{equation}\label{date:16.6}
+|G(\theta+iy)| = \frac{|F(\theta + i y)|}{M_0^{1-\theta} M_1^\theta}
+\end{equation}
+was beschränkt ist in $S$. Weiter
+\begin{equation}
+|G(iy)|\le \frac{M_0}{M_e} = 1, |G(1+iy)|\le 1.
+\end{equation}
+Nach dem oben gezeigtem gilt $|G(z)|\le 1$. Also folgt aus \eqref{date:16.6}, dass
+\begin{equation}
+|F(\theta + iy)| \le M_0^{1-\theta} M_1^\theta.
+\end{equation}
+\end{proof}
+
+\begin{df}
+Ein Maßraum $(\Omega, \mu)$ heißt $\sigma$-endlich falls $\Omega$ die abzählbare Vereinigung messbarer mengen mit endlichen Maß ist.
+\end{df}
+\begin{bsp}
+$\mathbb R^n$ versehen mit dem Lebesgue-Maß ist $\sigma$-endlich.
+\end{bsp}
+
+\begin{lem}\label{lm2}
+Sei $(\Omega, \mu)$ ein $\sigma$-endlicher Maßraum und sei $f\in L^p(\Omega)$ wobei $1\le p \le \infty$.  Sei $q$ definiert durch $\frac{1}{p}+\frac{1}{q} =1$. Dann glt
+\begin{equation}
+\| f\|_p = \sup_{\| s\|_q \le 1} \left | \int f(x) s(x) \, \mathrm d\mu(x)\right |,
+\end{equation}
+wobei das Supremum über alle messbaren Treppenfunktionen $S$
+\end{lem}
+\begin{proof}
+``$\ge$'' folgt aus Hölder. Für $1<p<\infty$ ist $(L^p)^*=L^q, 1 <q<\infty$, und die Treppenfunktionen sind somit dicht in $L^q$. Also gilt ``$=$'' für $1<p<\infty$.
+
+Für $p=1$ ist $q=\infty$ und $f$ Treppenfunktion gilt ``$=$''  (Übung). Daraus folgt die Behauptung da Treppenfunktionen dicht in $L^1$ sind.  Den Beweis für $p=\infty$ überlassen wir als Übung.
+\end{proof}
+
+\begin{thm}[Riesz--Thorin]\label{st3}
+Seien $(\Omega, \mu)$, $(\Lambda,\nu)$ $\sigma$-endliche Maßräume und sei $T$ ein linearer Operator mit
+\begin{equation}
+T: L^{p_0} (\Omega) \to L^{q_0} (\Lambda)\quad \text{Norm } M_0
+\end{equation}
+\begin{equation}
+T: L^{p_1} (\Omega) \to L^{q_1} (\Lambda)\quad \text{Norm } M_1
+\end{equation}
+wobei $1\le p_0, q_0, p_1, q_1\le \infty$. Seien $0<\theta <1$ und seien $p,q$ definiert durch
+\begin{equation}
+\frac{1}{p} = \frac{1-\theta}{p_0} + \frac{1}{p_1}, \quad \frac{1}{q} = \frac{1-\theta}{q_0} + \frac{1}{q_1}.
+\end{equation}
+Dann gilt für alle $f\in L^{p_0}(\Omega) \cap L^{p_1}(\Omega)$
+\begin{equation}
+\| Tf\|_q \le M_0^{1-\theta} M_1^\theta \| f\|_p
+\end{equation}
+\begin{rem}
+$L^{p_0}(\Omega) \cap L^{p_1} (\Omega) \subset L^p(\Omega)$ dicht, denn Treppenfunktionen sind dicht in $L^p(\Omega)$ und gehören auch zu $L^{p_0} \cap L^{p_1}$. Somit lässt sich $T$ eindeutig auf $L^p(\Omega)$ fortsetzen zu einem beschränkten Operator $T:L^p(\Omega) \to L^q(\Lambda)$ mit 
+\begin{equation}
+\| T\| \le M_0^{1-\theta} M_1^\theta.
+\end{equation}
+\end{rem}
+\end{thm}
+\begin{proof}
+Sei zuerst $p_0=p_1$. Falls zusätzlich  $q_0=q_1$, dann ist nichts zu zeigen.  Falls $q_0\neq q_1$ dann gilt für $f\in L^{p_0} = L^{p_1} = L^p$.
+\begin{align*}
+\| Tf\|_q &\le \| Tf\|_{q_0}^{1-\theta} \| Tf\|_{q_1}^\theta\\
+&\le (M_0 \| f\|_{p_0})^{1-\theta} (M_1 \| f\|_{p_1} )^\theta \\
+&= M_0^{1-\theta} M_1^\theta \| f\|_p.
+\end{align*}
+Sei nun $p_0 \neq p_1$ und somit $p<\infty$. Dann sind Treppenfunktionen dicht in $L^p$ und nach Lemma \ref{lm2} genügt es zu zeigen, dass
+\begin{equation}
+|\int (Tf) (x) g(x) \, \mathrm d\nu| \le M_0^{1-\theta} M_1^\theta \| f\|_p \| g\|_q,
+\end{equation}
+für alle Treppenfunktionen $f,g$ und $\frac{1}{q'} + \frac{1}{q} =1$.
+
+Sei $p(z), q'(z)$ für $z\in S$ definiert durch
+\begin{equation}
+\frac{1}{p(z)} = \frac{1-z}{p_0} + \frac{z}{p_1} 
+\end{equation}
+und
+\begin{equation}
+\frac{1}{q'(z)} = \frac{1-z}{q_0'} + \frac{z}{q_1'}
+\end{equation}
+so dass $p(\theta)=p, q'(z)=q'$.
+
+Seien $f,g$ Treppenfunktionen und sei 
+\begin{equation}
+f_z(x)= |f(x)|^{p/p(z)} \frac{f(x)}{|f(x)|}
+\end{equation}
+\begin{equation}
+g_z(x) = |g(x)|^{q'/q'(z)} \frac{g(x)}{|g(x)|}
+\end{equation}
+wobei $w/|w|:=0$, wenn $w=0$.  Dann gilt
+\begin{equation}
+f_\theta (x) = f(x), g_{\theta}(x) = g(x).
+\end{equation}
+Sei
+\begin{equation}
+F(z) := \int_\Lambda (Tf_z) (x) g_z(x) \, \mathrm  \nu.
+\end{equation}
+Dann 
+\begin{align*}
+F(\theta) = \int Tf(x) g(x) \, \mathrm dx.
+\end{align*}
+wir wollen nun Lemma 1 (fixme) auf $F$ anwenden.  Nach Annahme an $f,g$.
+\begin{equation}
+f(x) = \sum_{i} \alpha_i \chi_{A_i} (x)
+\end{equation}
+\begin{equation}
+g(x) = \sum_{k} \beta_k \chi_{B_k} (x)
+\end{equation}
+und somit
+\begin{equation}\label{eq:16.6bes}
+F(z) = \sum_{i,k} |\alpha_i|^{p/p(z)} |\beta_k |^{q'/q'(z)} \frac{\alpha_i}{|\alpha_i|} \frac{\beta_k}{|\beta_k|} \int_{B_k} (T\chi_{A_i}) \, \mathrm d\nu.
+\end{equation}
+was in $s$ stetig und in $\mathring{S}$ analytisch ist.
+
+Weiter gilt
+\begin{align*}
+|F(it)|&\le \| Tf_{it}\|_{q_0} \|\cdot \|g_{it}\|_{q_0'}\\
+&\le M_0 \| f_{it} \|_{p_0} \| g_{it} \|_{q_0'},
+\end{align*}
+wobei 
+\begin{equation}
+|f_{it}(x)|\le | f(x)|^{p/p_0}.
+\end{equation}
+Dann folgt $\| f_{it}\|_{p_0} = \| f\|_p^{p/p_0}$ und entsprechend aus
+\begin{equation}
+|g_{it}(x)| = |g(x)|^{q'/q_0'}
+\end{equation}
+folgt  $\| g_{it}\|_{q_0'} = \|g\|_{q'}^{q'/q_0'}$.
+Demnach folgt
+\begin{equation}
+|F(it)|\le M_0 \| f\|_p^{p/p_0} \cdot \| g\|_{q'}^{q'/q_0}.
+\end{equation}
+Analog
+\begin{align*}
+|F(1+it)|&\le \| Tf_{1+it} \|_{q_1} \| g_{1+t} \|_{q_1'} \\
+&\le M_1 \| f_{1+it} \|_{p_1} \| g_{1+it} \|_{q_1'} \\
+&\le M_1\|f\|_p^{p/p_1} \| g\|_{q'}^{q'/q_1'}.
+\end{align*}
+Die Beschränktheit von $F$ auf $S$ folgt aus \eqref{eq:16.6bes}.  
+
+Aus Lemma 1 (fixme) folgt nun
+\begin{align*}
+|F(\theta)| &\le M_0^{1-\theta} \| f\|_p^{p/p_0(1-\theta)} \| g\|_{q'} ^{q'/q_0(1-\theta)} M_1^\theta \| f\|_p^{p/p_1 \theta} \| g\|_{q'}^{q'/q_1 \theta}\\
+&= M_0^{1-\theta} M_1^\theta \| f\|_p^{p/p(\theta)} \| g\|_{q'}^{q'/q'(\theta)}\\
+&= M_0^{1-\theta} M_1^\theta \| f\|_p \| g\|_{q'}
+\end{align*} 
+was zu beweisen war.
+\end{proof}
+% 19.6.2015
+
+Die Fouriertransformation $\mathcal F: \mathcal S(\mathbb R^n) \to \mathcal S(\mathbb R^n)$ definiert durch
+\begin{equation}
+\mathcal F(\phi)(p) = (2\pi)^{-n/2} \int e^{-ip\cdot x} \phi(x) \, \mathrm dx
+\end{equation}
+ist bijektiv mit
+\begin{align*}
+\| \hat \phi \|_2 &= \| \phi\|_2\\
+\| \hat \phi \|_\infty &\le (2\pi)^{-n/2} \| \phi\|_1.
+\end{align*}
+Daher lässt sich $\mathcal F$ eindeutig fortsetzen zu einer beschränkten linearen Abbildung
+\begin{align*}
+\mathcal F: L^2 \to L^2&: \quad \| F\|_{2,2}=1\\
+\mathcal F: L^1\to L^\infty \quad \| \mathcal F\|_{1,\infty} \le (2\pi)^{-n/2}
+\end{align*}
+Mit dem Satz von Riesz-Thorin folgt
+\begin{thm}[Hausdorff-Young]\label{4.4}
+Sei $1\le p\le 2$ und sei $q$ definiert durch $\frac{1}{p}+\frac{1}{q}=1$. Die Fourier-Transformation $\mathcal S \to \mathcal S$ hat eine eindeutige Fortsetzung zu einer beschränkten linearen Abbildung
+\begin{equation}
+\mathcal F: L^p(\mathbb R^n) \to L^q(\mathbb R^n)
+\end{equation}
+mit
+\begin{equation}
+\| \mathcal F\|_{p,q} \le (2\pi)^{-n(\frac{1}{p}-\frac{1}{2})}
+\end{equation}
+\end{thm}
+\begin{proof}
+Wir verweisen auf die Übung.
+\end{proof}
+
+\section{Freie Schrödingergleichung}
+Die Lösung des AWP
+\begin{equation}
+i\dot \psi = - \Delta \psi \qquad \psi\big|_{t=0} = \psi_0 \in H^2(\mathbb R^n)
+\end{equation}
+für die gesuchte Funktion $t\mapsto \psi_t \in L^2(\mathbb R^n)$ ist gegeben durch
+\begin{equation}
+\psi_t = e^{i\Delta t} \psi_0.
+\end{equation}
+Die lineare Abbildung $e^{i\Delta t} := \mathcal F^{-1} e^{-ip^2 t} \mathcal F$ ist unität und für $\phi\in L^1 \cap L^2$ gilt
+\begin{equation}
+\left ( e^{i\Delta t} \phi \right ) (x) =  (4\pi i t)^{-n/2} \int e^{i|x-y|^2/4t} \phi(y) \, \mathrm dy.
+\end{equation}
+Also
+\begin{equation}
+\| e^{i\Delta t\phi} \phi \||_{\infty} \le (4\pi |t|)^{n/2} \| \phi \|_1.
+\end{equation}
+D.h. $e^{i\Delta t}: L^2 \to L^2$ ist isometrisch und
+$e^{i\Delta t}: L^1\to L^\infty$
+beschränkt.
+
+Durch Interpolation (Riesz-Thorin) bekommen wir für $1\le p \le 2$ und $\frac{1}{q}+\frac{1}{p} =1$ die Abschätzung
+\begin{equation}
+\| e^{i\Delta t}\phi\|_q \le (4\pi |t|)^{-n(\frac{1}{p} - \frac{1}{2})}\| \phi\|_p
+\end{equation}
+für alle $|t|>0$.  Solche Abschätzungen finden Anwendung in der Streutheorie. (Existenz der Wellenpakte für Potenzialstreeung) FIXME.
+
+\section{Der Interpolationssatz von \textsc{Marcinkiewicz}}
+
+Sei $(\Omega, \mu)$ ein $\sigma$-endlicher Maßraum und $u: \Omega \to \mathbb C$ sei messbar.  Die Verteilungsfunktion $\delta_k$ (Dibution function) von $u$ ist definiert durch
+\begin{equation}
+\delta_u(t) := \mu\{ x\in \Omega:|u(x)|>t\}\qquad t>0.
+\end{equation}
+
+Es gilt
+\begin{equation}\label{eq:4.1}
+\int_{\Omega} | u| \, \mathrm d\mu = \int_0^\infty \delta_u(t) \, \mathrm dt
+\end{equation}
+denn beide Seiten stimmen überein mit dem Produktmaß $\mu \otimes \lambda$ von $\{(x,t) | |u(x)|>t\}$ wobei $\lambda$ das Lebesgue auf $\mathbb R$ ist.
+
+\begin{proof}
+\begin{align}
+\mu \otimes \lambda\{(x,t) | |u|>t\} &= \int_{\{(x,t): |u(x)|>t\}} \, \mathrm d(\mu \otimes \lambda)\\
+&\stackrel{\text{Fub.}}= \int_\Omega \mathrm d\mu(x) \int_{\{t| |u(x)|>t\}} \mathrm d\lambda(t) = \int \mathrm d\mu(x) |u(x)| \\
+&\stackrel{\text{Fub.}}= \int_{\mathbb R_+} \, \mathrm  d\lambda(t) \int_{\{x| |u(x)|>t\}} = \int_{\mathbb R_+} \, \mathrm d\lambda(t) \delta_u(t).\\
+&= \int_0^\infty \delta_u(t) \, \mathrm dt
+\end{align}
+als uneigentliches Riemann-Integral. \end{proof}
+ Ist $0<p<\infty$, dann ist
+\begin{equation}\label{eq:4.2}
+\int_{\Omega} |u|^p \, \mathrm d\mu \ge \int_{\{x: |u(x)| >t\}} | u|^p \, \mathrm d\mu \ge t^p \delta_u(t).
+\end{equation}
+Also gilt
+\begin{equation}\label{eq:4.3}
+\delta_u(t) \le \frac{c}{t^p} \quad \text{alle } t>0,
+\end{equation}
+wobei $c= \int |u|^p \, \mathrm d\mu$. Jede messbare Funktion $u:\Omega \to \mathbb C$ welche einer Abschätzung der Form \eqref{eq:4.3} genügt liegt $L^p_w(\Omega)$ (weak-$L^p$) per Definition von $L^p_w$. Für $u\in L^p_w(\Omega)$ definiert man die Quasinorm
+\begin{equation}
+[u]_p:= (\sup_{t>0} t^p \delta_u(t))^{1/p}
+\end{equation}
+$c= [u]_p^p$ ist die kleinste Konstante für welche \eqref{eq:4.3} gilt. Nach \eqref{eq:4.2} gilt
+\begin{equation}
+[u]_p \le \| u\|_p
+\end{equation}
+und somit gilt
+\begin{equation}
+L^p(\Omega) \subset L^p_w(\Omega).
+\end{equation}
+Die Räume sind aber nicht gleich. Z.B. ist $u(x)= |x|^{-n}$ in $L^1_w(\mathbb R^n)$ aber nicht in $L^1(\mathbb R^n)$.
+
+Aus \eqref{eq:4.1} folgt
+\begin{lem}\label{4.5}
+Sei $u: \Omega \to \mathbb C$ messbar und $0<p<\infty$ dann
+\begin{equation}\label{eq:4.4}
+\int |u|^p \, \mathrm d\mu = p \int_0^\infty t^{p-1} \delta_u(t) \, \mathrm dt
+\end{equation}
+\end{lem}
+\begin{proof}
+\begin{align*}
+\int |u|^p \, \mathrm d\mu &= \int_0^\infty \mu\{ x| |u(x)|^p >t\} \, \mathrm dt \\
+&= \int_0^\infty \mu\{ x| |u(x)|^p > s^p\} ps^{p-1} \,\mathrm ds\\
+&= p \int_0^\infty t^{p-1} \delta_u(t) \, \mathrm dt.
+\end{align*}
+\end{proof}
+Die Gleichung \eqref{4.4} zeigt, dass für $u\in L^p(\Omega)$
+\begin{equation}
+\int_0^\infty t^{p-1} \delta_u(t) \, \mathrm dt <\infty,
+\end{equation}
+während dieses Integral $u\in L^p_w(\Omega)$ sowohl bei $t=0$ als auch bei $t=\infty$ logarithmisch divergent sein darf.
+
+Falls $u\in L^{p_1}{w}(\Omega) \cap L^{p_2}_w (\Omega)$ mit $p_1 <p_2$. Dann ist $U\in L^p(\Omega)$ für $p_1 <p <p_2$ und 
+\begin{equation}
+\|u\|^p_p \le \frac{p}{p-p_1} [u]_{p_1} + \frac{p}{p_2-p} [u]_{p_2}
+\end{equation}
+\begin{proof}
+\begin{gather}
+\int |u|^p \, \mathrm d\mu = p \int_0^\infty t^{p-1} \delta_u(t) \, \mathrm dt\\
+= p \int_0^1 t^{p-p_1 -1} t^{p_1} \delta_u (t) \, \mathrm dt + p \int_1^\infty t^{p-p_2-1} t^{p_2} \delta_u(t) \, \mathrm dt\\
+\le [u]_{p_1}^{p_1} \frac{p}{p-p_1} + [u]^{p_2}_{p_2} \frac{p}{p_2-p}
+\end{gather}
+Für den Beweis des folgenden Theorems brauchen wir dass die Minkowski-Ungleichung $\| u+v\|_{p} \le \|u\|_p + \| v\|_p$ ($p\ge 1$) auf Integrale (statt Summe $u+v$) verallgemeinert werden kann: es gilt
+\begin{equation}
+\left (\int \mathrm dt \left ( \int_{\mathbb R} \mathrm ds u(t,s) \right )^p \right )^{1/p} \le \int \mathrm ds \, \left ( \int \mathrm dt\, u(t,s)^p \right )^{1/p} 
+\end{equation}
+für $u: \mathbb R \times \mathbb R \to [0,\infty]$ und $1\le p <\infty$.
+
+Mit anderen Worten
+\begin{equation}
+\| \int \mathrm ds u(\cdot, s) \|_p \le \int \mathrm ds \, \| u(\cdot,s)\|
+\end{equation}
+(ein Beweis dazu ist zum Beispiel in Adams zu finden)
+
+Seien $X,Y$ Vektorräume messbarer Funktionen. Eine Abbildung $F: X \to Y$ heißt sublinear falls für alle $u,v\in X, \alpha \in \mathbb C$
+\begin{align}
+|F(u+v)|&\le |F(u)|+|F(v)|\\
+|F(\alpha u)| = |\alpha| | F(u)|.
+\end{align}
+Jeder lineare Operator $T: X\to Y$ ist sublinear.
+
+Ist $F: L^p(\Omega) \to L_w^q(\Lambda)$ sublinear mit $1\le p \le \infty$, $1\le q \le \infty$ dann sagt man
+\begin{enumerate}[(a)]
+\item $F$ ist von \emph{starken} $(p,q)$-Typ falls $F(L^p) \subset L^q$ und $\exists K$
+\begin{equation}
+\| F(u)\|_q \le K \|u\|_p.
+\end{equation}
+\item $F$ ist vom schwachen $(p,q)$-Typ falls $F(L^p) \subset L_w^q$ und $\exists K$
+\begin{equation}
+[F(u)]_q \le K \|u\|_p \quad q <\infty
+\end{equation}
+oder falls $q=\infty$ und $F$ von starkem $(p,\infty)$-Typ ist.
+\begin{rem}
+$u\mapsto [u]_p$ hat die Eigenscheinft einer Norm bis auf die $\Delta$-Ungleichung welche nicht erfüllt ist (Übung). Es gilt aber 
+\begin{equation}
+[u+v]_p \le 2[u]_p + 2[v]_p
+\end{equation}
+(vgl. Blatt 8).
+\end{rem}
+\end{enumerate}
+\end{proof}
+
+\begin{thm}[Marcinkiewicz]
+Seien $(\Omega, \mu)$, $(\Lambda, \nu)$ $\sigma$-endliche Maßräume und sei $F: L^{p_i}(\Omega) \to L^{q_i}(\Lambda)$ sublinear und von schwachen $(p_i, q_i)$-Typ, $i=0,1$, wobei $1\le p_0 \le q_0 <\infty$,  $1\le p_1\le q_1\le \infty$ und $q_0<q_1$.  Sei $\theta\in (0,1)$ und
+\begin{equation}
+\frac{1}{p} = \frac{1-\theta}{p_0} + \frac{\theta}{p_1}, \quad \frac{1}{q} = \frac{1-\theta}{q_0} + \frac{\theta}{q_1}.
+\end{equation}
+Dann ist $F$ von starken $(p,q)$-Typ.
+\end{thm}
+\textbf{Erinerung:} Nach Voraussetzung ist
+\begin{equation}
+[F(u)]_{q_i} \le c_i \| u\|_{p_i}, \quad i=0,1,
+\end{equation}
+wobei $[F(u)]_\infty:= \| u\|_\infty$.
+
+\begin{proof}
+\textbf{Fall: $q_0<q<q_1<\infty$}. Also $p_0, p_1<\infty$.  Sei $M>0$, $u\in L^p(\Omega)$ und
+\begin{equation}
+u_0(x)= \begin{cases}
+u(x) \quad &\ |u(x)| \le M\\
+M \frac{u(x)}{|u(x)|} \quad &\ |u(x)|>M.
+\end{cases}
+\end{equation}
+Weiter sei
+\begin{equation}
+u_1(x) = u(x) - u_0(x) = \begin{cases}
+0 \quad &\ |u(x)| \le M\\
+M(1- \frac{u(x)}{|u(x)|}) \quad &\ |u(x)|>M.
+\end{cases}
+\end{equation}
+Somit gilt
+\begin{align}
+|u_0| &= \min\{ |u_0|, M\}\\
+|u_1| &= \max\{ 0, |u|-M\}.
+\end{align}
+Es folgt
+\begin{align}
+\delta_{u_0}(t) &= \begin{cases}
+\delta_u(t) \quad &\ t<M,\\
+0 \quad \& t\ge M.
+\end{cases}\\
+\delta_{u_1}(t) = \delta_u(t+M).
+\end{align}
+Also
+\begin{align}
+\int |u_0|^{p_1} \, \mathrm d\mu &= p_1 \int_0^M t^{p_1-1} \delta_u(t) \, \mathrm dt \label{eq:23.6:1}\\
+\int |u_1|^{p_0}\, \mathrm d\mu &= p_0 \int_M^\infty t^{p_0-1} \delta_u(t) \, \mathrm dt.\label{eq:23.6:2}
+\end{align}
+Wir müssen $\| F(u)\|_q$ durch $\| u\|_p$ abschätzen. Da $F$ sublinear ist gilt
+\begin{equation}
+|F(u)| \le |F(u_0)|+ F(u_1)|.
+\end{equation}
+Also $|F(u)|>t$. Dann folgt $|F(u_0)|>t/2$ oder $|F(u_1)|>t/2$ und somit 
+\begin{equation}
+\delta_{F(u)} (t) \le \delta_{F(u_0)} (t/2) + \delta_{F(u_1)} (t/2).
+\end{equation}
+Daraus folgt
+\begin{align}
+\int |F(u)|^q \, \mathrm d\mu &= q \int_0^\infty t^{q-1} \delta_{F(u)}(t)\, \mathrm dt \\
+&= q \int_0^\infty t^{q-1} \delta_{F(u_0)} (t/2)\, \mathrm dt + q \int_0^\infty t^{q-1} \delta_{F(u_1)} (t/2)\, \mathrm dt\\
+&= 2^q q \int_0^\infty t^{q-1} \delta_{F(u_0)}(t)\, \mathrm dt + 2^q q \int_0^\infty \int_0^\infty t^{q-1} \delta_{F(u_1)}(t) \, \mathrm dt.
+\end{align}
+Diese Integrale sind durch $\| u\|_p$ abzuschätzen. Dazu wählen wir $M= t^\sigma$ mit geeignetem $\sigma>0$. Also
+\begin{align}
+\delta_{F(u_0)} &= \\
+\delta_{F(u_1)} &=.
+\end{align}
+FIXME. 
+Für das erste Integral bekommen wir
+\begin{align}
+\int_0^\infty t^{q-1} \delta_{F(u_0)} (t) \, \mathrm dt &= \int_0^\infty t^{q-1-q_1} t^{q_1} \delta_{F(u_0)} (t) \, \mathrm dt \\
+&\le \int_0^\infty t^{q-1-q_1} [F(u_0)]^{q_1}_{q_1} \, \mathrm dt\\
+&\le \int_0^\infty t^{q-1-q_1} (c_1^{p_1} \|u_0\|_{p_1}^{p_1})^{q_1/p_1}\\
+&\stackrel{\eqref{eq:23.6:1}}= c_1^{q_1} \int_0^\infty t^{q-1-q_1} (p_1 \int_0^{t^\sigma} s^{p_1-1} \delta_u(s) \, \mathrm ds )^{q_1/p_1}\\
+&\stackrel{Minkowski}\le c \left [ \int_0^\infty \, \mathrm ds\, \int_{s^{1/\sigma}}^\infty \left ((t^{q-1-q_1} )^{p_1/q_1} s^{p_1-1} \delta_u(s)\right )^{\frac{q_1}{p_1}} \, \mathrm dt \right ]\\
+&= c \left ( \int_0^\infty \, \mathrm ds s^{p_1-1} \delta_u(s) \left ( \int_{s^{1\sigma}} \, \mathrm dt\, t^{q-1-q_1} \right )^{p_1/q_1} \right )^{q_1/p_1}\\
+&= c \left ( \int_0^\infty \, \mathrm ds s^{p_1-1} \delta_u(s) \left (\frac{1}{q-q_1} t^{q-q_1} \big |_{s^{1/\sigma}}^\infty \right )^{p_1/q_1}\right )^{q_1/p_1}\\
+&= c' \left ( \int_0^\infty \, \mathrm ds \delta_u(s) s^{p_1-1+(q-q_1)/\sigma} \right )^{q_1/p_1}\\
+&= c' \left ( \int_0^\infty \, \mathrm ds \delta_u(s) s^{p-1} \right )^{q_1/p_1}\\
+&= c' \left ( \int_0^\infty \, \mathrm ds \delta_u(s) s^{p-1} \right )^{q_1/p_1}\\
+&= c' \|u\|_p.
+\end{align}
+wenn $p_1 + \frac{(q-q_1)}{\sigma} \cdot \frac{p_1}{q_1}  = p\iff \sigma=\frac{q-q_1}{p_2} \cdot \frac{p_1}{q_1}$. FIXME
+
+Für das zweite Integral bekommen wir
+\begin{align}
+\int_0^\infty t^{q-1} \delta_{F(u_1)}(t) \, \mathrm dt &\le \int_0^\infty t^{q-1-q_0} [F(u_1)]_{q_0}^{q_0} \, \mathrm dt\\
+&= \int_0^\infty t^{q-1-q_0} (c_0 \| u_1\|_{p_0}^{p_0} )^{q_0/p_0}\, \mathrm dt\\
+&\stackrel{\eqref{eq:23.6:2}}= c_0^{q_0/p_0} \int_0^\infty t^{q-1-q_0} ( p_0 \int_{t^\sigma}^\infty s^{p_0-1} \delta_u(s) \, \mathrm ds ) ^{q_0/p_0}\\
+F&= c \int_0^\infty \, \mathrm dt \, \left ( \int_{t^\sigma}^\infty \, \mathrm ds\, t^{(q-1-q_0)p_0/q_0} s^{p_0-1} \delta_u(s)  \right )^{q_0/p_0}\\
+&\stackrel{\text{Hölder}}\le c \left (\int_0^\infty \, \mathrm ds\,\left ( \int_0^{s^{1/\sigma}} \, \mathrm dt \, t^{(q_1-q_0)} (s^{p_0-1} \delta_u(s))^{q_0/p} \right )^{p_0/q_0} \right )^{q_0/p_0}\\
+&= c \left [ \int_0^\infty \, \mathrm ds \, s^{p_0-1} \delta_u(s) \left ( \underbrace{\int_0^{s^{1/\sigma} \, \mathrm dt \, t^{q-1-q_0}}}_{=\frac{1}{q-q_0} t^{q-q_0} |_0^{s^{1/\sigma}}} \right )^{p_0/q_0} \right ]^{q_0/p_0}\\
+&= c' \left [ \int_0^\infty \mathrm ds \delta_u(s) s^{p_0-1+\frac{q-q_0}{\sigma} \cdot \frac{p_0}{q_0}} \right ]^{q_0/p_0} = c'' ( \| u\|_p^p)^{q_0/p_0}.
+\end{align}
+Also wenn $\| u\|_p=1$, dann
+\begin{equation}
+\| F(u)\|_q \le K < \infty
+\end{equation}
+und somit
+\begin{equation}
+\| F(u)\|_q = \|u\|_p \cdot \| F(u/\|u\|_p) \|_q \le \|u\|_p \cdot K
+\end{equation}
+wegen der Sublinearität von $F$.  Aus der Annahme an $p,q$ folgt
+\begin{equation}
+(1/p, 1/q)= (1-\theta) \left (\frac{1}{p_0}, \frac{1}{q_0} \right ) + \theta \left ( \frac{1}{p_1} , \frac{1}{q_1} \right )
+\end{equation}
+
+Steigung auf zwei Arten ausrechnen (FIXME bzw. Inverse) und mit $p/q$ multiplizieren:
+\begin{align}
+\frac{p}{q} \cdot \frac{1/p_1 - 1/p}{1/q_1- 1/q} &= \frac{p/p_1 -1}{q/q_1 -1} = \frac{p-p_1}{q-q_1} \cdot \frac{q_1}{p_1}=1/\gamma\\
+\frac{p}{q} \cdot \frac{1/p-1/p_0}{1/q - 1/q_0} =  \frac{1- p/p_0}{1-q/q_0} = \frac{p_0 -p}{q_0-q} \frac{q_0}{p_0}=1/\gamma.
+\end{align}
+
+\textbf{Fall 2:}  $q_1=\infty, p_0<p_1$. In diesem Fall kann man $M=M(t)$ so wählen, dass $\delta_{F(u_1)} (t) =0$ für alle $t>0$. Also
+\begin{equation}
+\int |F(u)|^q\, \mathrm d\nu = 2^q q \int_0^\infty t^{q-1} \delta_{F(u_1)} (t) \, \mathrm dt,
+\end{equation}
+was man wie zuvor abschätzt.
+
+\textbf{Fall 3:} $q_1=0\infty$, $p_0>p_1$. Jetzt wählt man $M=M(t)$, sodass $\delta_{F(u_1)}(t)=0$, also
+\begin{equation}
+\int |F(u)|^q \, \mathrm d\nu \le 2^q q \int_0^\infty t^{q-1} \delta_{F(u_0)}(t)\, \mathrm dt
+\end{equation}
+was man wie zuvor abschätzt.
+
+\textbf{Fall 4:} $q_0 < q <q_1 = \infty$ und $p_0=p=p_1<\infty$. Nach Definition von $[\cdot ]_{q_0}$ gilt
+\begin{equation}\label{eq:23.6:*}
+t^{q_0} \delta_{F(u)} (t) \le [ F(u)]_{q_0}^{q_0} \le ( c_0 \| u\|_{p_0=p} )^{q_0}.
+\end{equation}
+Andererseits $\delta_{F(u)}(t)=0$ falls $t> \| F(u)\|_\infty$ oder 
+\begin{equation}
+t>T = c_1 \| u\|_{p_1} \ge \| F(u) \|_\infty.
+\end{equation}
+D.h.
+\begin{align}
+\| F(u)\|^q_q &= q \int_0^\infty t^{q-1} \delta_{F(u)}(t) \, \mathrm dt\\
+&= q \int_0^T t^{q-1} \delta_{F(u)} (t) \, \mathrm dt \\
+&\stackrel{\eqref{eq:23.6:*}}= q \int_0^T t^{q-1-q_0} (c_0 \| u\|_p)^{q_0} \, \mathrm dt \\
+&= q (c_0 \| u\|_p)^{q_0} \frac{1}{q-q_0} T^{q-q_0} \quad (T= c_1 \|u\|_p\\
+&= c\|u\|_p^q.
+\end{align}
+
+In Adams findet sich der Beweis auch mit mehr Details.
+\end{proof}
+
+\subsection{Abstrakte Interpolation}
+Wir verallgemeinern den Satz von Riesz-Thorin. Sei $X$ ein komplexer Banachraum und $\Omega \subset \mathbb C$ offen.  Eine Funktion $f: \Omega \to X$ heißt \emph{(schwach) analytisch}, falls die Funktion $z\mapsto \eta(f(z))\in \mathbb C$ analytisch ist in $\Omega$ für alle $\eta \in X^*$.
+
+Jede (schwach) analytische Funktion ist analytisch im Sinn, dass $z\mapsto f(z)$ differenzierbar ist, d.h. 
+\begin{equation}
+f'(x) = \lim_{h\to 0} \frac{f(z+h)-f(z)}{h}
+\end{equation}
+existiert in $X$ für alle $z\in \mathbb \Omega$.
+
+Für vektorwertige analytische Funktionen gilt ebenfalls das Maximumprinzip (Blatt 9). Daher gilt auch folgende Verallgemeinerung des Lemmas \ref{4.1}. Wie zuvor sei $S=\{z\in \mathbb | 0 \le \Re z \le 1\}$.
+
+\begin{thm}[Hadamard]
+quatIst $X$ ein komplexer Vektorraum und $F: S \to X$ stetig, beschränkt und analytisch in $\mathring S$ und ist
+\begin{equation}
+M_{\theta} := \sup_{<\in \mathbb R} \| F(\theta+iy)\|, \quad \theta\in [0,1]
+\end{equation}
+dann gilt $M_\theta \le M_0^{1-\theta} M_1^\theta$.
+\end{thm}
+
+\textbf{Anwendung:} Sei $A\in \mathcal L(\mathbb C^n)$ mit $A^*=A$ und mit Eigenwerten in $I\subset \mathbb R$. Sei $f: I \to \mathbb C$. Dann definieren wir
+\begin{equation}
+f(A) = U^* \diag(f(\lambda_1), \quad, f(\lambda_n))U^*,
+\end{equation}
+falls $U^* AU= \diag(\lambda_1, \ldots, \lambda_n)$.
+\begin{bsp}
+\begin{enumerate}[1)]
+\item Für $A\ge 0$ ist $A^{1/2}$ definiert und $A^{1/2} A^{1/2} = A$.
+\item Für $A>0$ ist $\log(A)$ definiert
+und $\exp(\log A) =A$.
+\end{enumerate}
+\end{bsp}
+\begin{satz}
+Seien $A,B\in \mathcal L(\mathbb C^n)$ mit $A\ge 0$ und $\| AB\| \le 1$, $\| BA\| \le 1$. Dann gilt $\|A^{1/2} B A^{1/2}\|\le 1$.
+\end{satz}
+\begin{proof}
+Sei zuerst $A>0$ und sei
+\begin{align*}
+F(z) = A^z B A^{1-z}= e^{z\log(A)} B e^{1-z} \log(A).
+\end{align*}
+$F$ ist ganz und somit stetig auf $S$ und analytisch in $\mathring S$.
+
+Außerdem gilt
+\begin{align*}
+F(x+iy) = e^{(x+iy) \log(A)} B e^{(1-x-iy) \log(A)}
+\end{align*}
+wobei $e^{iy\log(A)}$ unitär ist und für $x\in [0,1]$ gilt 
+\begin{equation}
+F(x+iy) =e^{(x+iy) \log(A)} B e^{(1-x-iy) \log(A)}
+\end{equation}
+wobei $e^{iy\log(A)}$ unitär ist und für $x\in [0,1]$ gilt
+\begin{align*}
+\| e^{x\log(A)} \| &= \max_{i=1,\ldots,n} |\lambda_i |^x \le \max (1+ |\lambda_i|) \\
+&= 1+\max|\lambda_i| = 1 + \| A\|.
+\end{align*}
+Also
+\begin{align*}
+\| F(x+iy)\| &\le \| e^{x\log(A)} \| \cdot \| B \| \cdot \| e^{(1-x) \log(A)}\|\\
+&\le  \| B\| (1+\|A\|)^2
+\end{align*}
+für $x+iy \in S$. Außerde
+\begin{align*}
+\| F(iy) \| &= \| BA\| \le 1\\
+\| F(1+iy)\| &= \|AB\| \le 1.
+\end{align*}
+Also gilt nach Hadamard
+\begin{equation}
+\| A^{1/2} B A^{1/2} \| = \| F(1/2)\| \le 1.
+\end{equation}
+Falls $A\ge 0$ wähle $\varepsilon >0$ und definiere $A_{\varepsilon} = A+\varepsilon$, $B_\varepsilon = \frac{B}{1+\varepsilon \| B\|}$. Dann $A_{\varepsilon} >0$ und
+\begin{align*}
+\| A_{\varepsilon} B_\varepsilon \| &= \| (A+\varepsilon) B\| \frac{1}{1+\varepsilon \| B\|} \\
+&\le ( \| AB \| + \varepsilon \| B\| ) \frac{1}{1+\varepsilon \| B\|} \le 1.
+\end{align*}
+Ebenso $\| B_\varepsilon A_\varepsilon\| \le 1$. Also gilt
+\begin{equation}
+\| A_\varepsilon^{1/2} B_\varepsilon A_\varepsilon^{1/2}\| \le 1.
+\end{equation}
+Gehen wir zu $\varepsilon \to 0+$ ergibt sich
+\begin{equation}
+\| A_{\varepsilon}^{1/2} B_\varepsilon A_\varepsilon^{1/2}\| = \| (A+\varepsilon)^{1/2} B (A+\varepsilon)^{1/2} \| \frac{1}{1+\varepsilon \| B\|} \to \| A^{1/2} B A^{1/2} \|.
+\end{equation}
+
+Sei $X$ ein normierter Vektorraum und $M\subset X$ ein Unterraum. Der \emph{Quotientenraum} $X/M$ ist die Menge der Äquivalenzklassen
+\begin{equation}
+[x] := \{y\in X| y-x\in M\} = X+M
+\end{equation}
+versehen mit
+\begin{align*}
+[x] + [y] &= [x+y]\\
+\lambda[x] &= [\lambda x] \quad \lambda \in \mathbb C
+\end{align*}
+für $x,y\in X$.
+\end{proof}
+
+\begin{satz}\label{4.9}
+Sei $X$ ein normierter Vektorraum. Dann 
+\begin{enumerate}[a)]
+\item Ist $M\subset X$ abgeschlossener Unterraum, dann wird durch
+\begin{equation}
+\| [x] \|_M := \inf_{y\in x+M} \| y\|= \dist(x,M)\le \|x\|.
+\end{equation}
+\item Ist $M\subset X$ abgeschlossen und $X$ vollständig dann ist $(X/M, \| \cdot \|_M)$ ein Banachraum.
+\end{enumerate}
+\end{satz}
+\begin{proof}
+\begin{enumerate}[a)]
+\item $\Delta$-Ungleichung: Sei $[x_1], [x_2] \in X/M$, $\varepsilon>0$ und $y_k \in [x_k]$ mit $\| y_k \| \le \| [x_k] \| + \varepsilon$.
+
+Dann gilt
+\begin{align*}
+\| [x_1 ] + [x_2] \| = \| [y_1] + [y_2]\|\\
+= \| [y_1 + y_2] \| \le \| y_1 + y_2\| \le \| y_1\| + \|y_2\| \le \| [x_1] \| + \| [x_2] \| + 2\varepsilon.
+\end{align*}
+\item Wir verwenden, dass ein normierter Raum genau dann vollständig ist, wenn jede absolut konvergente Reihe konvergent ist.
+
+Sei also $\sum_{k\ge 0} \| [x_k] \| <\infty$. Zu zeigen: $\sum_{k=1}^\infty [x_k]$ in $X/M$ konvergiert. Wähle $y_k\in [x_k]$ mit $\| y_k\| \le \| [x_k]\| + \sum 2^{-k} y\infty$ und somit existiert $y= \sum_{k=1}^\infty y_k \in X$, da $X$ vollständig ist.
+
+Außerdem
+\begin{align*}
+\| [y] - \sum_{k=1}^N [x_k] \| &= \| [y] - \sum_{k=1}^N [y_k] \| \\
+&= \| [y-\sum_{k=1}^N y_k] \| \le \| y- \sum_{k=1}^N y_k \| \to 0 (N\to \infty).
+\end{align*}
+\end{enumerate}
+\end{proof}
+
+Wir verallgemeinern nun die Situation bei Riesz--Thorin. Seien $X_0, X_1$ Banachräume (über $\mathbb C$) die Unterräume eines größeren Vektorraums $V$ sind. Wir konstruieren Interpolierende Banachräume $X_t,  t\in (0,1)$, mit 
+$$(X_0 \cap X_1)\subset X_t \subset X_0 + X_1.$$
+Definition:  Die Normen der Banachräume $X_0, X_1$ heißen \emph{konsistent}, falls für jede Folge $(x_n)$ in $X_0 \cap X_1$ gilt:
+\begin{equation}
+x_n \stackrel{X_0}\to 0 \quad \text{ und } x_n \stackrel{X_1}\to x.
+\end{equation}
+Dann gilt $X=0$. Ebenso mit $X_0$ und $X_1$ verstauscht.  
+
+\begin{satz}\label{4.10}
+Seien $X_0, X_1\subset V$ Banachräume mit konsistenten Normen. Dann ist 
+$$\| X\|_+ = \inf\{ \| y \|_0 + \|z\|_1| x=y+z, y\in X_0, z\in X_1\}$$
+eine Norm in $X_+ = X_0 + X_1$. ($X_+, \| \cdot \|_+$) ist vollständig und die Einbettungen $$X_0\to X_+, X_1 \to X_+$$
+sind injektive Kontraktionen.
+\end{satz}
+\begin{proof}
+Sei $J: X_0 \times X_1 \to X_0 + X_1$ definiert durch $J(x,y) = x+y$. $J$ ist linear und surjektiv und $\ker J=D$, wobei
+\begin{equation}
+D= \{(x,-x) | x\in X_0 \cap X_1\}.
+\end{equation}
+Also ist
+\begin{align*}
+X_0 \times X_1 /D &\to X_0 + X_1\\
+[(x,y)] \mapsto J(x,y)
+\end{align*}
+bijektiv.
+
+$X_0 \times X_1$ mit $\| (x,y) \| = \| x\| + \|y\|$ ist ein Banachraum da $X_0, X_1$ Banachräume sind. $D$ ist abgeschlossen in $X_0\times X_1$, da die Normen konsistent sind: Sei $(x_n, -x_n)$ eine Folge in $D$ mit $(x_n, -x_n) \to (x,y)$. D.h. $\| x_n - x\|_0 \to 0$ und $\|-x_n-y_n\|_1 \to 0$.
+
+Dann $\| (x_n -x) - (-x_n-y) \| \to 0$. Also $-x-y =0$. D.h. $y=-x$.
+
+Weiter gilt
+\begin{align*}
+\| [(x,y)] \|_D &= \inf \{ \| x'\|_0 + \| y'\|_1|\, x' + y' = x+y\}\\ 
+&= \| x+y\|_+ = \| J(x,y)\|_+ = \| [(x,y)]\|_+.
+\end{align*}
+Also ist $J$ eine Isometrie von $X_0 \times X_1/D$ auf $X_+$. Insbesondere ist $\| \cdot \|_+$ eine Norm und $(X_+, \|\cdot \|_+)$ ist vollständig.
+
+Für $x\in X_0$ ist
+\begin{align*}
+\| x\|_+ = \inf\{ \| y\|_0 + \| z\|_1 | y+z=x\}\le \|x\|_0
+\end{align*}
+und $\| x\|_+ =0$. Also 
+$$\| [(x,c)]\|_D= \| J(x,0)\|_+ = \| x\|_+ =0.$$
+Daraus folgt $(x,0)\in D$ bzw. $x=0$ in $X_0$.
+\end{proof}
+
+% Vorlesung vom 30.6.
+
+Seien $X_0, X_1\subset V$ Banachräume mit \emph{konsistenten} Normen. Wir definieren einen Funktionenraum $F(X_0, X_1)$ als den Raum der Funktionen
+\begin{equation}
+f: S \to X_+
+\end{equation}
+mit den Eigenschaften:
+\begin{enumerate}[(i)]
+\item $z\mapsto f(z)$ ist in $C_B(S, X_t)$ und sie ist analytisch in $\mathring S$.
+\item $t\mapsto f(it)$ ist in $C_B(\mathbb R, X_0)$
+\item $t\mapsto f(1+it)$ ist in $C_B(\mathbb R, X_1)$.
+\end{enumerate}
+
+Für $f\in F(X_0, X_1)$ ist
+\begin{equation} \label{eq:30.6(1)}
+|\| f \| |:= \sup_{t\in \mathbb R} \{ \| f(it)\|_0, \|  \| f(1+it)\|_1\}
+\end{equation}
+
+\begin{satz}\label{4.11}
+Durch \eqref{eq:30.6(1)} wird eine Norm auf $F(X_0, X_1)$ definiert und $(F(X_0, X_1), |\| \cdot \| |)$ ist ein Banachraum. Der Unterraum
+\begin{equation}
+K_{\theta} := \{ f\in F(X_0, X_1) | f(\theta)=0\}, 0 \le \theta \le 1
+\end{equation}
+ist abgeschlossen.
+\end{satz}
+\begin{proof}
+$|\| f\| | \ge, | \| \lambda f \| | = | \lambda | \| f\|.$
+
+Sei $f\in F(X_0, X_1)$. Aus Hadamard Satz \ref{4.10}?
+\begin{align*}
+\sup_{z\in S} \| f(z)\|_t &= \sup_{z\in \partial S} \| f(z)\|_t\\
+&= \max \{ \sup_{t\in \mathbb R} \underbrace{\| f(it)\|_t}_{\le \| f(it)\|_0}, \sup_{t\in \mathbb R} \underbrace{\| f(1+it)\|_t}_{\le \| f(1+it)\|_1}\}\\
+&\stackrel{\text{Satz 10}}\le \max\{\sup_t \| f(it)\|_0, \sup_t \| f(1+it)\|_1\} = | \| f\| |
+\end{align*} 
+Also 
+\begin{equation}\label{eq:30.6(2)}
+\sup_{z\in S} \| f(z)\|_t\le |\| f\| |
+\end{equation}
+D.h. wegen $|\| f\| | =0$  folgt $f(z)=0$ für alle $z\in S$.
+
+Sei nun $(f_k)$. Cauchy-Folge in $F(X_0, X_1)$. Dann ist $(f_n)$, nach \eqref{eq:30.6(2)}, eine Cauchyfolge in $C_B(S; X_+)$. Dieser Raum ist vollständig. Also existiert $f\in C_B(S, X_+)$ mit $F_k \to f$ gleichmäßig. Daraus folgt, dass $f$ in $\mathring S$ analytisch ist, da $f_n: \mathring S \to X_+$ analytisch sind. Sei $g_n(t) = f_n(it), h_n(t) = f_n(1+it)$. Dann ist $(g_n)$ Cauchy-Folge in $C_B(\mathbb R, X_0)$ und $(h_n)$ ist Cauchy-Folge in $C_B(\mathbb R, X_1)$. Also existiert  $g,h$ mit $g_n \to g$ in $C_B(\mathbb R, X_0)$ und $h_n \to h$ in $C_B(\mathbb R, X_1)$.
+
+Wegen
+\begin{align*}
+\| f_n(it) - g(t) \|_+ &\le \| f_n(it) - g(t)\|_0 \to 0\\
+\| f_n(1+it) - h(t)\|_+ &\le \| \underbrace{f_n(1+it)}_{h_n(t)} - h(t)\|_1 \to 0
+\end{align*}
+folgt
+\begin{equation}
+f(it) = g(t), \qquad f(1+it) = h(t).
+\end{equation}
+Also sind (ii), (iii) erfüllt. D.h. $f\in F(X_0, X_1)$ und
+\begin{equation}
+|\| f_n - f\| | = \sup_t \{ \| f_n(it) - f(it) \|_0, \| f_n(1+it) - f(1+it) \|_1\} \stackrel{n\to \infty}\to 0 
+\end{equation}
+Abgeschlossenheit von $K_\theta = \{ f\in F(X_0, X_1) | f(\theta) =0\}$ folgt aus \eqref{eq:30.6(2)}. Aus $f_n \in  K_\theta$ und $|\| f_n - f\| | \to 0$ folgt 
+\begin{equation}
+\| f(\theta) \|_+ = \lim_n \underbrace{\| f_n(\theta) \|_+}_{=0} =0
+\end{equation}
+wegen
+\begin{equation}
+| \| f(\theta) \|_t - \| f_n(\theta) \|+ | \le \| f_n(\theta) - f(\theta) \|_+ \le | \| f_n - f\| |.
+\end{equation}
+\end{proof}
+
+
+Für $\theta \in (0,1)$ definieren wir den Interpolationsraum $(X_\theta, \| \cdot \|_\theta )$ durch
+\begin{align*}
+X_\theta &:= \{ f(\theta) | f \in F(X_0, X_1)\}\\
+\| a\|_\theta &:= \inf\{ |\| f\| | | f(\theta) =a\}.
+\end{align*}
+Dieser normierte Vektorraum ist normisomorph zu $F(X_0, X_1) /K_\theta$ via die Abbildung
+\begin{equation}
+F(X_0, X_1) /K_\theta \to X_\theta, \quad [f] \mapsto f(\theta).
+\end{equation}
+Tatsächlich ist
+\begin{equation}
+\| [f] \|_{K_\theta} = \inf \{ |\| g\| | | \underbrace{g\in [f]}_{g(\theta) = f(\theta)} \}= \| f(\theta)\|_\theta.
+\end{equation}
+Da $F(X_0, X_1) /K_\theta$ nach Satz \ref{4.11} ein Banachraum ist, ist auch $X_\theta$ ein Banachraum.
+\begin{rem}
+$X_\theta \to X_+$ für $\theta \in (0,1)$ und 
+\begin{equation}
+\| a\|_+ \le \| a\|_\theta \qquad a\in X_\theta.
+\end{equation}
+Das folgt aus Hadamard (Übung).
+\end{rem}
+
+\begin{lem}\label{4.12}
+Ist $T_0 \in \mathcal L(X_0, X_1)$ und $T_1 \in \mathcal L(X_1, Y_1)$ und $T_0 = T_1$ auf $X_0 \cap X_1$.  Dann wird durch 
+\begin{equation}
+T x = t_0 x_0 + T_1 x_1 \qquad x= x_0 + x_1 \in X_+ 
+\end{equation}
+ein Operator $T\in \mathcal L(X_+, Y_+)$ definiert.
+\end{lem}
+\begin{proof}
+$T$ ist wohldefiniert. Sei $x= x_0'+ x_1' = x_0 + x_1$ mit $x_0, x_0' \in X_0$, $x_1, x_1'\in X_1$. Dann ist
+\begin{equation}
+\underbrace{x_0' - x_0}_{\in X_0} = \underbrace{x_1' - x_1}_{\in X_1}.
+\end{equation}
+Also $x_0 '-x_0, x_1' -x_1\in X_0 \cap X_1$. Es folgt 
+\begin{equation}
+(T_0 x_0' + t_1 x_1') - (T_0 x_0 + T_1 x_1) = T_0 (x_0' -x_0) - T_1 \underbrace{(x_1 - x_1')}_{x_0' - x_0 \in X_0 \cap X_1}? T(x_0' - x_0) - T_0 (x_0' x_0) =0.
+\end{equation}
+Außerdem
+\begin{align*}
+\|Tx\|_+ &= \inf \{ \| y\|_{Y_0} + \| z\|_{Y_1} | Tx = y+z\}, y\in Y_0, z\in Y_1 \\
+ &\le \inf\{ \| Tx_0' \|_{Y_0} + \| Tx_1' \|_{Y_1}| x_0' + x_1' = x\}\\
+ &\le \max ( \| T_0 \|, \| T\|_1) \cdot \inf\{ \| x_0'\| + \| x_1'\| | x_0' + x_1' = x\}\\
+ &= \max (\| T_0 \|, \| T_1\|) \| x\|_+ 
+\end{align*}
+\end{proof}
+
+\begin{thm}\label{4.13}
+Sei $X_0, X_1\subset V$ und $Y_0, Y_1 \subset W$ Banachräume mit konsistenten Normen und sei $T_0 \in \mathcal L(X_0, Y_0), T_1 \in \mathcal L(X_1, Y_1)$ und $T_0 = T_1$ auf $X_0 \cap X_1$. Sei $T: X_+ \to Y_+$ definiert wie in Lemma \ref{4.12}. Dann gilt für $\theta \in (0,1)$:
+\begin{equation}
+T X_\theta \subset Y_\theta
+\end{equation}
+und
+\begin{equation}
+\| T\|_{\mathcal L(X_0, Y_0)} \le \| T_0\|^{1-\theta} \| T_1\|^\theta
+\end{equation}
+\end{thm}
+\begin{proof}
+Sei $a\in X_\theta$ und $f\in \mathcal F(X_0, X_1)$ mit $f(\theta)=a$. Sei $M_0 = \| T_0\| + \varepsilon$, $M_1 = \| T_1\| + \varepsilon$ mit $\varepsilon>0$. Sei
+\begin{equation}\label{eq:30.6(*)}
+g(z) = \left (\frac{M_0}{M_1} \right )^{z-\theta} Tf(z) \qquad z\in S.
+\end{equation}
+Dann $g(\theta)= Tf(\theta)=Ta$.  Dann ist $g\in F(Y_0, Y_1)$ nach Lemma \ref{4.12} und 
+\begin{align*}
+\| g(iy)\|_{Y_0} &= \left (\frac{M_0}{M_1} \right )^{-\theta} \| T f(iy) \|_{Y_0}\\
+&\le \left ( \frac{M_0}{M_1} \right )^{-theta} M_0 \| f(iy)\|_{X_0} \\
+&= M_0^{1-\theta} M_1^\theta \| f(it)\|_0
+\end{align*}
+Analog
+\begin{align*}
+\| g(1+iy) \|_{Y_1} &= \left ( \frac{M_0}{M_1} \right )^{1-\theta} \| Tf(1+iy) \|_{Y_1}\\
+&\le M_0^{1_\theta} M_1^\theta \| f(1+iy)\|_{Y_0}.
+\end{align*}
+Also
+\begin{equation}
+|\| g\| | \le M_0^{1-\theta} M_1^{\theta} |\| f\| |.
+\end{equation}
+Aus $Ta = f(\theta), g\in F(Y_0, Y_1)$ folgt $Ta\in Y_{\theta}$ und
+\begin{align*}
+\| Ta\|_\theta &= \inf\{ |\| h\| |\, | \, h(\theta) = Ta\}\\
+&\le \inf \{ | \| g\| | \, | \, g \text{ def. durch } \eqref{eq:30.6(*)}\}\\
+&\le M_0^{1-\theta} M_1^\theta \underbrace{\inf\{ |\| f\| | | f(\theta) = a\}}_{\| a\|_\theta}
+\end{align*}
+Damit
+\begin{equation}
+\| T\| \le M_0^{1-t} M_0^t, \quad M_0 = \| T_0\|+ \varepsilon >0, M_1 = \| T_1\|+\varepsilon >0 \implies \| T\| \le \| T_0 \|^{1-t} \| T_1\|^t.
+\end{equation}
+\end{proof}
+
+\subsection{Alternative Charakterisierung von $V_t=X_t$}
+Im folgenden wollen $V_t:=[X_0, X_1]_t:=X_t$ setzen, um besser unterscheiden zu können.
+
+\begin{rem}
+\begin{enumerate}[1)]
+\item In der Definition von $V_t$, $\| \cdot\|_{V_t}$ dürfen wir $\mathcal F(X_0,X_1)$ ersetzen durch
+\begin{equation}
+F_0 (X_0 ,X_1) = \{ f\in F(X_0,X_1) | f(it) \stackrel{X_0}\to 0, f(1+it) \stackrel{X_1}\to 0, |t|\to \infty\}.
+\end{equation}
+In der Tat wenn $f\in F(X_0, X_1)$, $t\in [0,1]$ und
+\begin{equation}
+g(z) = e^{\delta (z-t)^2} f(z), \quad \delta >0,
+\end{equation}
+dann $g\in F_0(X_0, X_1)$ und $g(t)= f(t)$,
+\begin{equation}
+|\| g\| | \le e^{\delta} |\| f\| |
+\end{equation}
+wobei $\delta >0$ beliebig klein gewählt werden kann.
+\item Jede Funktion der Form
+\begin{equation}
+f(z) = e^{\delta z^2 + \lambda z} a, \quad a \in X_0 \cap X_1
+\end{equation}
+$\delta >0, \lambda \in \mathbb R$ liegt in $F_0(X_0, X_1)$.
+\end{enumerate}
+\end{rem}
+\begin{thm}\label{4.14}
+Endliche Linearkombinationen von Funktionen der Form 
+\begin{equation}
+e^{\delta z^2 + \lambda z} a, \delta >0, \lambda \in \mathbb R, a\in X_0 \cap X_1
+\end{equation}
+sind dicht in $F_0(X_1, X_2)$.
+\end{thm}
+\begin{proof}
+Wir verschieben den Beweis dieser Aussage.
+\end{proof}
+
+\begin{satz}\label{4.15}
+$X_0 \cap X_1$ liegt dicht in $V_{\theta}$ für alle $\theta\in [0,1]$.
+\end{satz}
+\begin{proof}
+Sei $a\in V_{\theta}$ und $f\in F_0(X_0, X_1)$ mit $f(\theta)=a$.  Sei $\varepsilon >0$ und sei $f_\varepsilon F_0(X_0, X_1)$ mit $|\| f_\varepsilon -f\| | <\varepsilon$ und $f(z) \in X_0 \cap X_1$ für alle $z\in S$. Also $f_{\varepsilon}(\theta) \in X_0 \cap X_1$ und
+\begin{align*}
+\| f_{\varepsilon}(\theta) -a\|_{V_\theta} &= \| \underbrace{f_{\varepsilon}(\theta) - f(\theta)}_{(f_\varepsilon -f) (\theta)}\|_{V_\theta}\\
+&\le |\| f_\varepsilon-f\| | <\varepsilon.
+\end{align*}
+\end{proof}
+
+Wie sehen $V_0, V_1$ aus? Es gilt $V_0 \subset X_0$ und $V_1 \subset X_1$ und ausserdem:
+\begin{lem}\label{4.16}
+$V_0 \subset X_0$ und $V_1\subset X_1$ sind abgeschlossene Teilräume wobei
+\begin{align*}
+\| a\|_{V_0} &= \| a\|_{X_0}\quad a\in V_0\\
+\| a\|_{V_1} &= \| a\|_{X_1}\quad a \in V_1. 
+\end{align*}
+\end{lem}
+\begin{proof}
+Sei $a\in V_0$ und $f(a)=a$ für ein $f\in F(X_0, X_1)$ wobei 
+\begin{equation}
+|\| f\| | \le \| a\|_{V_0} + \varepsilon.
+\end{equation}
+Also
+\begin{align*}
+\| a\|_{X_1} = \| f(0)\|_{X_0} \le \sup_t \| f(it)\|_{X_0} \le |\| f\| | \le \| a \|_{V_0} + \varepsilon.
+\end{align*}
+Daraus folgt
+\begin{equation}\label{date:7.7*}
+\| a\|_{X_0} \le \| a\|_{V_0}
+\end{equation}
+Umgekehrt, sei $a\in V_0$ und $u\in X_0 \cap X_1$ mit \begin{equation}\label{date:7.7**}
+\| u-a\|_{V_0} <\varepsilon
+\end{equation} (Satz \ref{4.15}).
+
+Insbesondere $\| u-a\|_{X_0} <\varepsilon$ nach \eqref{date:7.7*}.
+Sei $f_n(z) =e^{z^2-zu} u$, $n\in \mathbb N$.  Dann $f_n \in \mathcal F(X_0, X_1), f(0) = u$ und
+\begin{equation}
+|\| f_n \| | \le \max\{ \| u\|_{X_0}, e^{1-n} \| u\|_{X_1} \}.
+\end{equation}
+Also
+\begin{equation}
+\| u\|_{V_0} \le \inf_n |\| f_n\| | = \| u\|_{X_0}.
+\end{equation}
+Daraus folgt
+\begin{equation}
+\| a\|_{V_0} \le \| u\|_{V_0} + \varepsilon \le \| u\|_{X_0} + \varepsilon \le \| a\|_{X_0} + 2\varepsilon
+\end{equation}
+nach \eqref{date:7.7**}. Somit gilt $\| a\|_{V_0}\le \| a\|_{X_0}$.
+Damit ist (1) bewiesen. Der Beweis von (2) geht analog. Da $V_0, V_1$ vollständig sind, sind $V_0 \subset X_0$, $V_1 \subset X_1$ abgeschlossen.
+\end{proof}
+
+\begin{cor}\label{4.17}
+Falls $X_0 \cap X_1$ dicht in $X_0$ und in $X_1$ dicht ist, dann gilt $V_0 = X_0$ und $V_1 = X_1$ als normierte Vektorräume.
+\end{cor}
+\begin{proof}
+Nach Satz \ref{4.15}, Lemma \ref{4.16} und Annahme gilt
+\begin{align*}
+V_0 &\stackrel{\text{Satz }\ref{4.15}}= \overline{X_0 \cap X_1}^{\| \cdot \|_{V_0}} = \overline{X_0 \cap X_1}^{\| \cdot \|_{X_0}}\\ 
+&= \overline{X_0 \cap X_1}^{\| \cdot \|_{V_1}} = \overline{X_0\cap X_1}^{\| \cdot \|_{X_1}}.
+\end{align*}
+\end{proof}
+Definiert man $\tilde X_l$ als Abschluss von $X_0\cap X_1$ bezüglich $\| \cdot \|_{X_l}$, $l\in \{0,1\}$, dann ist $X_0 \cap X_1 \subset \tilde X_l$ dicht, $X_0 \cap X_1 = \tilde X_0 \cap \tilde X_1$ und alle Funktionen 
+\begin{equation}
+e^{\delta z^2 + \lambda z} a, a\in X_0 \cap X_1 = \tilde X_0 \cap \tilde X_1
+\end{equation}
+liegen in $F_0 (\tilde X_0 , \tilde X_1)\subset F_0 (X_0, X_1)$. Also nach Theorem \ref{4.14}, $F_0(\tilde X_0, \tilde X_1)= F_0 (X_0, X_1)$ und somit $\tilde V_{\theta} = V_\theta$ für alle $\theta \in [0,1]$.
+
+
+Zusätzlich $\tilde V_0 = \tilde X_0$, $\tilde V_1= \tilde X_1$ nach Korollar \ref{4.17}. Mit anderen Worten man kann die Dichtheitsannahme von Korollar \ref{4.17} OBdA vornehmen.
+
+Ein \emph{Interpolationspaar} $(X_0, X_1)$ sei ein Paar von Banach-Räumen $X_0, X_1$ welche Unterräume eines größeren Vektorraums $V$ sind, so dass
+\begin{enumerate}[(i)]
+\item Die Normen von $X_0, X_1$ sind konsistent
+\item $X_0 \cap X_1$ ist dicht in $X_0$ und dicht in $X_1$.
+\end{enumerate}
+
+\begin{thm}\label{4.18}
+Seien $(X_0, X_1)$ und $(Y_0, Y_1)$ zwei Interpolationspaare und sei $T_0 \in \mathcal L(X_0, Y_0)$,  $T_1\in \mathcal  L(X_1, Y_1)$ und $T:= T_0 = T_1$  auf $X_0 \cap X_1$. Dann hat $T$ eine eindeutige Fortsetzung zu einem Operator $\mathcal L(X_t, Y_t)$ mit
+\begin{equation}
+\| T\|_{\mathcal L(X_t, Y_t)} \le \| T_0 \|^{1-t} \| T_1\|^t
+\end{equation}
+für $t\in (0,1)$.  
+\end{thm}
+\begin{proof}
+Folgt aus Theorem \ref{4.13} und Satz \ref{4.15}.
+\end{proof}
+
+\begin{thm}\label{4.19}
+Sei $(M,\mu)$ ein $\sigma$-endlicher Maßraum. Sei $1\le p_0 < p_1 \le \infty$ und sei 
+\begin{equation}
+\frac{1}{p_t} = \frac{1-t}{p_0} + \frac{t}{p_1} \qquad t\in (0,1).
+\end{equation}
+Dann sind die Normen der Banachräume $X_0= L^{p_0}(M)$, $X_1 = L^{p_1} (M)$ konsistent und
+\begin{equation}
+X_t = L^{p_t} (M)
+\end{equation}
+für $p_1<\infty$ oder $t<1$. Falls $p_1=\infty$ und $t=1$, dann ist $X_t = X_1$ der Abschluss von $L^{p_0 \cap p_1}$ bezüglich $\| \cdot \|_\infty$.
+\end{thm}
+\begin{proof}
+Die Aussage bezüglich $p_1= \infty$, $t=1$ folgt aus Lemma \ref{4.16}.  Konsistenz der Normen folgt aus der Tatsache, dass $L^p$-Konvergenz fast überall Konvergenz einer Teilfolge impliziert.
+
+Wir zeigen als nächstes, dass $\| \phi\|_{t}\le \| \phi\|_{p_t}$ für alle Treppenfunktionen $\phi: M\to \mathbb C$. Treppenfunktionen sind dicht in $L^{p_t}$, also folgt dann $X_t\subset L^{p_t}$.
+
+Sei $t\in (0,1)$ und $\phi$ eine Treppenfunktion mit $\| \phi\|_{p_t} =1$. Sei $p_z$ definiert durch 
+\begin{equation}
+\frac{1}{p_z} = \frac{1-z}{p_0} + \frac{z}{p_1} \qquad z\in S
+\end{equation}
+und
+\begin{equation}
+f(z) (x) = |\phi(x)|^{p_t/p_z} \frac{\phi(x)}{|\phi(x)|}
+\end{equation}
+wobei $w/|w|=0$ für $w=0$. Dann ist $f: S \to L^p+ L^{p_1}$ analytisch und
+\begin{equation}
+\| f(iy)\|_{p_0}^{p_0} = \int |\phi(x)|^{p_t} \, \mathrm d\mu =1.
+\end{equation}
+Ebenso ist
+\begin{equation}
+\| f(1+iy)\|_{p_1}^{p_1} = \int |\phi(x)|^{p_t} \, \mathrm dx =1
+\end{equation}
+falls $p_1 <1$ ($p_1 = \infty$, Übung).  Also $|\| f\| |=1$ und somit,  wegen $\phi = f(t)\in X_t$, 
+\begin{equation}
+\| \phi\|_t = \| f(t)\|_t\le |\| f\| | =1.
+\end{equation}
+Somit gilt allgemein
+\begin{equation}
+\| \phi\|_t \le \| \phi\|_{L^{p_t}}.
+\end{equation}
+\textbf{Umkehrung:} $X_t\subset L^{p_t}$ und $\| a\|_{p_t} \le \| a\|_t$ für $a\in X_t$. Benutze Lemma \ref{4.2} wonach 
+\begin{equation}
+\| a \|_{p_t} = \sup_{\| \phi \|_{a_t} =1} \left | \int a(x) \phi(x) \, \mathrm d\mu \right |
+\end{equation}
+wobei $\phi$ Treppenfunktionen und $\frac{1}{q_t} = 1- \frac{1}{p_t}$.
+
+Sei
+\begin{equation}
+g(z) (x) = |\phi(x)|^{\frac{q_t}{q_z}} \frac{\phi(x)}{|\phi(x)|}, \quad \| \phi\|_{q_t} =1
+\end{equation}
+und
+\begin{equation}
+H(z) := \int_{M} f(z) g(z) \, \mathrm d\mu\in \mathbb C, \quad z\in S
+\end{equation}
+Dann ist $H:S\to \mathbb C$ stetig, beschränkt und analytisch in $S$. Außerdem gilt
+\begin{equation}
+H(t) = \int f(x) \phi \, \mathrm d\mu = \int a(x) \phi(x) \, \mathrm d\mu.
+\end{equation}
+Nach Hadamard gilt
+\begin{align*}
+|H(t)| &\le \sup_{y\in \mathbb R} \{ | H(iy)|, |H(1+iy)|\}\\
+&\le \sup_{x\in \mathbb R} \{ \| f(iy) g(iy)\|_{L^1}, \| f(1+iy) g(1+iy)\|_{L^1} \}\\
+&\le \sup_y \{ \| f(ix)\|_{p_0} \| g(iy)\|_{q_0}, \| f(1+iy)\|_{p_1} \| g(1+iy)\|_{q_1}\\
+&\le |\| f\| |
+\end{align*}
+denn 
+\begin{align*}
+\| g(iy)\|_{q_0} &\le \| \phi\|_{q_t}^{q_t/q_0} =1\\
+\| g(1+iy)\|_{q_1} &\le \| \phi\|_{q_t}^{q_1/a_q} =1.
+\end{align*}
+(siehe erster Teil des Beweises). D.h.
+\begin{equation}
+\left | \int f(t) \phi \right |\le |\| f\| |
+\end{equation}
+und daher $a= f(t) \in L^{p_t}$, $\| a\|_{p_t} \le |\| f\| |$. Also $X_t\subset L^{p_t}$ und für alle $a\in X_t$
+\begin{equation}
+\| a\|_t \le \inf\{|\| f\|| | f(t) = a\} = \| a\|_t.
+\end{equation}
+\end{proof}
+Aus Theorem \ref{4.18} und Theorem \ref{4.19} folgt wieder der Satz von Riesz-Thorin.
+
+Andere Anwendungen sind zu finden in:
+\begin{itemize}
+\item Alessandra Lunardi: Interpolation Theory
+\item Krein et al: Interpolation of linear Operators
+\item Berg, Löfström: Interpolation spaces
+\item Reed, Simon: MMMP, Bd 2.
+\end{itemize}
+
+\section{Variationsprobleme aus der Quantenmechanik}
+\subsection{Quadratische Formen}
+Wir betrachten quadratische Energieformen der Art
+\begin{equation}
+E(\phi) = \int |\nabla \phi|^2\, \mathrm dx + \int V|\phi|^2\, \mathrm dx
+\end{equation}
+wbei $V\in L_{\text{loc}}^1(\mathbb R^d)$, $d\in \mathbb N$, \emph{reellwertig} ist, und $\phi$ aus einem Unterraum von $H^1(\mathbb R^d)$ genommen wird. 
+
+Wir nehmen an, dass $a<1$, $b\in \mathbb R$ existieren, so dass 
+\begin{equation}\label{date:10.7(1)}
+\int V_- |\phi|^2\, \mathrm dx \le a \int |\nabla \phi|^2\, \mathrm dx + b \int |\phi|^2\, \mathrm dx
+\end{equation}
+für alle $\phi \in H^1(\mathbb R^d)$. ($V= V_+ - V_-$) Insbesondere ist $\sqrt{V_-}: H^1 \to L^2, \phi \mapsto \sqrt{V_-} \phi$ eine beschränkte lineare Abbildung ist.  Die einzige Einschränkung an $V_+$ ist $V_+ \in L^1_{\text{loc}}$ (und $V_+ \in \mathbb R$).
+
+$V_+$ geht aber ein in den Definitionsbereich $D(E)$ von $E$:
+\begin{equation}
+D(E) := \{ \phi \in H^1| \int V_+ |\phi|^2\, \mathrm dx <\infty\}
+\end{equation}
+Aus $V_+\in L^1_{\text{loc}}$ folgt $C_0^\infty(\mathbb R^d)\subset D(E)$. Nach Ungleichung \eqref{date:10.7(1)} ist $E(\phi)$ wohldefiniert und endlich für $\phi \in D(E)$ und
+\begin{equation}
+E(\phi) \ge (1-a) \int |\nabla \phi|^2\, \mathrm dx - \int_{V_+} |\phi|^2- b\int |\phi|^2\, \mathrm dx.
+\end{equation}
+Insbesondere ist
+\begin{equation}
+\lambda:= \inf \{ E(\phi) |\int |\phi|^2\, \mathrm dx =1\} >- \infty
+\end{equation}
+und alle drei Beiträge zu $E(\phi)$, $\int |\nabla \phi|^2, \int V_\pm |\phi|^2$, werden durch $E(\phi)$ beschränkt für $\int |\phi|^2\, \mathrm dx =1$.
+
+\begin{bsp}
+Im Fall $d= 3N, N\in \mathbb N$, sind die Voraussetzungen an $V$ erfüllt für 
+\begin{equation}
+V(x_1 \ldots x_N) = - \sum_{i=1}^N \frac{z}{|x_i|} + \sum_{i<k} \frac{1}{|x_j - x_k|}
+\end{equation}
+$V$ ist das Potential von $N$ Elektronen in Feld eines statischen Kerns mit Atomzahl $Z\in \mathbb N$.
+\end{bsp}
+\begin{proof}
+$V$ ist in $L_{\text{loc}}^1(\mathbb R^{3N})$ und
+\begin{equation}
+V_- = \max \{ -V, 0\} \le \sum_{i=1}^N \frac{z}{|x_i|}
+\end{equation}
+wobei 
+\begin{align*}
+&\int \frac{1}{|x_i|} |\phi(x_1,\ldots, x_n)|^2\, \mathrm dx\\
+&\ \quad = \int \mathrm dx \cdots \widehat{dx_i} \cdots \mathrm dx_N \int dx_i\frac{1}{|x_i|} |\phi(x_1, \ldots, x_N)|^2\\
+&\ \quad \le \int \mathrm dx \cdots \widehat{dx_i} \cdots \mathrm dx_N \left ( \int \mathrm dx_i |\phi|^2 \right )^{1/2} \left ( \int \mathrm dx_i  \frac{|x_i|^2} |\phi|^2) \right )\\
+&\ \quad\le \int \mathrm dx \cdots \widehat{dx_i} \cdots \mathrm dx_N  C \left ( \int \mathrm dx_i|\phi|^2\right )^{1/2} \left ( \int \mathrm dx_i \, |\nabla_{x_i} \phi|^2)^{1/2}\right )^{1/2}.
+\end{align*}
+mit der Hardy-Ungleichung. Und somit
+\begin{equation}
+\int \frac{1}{|x_i|} |\phi(x_1,\ldots, x_n)|^2\, \mathrm dx \le \frac{C}{2} \left ( \varepsilon \int \mathrm dx \underbrace{|\nabla_{x_i} \phi|^2}_{\le |\nabla \phi|^2} + \frac{1}{\varepsilon} \int \mathrm dx\, |\phi|^2 \right )
+\end{equation}
+D.h.
+\begin{equation}
+\int |x_i|^{-1} |\phi|^2\, \mathrm dx \cdots \mathrm dx_N\le \frac{C}{2} \left ( \varepsilon \int |\nabla \phi|^2\, \mathrm dx + \frac{1}{\varepsilon} \int |\phi|^2\, \mathrm dx\right )
+\end{equation}
+wobei $\varepsilon >0$ beliebig klein gewählt werden kann. Daraus folgt die gewünschte Ungleichung.
+\end{proof}
+
+\textbf{Frage: } Existiert $\phi \in D(E)$ welches die Energie minimiert, d.h. $\|\phi\|_{L^2}=1$ und $$E(\phi) = \lambda = \inf \{ E(\phi) |\| \phi\|_{L^2} =1 , \phi \in D(E)\}$$
+
+\begin{lem}\label{5.1}
+Sei $q: H\times H\to \mathbb C$ eine beschränkte, positive Sesquilinearform. D.h.
+\begin{enumerate}[(i)]
+\item $(\phi, \psi) \mapsto q(\phi, \psi)$ ist linear in $\psi$ und antilinear 
+\item $q(\phi, \phi) \ge 0$.
+\item $q(\phi, \psi) \le C\| \phi\| \| \psi\|$.
+\end{enumerate}
+Dann ist $\phi \mapsto q(\phi, \phi)$ schwach folgenunterhalbstetig, d.h. $\phi_n \rightharpoonup \phi$, dann $q(\phi, \phi) \le \liminf_{n\to \infty} q(\phi_n, \phi_n)$.
+\end{lem}
+\begin{proof}
+vgl. Übung.
+\end{proof}
+\begin{satz}
+Ist zusätzlich zu obigen Annahmen an $K$ $\sqrt{V_-} : H^1 \to L^2$ kompakt und $\lambda:= \inf\{E(\phi) | \|\phi\| =1\} <0$. Dann existiert $\phi \in D(E)$ mit $\| \phi \| 1$ und $E(\phi)=\lambda$. Außerdem gilt $(-\Delta + V) \phi = \lambda \phi$ im Distributionssinn. Falls $V: H^1 \to L^2$, dann $\phi \in H^2(\mathbb R^d)$ und die Schrödingergleichung gilt im schwachen Sinn.
+\end{satz}
+\begin{proof}
+Sei $(\phi_n)$ eine Folge in $D(E)$ mit $\| \phi_n\|=1$ und $E(\phi_n) \to \lambda$ ($n\to \infty$).
+
+Sei $H= D(E)$ versehen mit dem Skalarprodukt
+\begin{equation}
+\langle \phi, \psi\rangle_{H} = \langle \phi, \psi\rangle_{H^1} + \int V_+ \overline{\phi} \psi \, \mathrm dx.
+\end{equation}
+Dann ist $(H, \langle \cdot, \cdot \rangle_H)$ vollständig und $(\phi_n)$ ist beschränkt in $H$ da $E(\phi_n)$ beschränkt ist und Annahme \eqref{date:10.7(1)} an $V_-$ erfüllt ist. Also existiert eine schwach konvergente Teilfolge die wir auch mit $(\phi_n)$ bezeichnen. D.h. es existiert $\phi \in D(E)$ mit $\phi_n \rightharpoonup$ in $H$. Aus Lemma \ref{5.1} folgt
+\begin{equation}
+E_+ (\phi) \le \liminf_{n\to \infty} E_+ (\phi_n)
+\end{equation}
+wobei 
+\begin{equation}
+E_+(\phi) = \int|\nabla \phi|^2 + \int V_+ |\phi|^2.
+\end{equation}
+
+Wegen $H\to H^1$ stetig, gilt $\phi_n \rightharpoonup \phi$ in $H^1$ und somit $\sqrt{V_-} \phi_n \to \sqrt{V_-} \phi$ in $L^2$ nach Annahme an $V_-$. Insbesondere
+\begin{equation}\label{date:10.7(2)}
+\int V_- |\phi_n|^2\to \int V_- |\phi|^2 \quad (n\to \infty).
+\end{equation}
+Aus \eqref{date:10.7(1)} und \eqref{date:10.7(2)} folgt
+\begin{equation}\label{date:10.7(3)}
+E(\phi) \le \liminf_{n\to \infty} E(\phi_n) = \lambda <0.
+\end{equation}
+Es bleibt zu zeigen, dass $\| \phi\| =1$. Aus $H\to L^2$ stetig folgt $\phi_n \to \phi$ in $L^2$ und somit $\| \phi\| \le \liminf \|\phi_n \|=1$. Außerdem $\phi \neq 0$ nach \eqref{date:10.7(3)}. Angenommen $0 <\|\phi\|<1$, dann
+\begin{equation}
+\lambda \le E(\frac{\phi}{\|\phi\|} ) = \underbrace{\frac{1}{\|\phi\|^2}}_{>1} \underbrace{E(\phi)}_{\le \lambda <0} <\lambda
+\end{equation}
+ein Widerspruch. Also $\| \phi\|=1$. Aus $E(\phi) = \lambda$ folgt $E(\frac{\phi+ \varepsilon \eta}{\| \phi + \varepsilon \eta\|})\ge 0$ für alle $\varepsilon \in \mathbb R$, $\eta \in C_0^\infty(\mathbb R^d)$. Also
+\begin{equation}
+0 = \frac{\mathrm d}{\mathrm d\varepsilon} E\left ( \frac{\phi+ \varepsilon \eta}{\| \phi + \varepsilon \eta\|} \right ) \big |_{\varepsilon_0} = 2\Re\{E(\phi, \eta) - \lambda \langle \phi, \eta\rangle \}.
+\end{equation}
+Ebens für $i\eta$ und somit $0 = E(\phi, \eta) - \lambda \langle \phi, \eta\rangle$
+Und damit 
+\begin{equation}
+\int \overline{\phi} (-\Delta + V- \lambda) \eta \, \mathrm dx =0
+\end{equation}
+für alle $\eta \in C_0^\infty$, d.h. $(-\Delta + V- \lambda) \phi=0$ in $\mathcal D'$. Wenn $V\phi \in L^2$ dann $\Delta \phi = (\lambda- V) \phi \in L^2$. Also $\phi \in H^2(\mathbb R^d)$.
+\end{proof}
+
+% Vorlesung vom 13.07. fehlt
+\chapter{Concentration Compactness und Choquard-Pekard-Funktional}
+
+\setcounter{thm}{4}
+\begin{lem}\label{5.5}
+Für alle $\varepsilon \in (0,1)$ existiert $C_\varepsilon >0$ und
+\begin{equation}
+E(\phi) \ge (1-\varepsilon) \int |\nabla \phi|^2- C_{\varepsilon} (\int |\phi|^2\, \mathrm dx)^3
+\end{equation}
+\end{lem}
+
+
+\setcounter{thm}{7}
+\begin{lem}\label{5.8}
+Sei $(\phi_n)$ eine Folge in $H^1$ mit
+\begin{equation}
+\int |\phi|^2\, \mathrm dx = 1, E(\phi_n) \to \lambda \text{ und } \phi_n \to \phi \text{ in } L^2.
+\end{equation}
+Dann ist $\phi \in H^1(\mathbb R^3)$ und $E(\phi) = \lambda$.
+\end{lem}
+
+% Vorlesung vom 17.07.
+Eine Folge $(\phi_n)$ in $H^1(\mathbb R^n)$ mit $\int |\phi_n|^2=1$ und $E(\phi_n) \to \lambda$ nennen wir eine minimierende Folge für $E$. Nach Lemma \ref{5.8} genügt es eine $L^2$-konvergente minimierende Folge zu finden um Existenz eines Minimierers für $E$ nachzuweisen.  
+
+Ein minimierende Folge hat im Allgemeinen keine konvergente Teilfolge.
+
+\begin{bsp}
+Wenn $E(\phi) = \lambda$ und $\phi_n(x) = -\phi(x-na), a\in \mathbb R^3$, $|a|=1$.  Dann ist $(\phi_n)$ minimierend $(E(\phi_n) = E(\phi) = \lambda$) aber $\phi_n \rightharpoonup 0$. (Übung, Blatt 11)
+\end{bsp}
+
+\begin{thm}[Concentration-Compactness-Lemma, P.L. Lions] \label{5.9}
+Sei $(\phi_n)$ eine beschränkte Folge in $H^1(\mathbb R^d)$ mit $\int |\phi_n|^2\, \mathrm dx =1$ für alle $n$. Dann gilt entweder:
+\begin{enumerate}[(a)]
+\item für alle $R>0$ gilt
+\begin{equation}
+\sup_{x\in \mathbb R^n} \int_{B_R(x)} |\phi_n(y)|^2\, \mathrm dy \to 0 \quad (n\to \infty)
+\end{equation}
+oder
+\item es gibt eine Teilfolge $(\phi_{n_k})$ und eine Folge $(a_k)$ in $\mathbb R^d$, so dass $\psi_k(x) = \phi_{n_k} (x-a_k)$ in $H^1$ schwach gegen eine Funktion $\psi\neq 0$ konvergiert. 
+\end{enumerate}
+\end{thm}
+\begin{proof}
+Somit existiert Teilfolge $(\phi_{n_k})$ und $\delta >0$ so dass
+\begin{equation}
+\sup_x \int_{B_R(x)} |\phi_{n_k}(x)|^2\, \mathrm dy \ge 2\delta \qquad \forall k\in \mathbb N
+\end{equation}
+Also existiert $a_k\in \mathbb R^d$ so dass
+\begin{equation}
+\int_{B_R(x)} |\phi_{n_k}(y)|^2\, \mathrm dy \ge \delta \qquad \forall k \in \mathbb N.
+\end{equation}
+D.h. wenn $\psi_k(x) = \phi_{n_k} (x+a_k)$, dann 
+\begin{equation}
+\int_{B_R(0)} |\psi_k(y)|^2\, \mathrm dy \ge \delta \qquad \forall k\in \mathbb N.
+\end{equation}
+$(\psi_k)$ ist beschränkt in $H^1$ und hat somit nach Übergang zu einer Teilfolge (die wieder mit $\psi_k$ bezeichnet sei) einen schwachen Limes $\psi\in H^1(\mathbb R^d)$.
+
+Aus $\psi_k \rightharpoonup \psi$ in $H^1(\mathbb R^d)$ folgt $\psi_k \to \psi$ in $L^1_{\text{loc}}(\mathbb R^d)$. Insbesondere $\chi_{B_R(0)} \psi_k \to \chi_{B_R(0)} \psi$ in $L^2(\mathbb R^d)$. Also
+\begin{equation}
+\int_{B_R(0)} |\psi(y)|^2\, \mathrm dy = \lim_{k\to \infty} \int_{B_R(0)} |\psi_k(y)|^2 \, \mathrm dy \ge \delta >0.
+\end{equation}
+D.h. $\psi \neq 0$.
+\end{proof}
+
+Falls die Alternative (a) vorliegt sagt man die Folge $(\phi_n)$ sei \emph{verschwindend} (vanishing). Im Fall (b) gibt es zwei Möglichkeiten:
+entweder $0< \|\psi\|<1$ (dichetong) oder $\| \psi\|=1$ (concentration).
+
+Dichotomie bedeutet , dass die Folge $(\psi_k)$ in zwei Teile zerfällt:
+\begin{equation}
+\psi_k = \psi + (\psi_k - \psi),
+\end{equation}
+wobei beide Teilfe in Limes $k\to \infty$ eine Norm in $(0,1)$ haben. In der Tat gilt:
+\begin{equation}
+\| \psi_k- \psi\|^2 \to 1- \| \psi\|^2 \quad (k\to \infty)
+\end{equation}
+(denn $$\| \psi_k - \psi \|^2 = \underbrace{\| \psi_k \|^2}_{=1} - 2\Re\underbrace{\langle \psi_k, \psi\rangle}_{\to \langle \psi, \psi\rangle} + \| \psi\|^2\to 1- \| \psi\| \quad (k\to \infty)$$
+
+Die Strategie ist nun zu zeigen, dass vanishing und dychotong im Fall einer minimierenden Folge für $E$ nicht vorkommen.  
+
+\begin{lem}\label{5.10}
+Sei $(\phi_n)$ eine minimierende Folge von $E$ , dann ist $(\phi_n)$ non-vanishing.
+\end{lem}
+\begin{proof}
+Da $(\phi_n)$ minimierend ist, ist $(\phi_n)$ beschränkt in $H^1$ nach Lemma \ref{5.5} und smit ist Theorem \ref{5.9} anwendbar. Wir nehmen an $(\phi_n)$ sei vanishing und zeigen, dass 
+\begin{equation}\label{date:17.7(1)}
+\int |\phi_n(x)|^2 V_{\phi_n} (x) \,\mathrm dx = \int \frac{|\phi_n(y)|^2 |\phi_n(y)|^2}{|x-y|}\, \mathrm dx \mathrm dy \to 0 \quad (n\to \infty)
+\end{equation}
+Aus \eqref{date:17.7(1)} folgt
+\begin{align*}
+0 >\lambda &= \lim_{n\to \infty} E(\phi_n)\\
+&= \lim_{n\to \infty} ( \int |\nabla \phi_n|^2 - \int |\phi_n|^2 V_{\phi_n} \, \mathrm dx) \ge 0.
+\end{align*}
+Ein Widerspruch. Es bleibt \eqref{date:17.7(1)} zu zeigen:
+\begin{equation}\label{date:17.7(2)}
+\int |\phi_n|^2 V_{\phi_n} \, \mathrm dx \le \| \phi_n\|^2_{=1} \| V_{\phi_n} \|_\infty
+\end{equation}
+wobei
+\begin{align}
+V_{\phi_n} (x) &= \int_{B _R(x)} \frac{|\phi_n(y)|^2}{|x-y|}\, \mathrm dy +\underbrace{\int_{\mathbb R^3\setminus B_R(x)}\frac{|\phi_n|^2}{|x-y|} \, \mathrm dy}_{\le 1/R}\\
+&\le \left (\int_{B_R(x)} |\phi_n(y)|^2 \, \mathrm dy \right )^{1/2} \left ( \int \frac{|\phi_n(y)|^2}{|x-y|^2} \right )^{1/2} + \frac{1}{R}\\
+&\le c \| \nabla \phi_n\| \underbrace{\left ( \sup_x \int_{B_R(x)} |\phi_n(y)|^2\, \mathrm dy \right )}_{\to 0 (n\to \infty)} + 1/R\\
+&\le 1/R + o(1) \quad (n\to \infty)
+\end{align}
+Also $\| V\phi_n \|_\infty \to 0$ ($n\to \infty$).  Zusammen mit \eqref{date:17.7(2)} folgt \eqref{date:17.7(1)}.
+\end{proof}
+\begin{df}
+Für $t\in [0,1]$ sei
+\begin{equation}\label{date:17.7(**)}
+e(t):= \inf\{E(\phi) |\phi \in H^1, \int |\phi|^2\, \mathrm dx =t\}, e(1) = \lambda.
+\end{equation}
+\end{df}
+Dann gilt $$e(t) = t \inf\{ \| \nabla \phi\|^2- t\langle \phi, V_\phi \phi\rangle |\| \phi\|^2 =1\}.$$
+
+\begin{lem}\label{5.11}
+Die Funktion $t\mapsto e(t)$ ist stetig und
+\begin{equation}\label{date:17.7(*)}
+e(t) + e(1-t) > e(1), 0 < t < 1.
+\end{equation}
+\end{lem}
+\begin{proof}
+Die Funktion $t\mapsto e(t)$ ist kokav als Infimum konkaver Funktionen. Also ist $e(\cdot)$ stetig. Zum Beweis von  \eqref{date:17.7(*)} genügt es zu zeigen, dass $e(t) > t e(1)$ für $t\in (0,1)$. Dann folgt $e(1-t) > (1-t) e(1)$. Durch Addition dieser Ungleichung bekommen wir \eqref{date:17.7(*)}. 
+
+Es bleibt zu zeigen, dass $e(t)= t e(1)$ falsch ist. Widerspruchsannahme $e(t) = t e(1)$. Dann folgt aus \eqref{date:17.7(**)} dass
+\begin{equation}
+e(1) = \inf\{ \| \nabla \phi\|^2- t\langle \phi, V_\phi, \phi\|| \| \phi\| =1\}
+\end{equation}
+Also gäbe es eine Folge $(\phi_n)$, $\| \phi_n\|=1$ mit 
+\begin{equation}
+\| \nabla \phi_n\|^2 - t\langle \phi_n, V_{\phi_n} \phi_n\rangle \downarrow e(1)
+\end{equation}
+und damit 
+$$\| \nabla \phi_n\|^2 - \langle \phi_n, V_{\phi_n} \phi_n\rangle\to e(1) \quad (n\to \infty)$$
+Also $\langle \phi, V_{\phi_n} \phi_n\rangle\to 0\,(n\to \infty)$. Dies ist ein Widerspruch zu $e(1) = \lambda <0$ (Blatt 11).
+\end{proof}
+
+\begin{lem}\label{5.12}
+Sei $(\phi_n)$ eine beschränkte Folge in $H^1$ mit $\int |\phi_n|^2\, \mathrm dx =1$ mit $\phi_n \rightharpoonup \phi$ in $H^1$ wobei $0 \le \int |\phi|^2\, \mathrm dx \le 1$. Dann gilt 
+\begin{equation}
+E(\phi_n) = E(\phi) + E(\phi_n - \phi) + o(1) \quad (n\to \infty).
+\end{equation}
+\end{lem}
+\begin{proof}
+Sei $\eta_n := \phi_n - \phi$. Dann $\eta_n rightharpoonup 0$ in $H^1$ und
+\begin{align*}
+\int |\nabla \phi_n|^2\, \mathrm dx &= \int |\nabla \phi + \nabla_n|^2\, \mathrm dx \\
+&=\int |\nabla \phi|^2 + |\nabla \eta_n|^2+ 2\Re \underbrace{\int \overline{\nabla \phi} \cdot \nabla \eta_n \, \mathrm dx}_{\to 0 \quad (n\to \infty)}
+\end{align*}
+denn $\eta_n \rightharpoonup 0$ in $H^1$.
+
+\textbf{Behauptung:} $\int |\psi(x) \eta_n(x) | \, \mathrm dx \to 0\quad (n\to \infty)$ für alle $\psi \in L^2$. D.h. $|\eta_n|\rightharpoonup 0$ in $L^2$.
+\begin{proof}[Beweis der Behauptung]
+\begin{align*}
+\int |\psi \eta_n|\, \mathrm dx &= \int_{|x|\le R} |\psi(x) \eta_n(x)|\, \mathrm dx = \int_{|x|>R} |\psi(x) \eta_n(x) | \, \mathrm dx \\
+&\le \| \psi\| \cdot \| \chi_{B_R} \eta_n\| + \| \chi_{\mathbb R^3\setminus B_R} \psi\| \cdot \underbrace{\| \eta_n\|}_{\le C} \\
+&\le \| \psi\| \cdot \| \chi_{B_R} \eta_n\| + C_\varepsilon
+\end{align*}
+für $R$ groß genug, abhängig von $\varepsilon >0$. Da $\| \chi_{B_R} \eta_n\| \to 0$ folgt die Behauptung.
+\end{proof}
+\begin{align*}
+&\int |\phi_n|^2 V\phi_n \, \mathrm dx\\
+&\ \qquad= \int |\phi(x) + \eta_n(x)|^2|\phi(y) + \eta_n(y)|^2 \frac{\mathrm dx \mathrm dy}{|x-y|}\\
+&\ \qquad= \int |\phi(x)|^2 |\phi(y)|^2 \frac{\mathrm dx \mathrm dy}{|x-y|}+ \int |\eta_n(x)|^2 |\eta_n(y)|^2\frac{\mathrm dx\, \mathrm dy}{|x-y|} + \underbrace{2\int |\phi(x)|^2 |\eta_n(y)|^2 \frac{\mathrm dx \, \mathrm dy}{|x-y|}}_{:=(A)}\\
+&\ \qquad \qquad + \underbrace{2\int \overline{\phi(x)} \eta_n(x) |\phi(y)|^2 \frac{\mathrm dx \, \mathrm dy}{|x-y|} + c.c.}_{=:(B)}
++ \underbrace{2\int \overline{\phi(x)} \eta_n(x) |\eta_n(y)|^2 \frac{\mathrm dx \mathrm dy}{|x-y|} + c.c}_{:=(C)} \\
+&\ \qquad \qquad + \underbrace{\int \overline{\phi(x)} \eta_n(x) \overline{\phi(y)} \eta_n(y) \frac{\mathrm dx \mathrm dy}{|x-y|} + c.c.}_{:=(D)}+ \underbrace{\int \overline{\phi(x)} \eta_n(x) \phi(y) \overline{\eta_n(y)} \frac{\mathrm dx \, \mathrm dy}{|x-y|} + c.c.}_{:=(E)}
+\end{align*}
+wobei $$(A)= 2 \langle \eta_n, V_\phi \eta_n\rangle \to 0 \quad (n\to \infty)$$
+da $V_\phi: H^1 \to L^2$ kompakt ist.
+\begin{equation}
+(B)= \langle \phi, V_{\phi} \eta_n \rangle \to \quad (n\to \infty)
+\end{equation}
+wie beim Term (A).
+\begin{align*}
+|(C)| &\le 4 \int |\phi(x) \eta_n(x)| V_{\eta_n} (x) \, \mathrm dx \\
+&\le 4 \int |\phi(x) \eta_n(x) |\, \mathrm dx\cdot \| V_{\eta_n} \|_\infty \to 0 \quad (n\to \infty)
+\end{align*}
+wegen obiger Behauptung und weil $$\|V_{\eta_n}\|_\infty \le C \| \eta_N \| \cdot \| \nabla \eta_n\|  \le \text{const.}
+$$
+unabhängig von $n$ (mit Cauchy-Schwartz und Hardy-Ungleichung)
+denn $(\phi_n)$ ist beschränkt $H^1$. Aus den gleichen Gründen gilt $D, E \to 0$ ($n\to \infty$).
+\end{proof}
+\begin{thm}\label{5.13}
+Sei $(\phi_n)$ eine minimierende Folge von $E$. Dann existiert eine Teilfolge $(\phi_{n_k})$ und eine Folge $(a_k)$ in $\mathbb R^2$, so dass $\phi_{n_k} (x+a_k)$ in $L^2(\mathbb R^3)$ konvergent ist.  
+\end{thm}
+\begin{proof}
+Nach Lemma \ref{5.5} ist $(\phi_n)$ beschränkt in $H^1(\mathbb R^3)$, also ist Theorem \ref{5.9} (concentration compactness) anwendbar. Alternative (a) von Theorem \ref{5.9} tritt nicht ein nach Lemma \ref{5.10}. Sei $(\psi_k)$ die Folge aus Alternative $(b)$. Dann ist $(\psi_k)$, wie $(\phi_n)$, beschränkt in $H^1$, $\psi_k \rightharpoonup \psi$ in $H^1$ und $0 < \int |\psi|^2\le 1$. Sei $\eta_k = \psi_k - \psi$, dann gilt
+\begin{equation}\label{date:21.7(*)}
+\| \eta_n \|^2 = \|\psi_k - \psi\|^2 \to 1- \| \psi\|^2 \quad (k\to \infty)
+\end{equation}
+Und nach Lemma \ref{5.12} 
+\begin{align}
+E(\psi_k) &= E(\psi) + E(\eta_k) + o(1)\\
+&\ge e(t) + e(\| \eta_k\|^2) + o(1)\\
+&= e(t) + e(1-t) + o(1)
+\end{align}
+(Benutze hierfür \eqref{date:21.7(*)} und Stetigkeit von $e(\cdot)$.). Da $E(\psi_k) \to \lambda = e(1)$ ($k\to \infty$) nach Annahme über $(\phi_n)$ und der Translationsinvarianz von $E$, bekommen wir im Limes $k\to \infty$ den Widerspruch $$e(1)\ge e(t) + e(1-t) > e(1).$$
+
+Dann ist die Annahme $0 < \int |\psi|^2 \, \mathrm dx <1$ falsch. Da $\psi \neq 0$ (Theorem \ref{5.9}) muss also $\int |\psi|^2 \, \mathrm dx =1$. Aus $\psi_k \rightharpoonup \psi$ und $\underbrace{\|\psi_k \|}_{=1} \to \underbrace{\| \psi\|}_{=1}$ folgt $\psi_k \to \psi$ in $L^2$.  Aus Lemma \ref{5.8} folgt $E(\psi)=\lambda$.
+\end{proof}
+\begin{thebibliography}{xxx}
+\bibitem[AF]{AF} Robert A. Adams and John F.  Fournier, \textit{Sobolev Spaces}, 2nd Edition, Academic Press (2003).
+\end{thebibliography}
+\end{document}
+
+
+
