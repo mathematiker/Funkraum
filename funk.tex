@@ -132,8 +132,10 @@ openright,
 \newtheorem*{satzn}{Satz}
 \newtheorem{lem}[thm]{Lemma}
 \newtheorem{cor}[thm]{Korollar}
-\newtheorem{df}[thm]{Definition}
+%\newtheorem{df}[thm]{Definition}
+
 \theoremstyle{definition}
+\newtheorem*{df}{Definition}
 \newtheorem*{bspe}{Beispiele}
 \newtheorem*{bsp}{Beispiel}
 \newtheorem*{rem}{Bemerkung}
@@ -591,7 +593,7 @@ u \in W^{1,p}(B_R(0)) \iff \alpha < \frac{n}{p}-1
 $$
 \item Sei $(d_k)_{k\ge 1}$ dicht in $B_1(0)$ und 
 \begin{equation}\label{bsp1-eq1}
-u(x) = \sum_{k\ge 1} 2^{-k} |x-a_k|^{-\alpha}
+u(x) = \sum_{k\ge 1} 2^{-k} |x-d_k|^{-\alpha}
 \end{equation}
 Dann ist $u\in W^{1,p}(B_1(0))$ genau dann wenn $\alpha < \frac{n}{p}-1$.
 \begin{proof}
@@ -601,7 +603,7 @@ Falls $\alpha < \frac{n}{p}-1$, dann ist $u(x)=2^{-k} |x-a_k|^{-\alpha}$ in $W^{
 \end{bspe}
 
 \begin{prop}
-Falls $n>p$ und $0<\alpha < \frac{n}{p}-1$ dann ist $u\in W^{1,p}(B_1(0))$ und trotzdem in jedem Punkt $d_k$ divergent.
+Falls $n>p$ und $0<\alpha < \frac{n}{p}-1$ dann ist $u\in W^{1,p}(B_1(0))$ trotzdem in jedem Punkt $d_k$ divergent.
 \end{prop}
 %\end{enumerate}
 Wir wollen nun zeigen, dass $C^\infty(\Omega) \cap W^{1,p}(\Omega)$ dicht ist in $W^{1,p}(\Omega)$, $1\le p <\infty$. Dazu brauchen wir einige Vorbereitungen:
@@ -631,7 +633,7 @@ Per Induktion bekommt man nun die Leibnizregel für $\partial^\alpha$ (s. Evans)
 Aus der Leibniz-Regel folgt $\gamma u \in W^{m,p}(\Omega)$ denn $\partial^\beta \gamma\in C_0^\infty$ und $\partial^{\alpha-\beta}u \in L^p(\Omega)$.
 \end{proof}
 
-\begin{lem}
+\begin{lem}\label{2.4}
 Ist $K\subset \Omega$ kompakt, dann existiert $\phi \in C_0^\infty(\Omega)$ mit $0\le \phi \le 1$ und $\phi \equiv 1$ auf $K$ und
 $$
 \sup_{x\in \Omega} |\partial^\alpha \phi(x)|\le c_\alpha \delta^{-|\alpha|}
@@ -664,15 +666,13 @@ $$
 \end{satz}
 \begin{proof}
 Sei $D\subset \Omega$ eine abzählbar und dicht und sei $(B(x_j, r_j))_{j\in \mathbb N}$ die Folge der abgeschlossenen Kugeln welche alle Kugeln $\overline{B(x, r)}$ mit $X\subset D, r\in \mathbb Q$ und $\overline{B(x,r)}\subset U$ für ein $U\in \mathcal O$ umfasst.
-
-
 Sei $V_j= \{x||x-x_j|<\frac{r_j}{2}\} \subset B(x_j, r_j)$.  Dann existiert $\phi_j \in C_0^\infty(\Omega)$ mit
 \begin{enumerate}[(i)]
 \item $0\le \phi_j \le 1$
 \item $\phi_j \equiv 1$ auf $V_j$
 \item $\supp(\phi_j) \subset B(x_j, r_j)$
 \end{enumerate}
-(vgl. Lemma 4). Definiere
+(vgl. Lemma \ref{2.4}). Definiere
 \begin{align*}
 \psi_1&:= \phi_1 \\
 \psi_2 &:= (1-\phi_1) \phi_2\\
@@ -686,6 +686,7 @@ $$
 $$
 (FIXME)
 Da $\phi_i =1$ in $V_i$ folgt $\psi_1 + \psi_2 + \cdots + \psi_i =1$ in $V_1 \cup V_2 \cup V_3 \cup \ldots \cup V_j$. Sei $K\subset \Omega$ kompakt, dann existiert $m\in \mathbb N$ mit $K\subset \bigcup_{j=1}^m V_j =:W $ denn
+(FIXME)
 \end{proof}
 
 \begin{lem}\label{2.6}
@@ -699,7 +700,7 @@ Wir zeigen zuerst, dass
 $$
 \partial^\alpha (J_\varepsilon * u) = J_\varepsilon * (\partial^\alpha u)
 $$
-in $V$ für $|\alpha|\le m$ und $\varepsilon < \text{dist} (V, \Omega^c)$. Nach Lemma 1.5 ist $J_\varepsilon * u\in C^\infty(\Omega)$ und 
+in $V$ für $|\alpha|\le m$ und $\varepsilon < \text{dist} (V, \Omega^c)$. Nach Lemma \ref{lem5} ist $J_\varepsilon * u\in C^\infty(\Omega)$ und 
 $$
 \partial^\alpha (J_\varepsilon * u) = ( \partial^\alpha J_\varepsilon) * u.
 $$
@@ -711,10 +712,10 @@ $y\mapsto J_\varepsilon(x-y)$ in $C_0^\infty(\Omega)$ und somit
 &= \int J_\varepsilon (x-y) \partial^\alpha u(y) \, \mathrm dy \\
 &= J_\varepsilon * (\partial^\alpha u) (x).
 \end{align*}
-$\partial^\alpha u \in L^p(V)$, $1\le p <\infty$. Also nach Theorem 1.7, $J_\varepsilon * \partial^\alpha u \to \partial^\alpha u$ in $L^p(V)$ ($\varepsilon \to 0 +$). Es folgt
+$\partial^\alpha u \in L^p(V)$, $1\le p <\infty$. Also nach Theorem \ref{thm7}, $J_\varepsilon * \partial^\alpha u \to \partial^\alpha u$ in $L^p(V)$  für $\varepsilon \to 0 +$. Es folgt
 \begin{align*}
-\| J_\varepsilon * u - u \|_{W^{1,p}(V)} = \sum_{|\alpha \le m} \| \partial^\alpha (J_\varepsilon * u) - \partial^\alpha u \|^p_{p,V}\\
-&= \sum_{|\alpha|\le m} \| J_\varepsilon * (\partial^\alpha u) - \partial^\alpha u \|_{p,V}^p \to 0 (\varepsilon 0 +),
+\| J_\varepsilon * u - u \|_{W^{1,p}(V)} &= \sum_{|\alpha \le m} \| \partial^\alpha (J_\varepsilon * u) - \partial^\alpha u \|^p_{p,V}\\
+&= \sum_{|\alpha|\le m} \| J_\varepsilon * (\partial^\alpha u) - \partial^\alpha u \|_{p,V}^p \to 0\qquad (\varepsilon \to 0 +).
 \end{align*}
 \end{proof}
 
@@ -749,8 +750,8 @@ Also gilt
 \end{align*}
 Mit monotoner Konvergenz folgt $\|\phi- u\|_{W^{m,p}(\Omega)}\le \varepsilon$.
 \end{proof}
-\section{Einbettungssätze}
-\subsection{Sobolev-Ungleichungen}
+\chapter{Einbettungssätze}
+\section{Sobolev-Ungleichungen}
 \begin{bsp}
 	Es gilt
 	\begin{equation}
@@ -787,7 +788,7 @@ Sei $1\le p <n$. Dann ist $p^* >p$ gegeben durch
 d.h. $p^* = \frac{np}{n-p}$.
 \end{df}
 
-\begin{thm}[Gagiardo-Nirenberg-Sobolev]
+\begin{thm}[Gagiardo--Nirenberg--Sobolev]
 	Sei $q\le p <n$. Dann exististiert $C=C_{n,p}\in \mathbb R$, so dass gilt
 	\begin{equation}
 	\|u\|_p^* \le C \| \nabla u\|_p \quad \forall u \in C_0^1(\mathbb R^n).
@@ -813,7 +814,7 @@ d.h. $p^* = \frac{np}{n-p}$.
 		|u(x)|^{n}{n-1} &\le \left ( \int_{-\infty}^\infty | \nabla u(x)|\, \mathrm dy_i\right ) ^{1/(n-1)}\\
 		&\le \prod_{i=1}^n \left ( \int_{-\infty}^\infty |\nabla u(x)|\, \mathrm dx_i \right )^{1/(n-1)}.
 	\end{align}
-	Wir integrieren beide Seiten bzgl. $x_1$ und verwenden die verallgemeinerte Hölderungleich. Wir bekommen so
+	Wir integrieren beide Seiten bzgl. $x_1$ und verwenden die verallgemeinerte Hölderungleichung. Wir bekommen so
 	\begin{align}
 		\left ( \int_{-\infty}^\infty | u(x)|^{n/(n-1)} \, \mathrm dx_1 \right ) &\le \left ( \int_{-\infty} |\nabla u(x)|\, \mathrm dy_1 \right )^{\frac{1}{n-1}} \cdot \int_{-\infty}^\infty \prod_{i=2}^n \left ( \int_{-\infty}^\infty | \nabla u(x)| \, \mathrm dx \right )
 	\end{align}
@@ -830,9 +831,9 @@ Sei $m>\frac{n}{p}$ bzw $1 > \frac{n}{p}\iff p>n$.
 	wobei $C$ nur von $n,p$ abhängt.
 \end{thm}
 \begin{proof}
-	$B(x,r) \subset \mathbb R^n$ gilt: (FIXME)
+	$B(x,r) \subset \mathbb R^n$ gilt:
 	\begin{equation}
-		\not\int_{B(x,r)} | u(y)- u(x) |\, \mathrm dy \le \frac{1}{\omega_n} \int_{B(x,r)} \frac{|\nabla u(x)|}{|y-x|^{n-1}}\, \mathrm dy.
+		\fint_{B(x,r)} | u(y)- u(x) |\, \mathrm dy \le \frac{1}{\omega_n} \int_{B(x,r)} \frac{|\nabla u(x)|}{|y-x|^{n-1}}\, \mathrm dy.
 	\end{equation}
 	\textbf{Hölderstetigkeit:} Seien $x,y\in \mathbb R^n$ und $r=|x-y|>0$. Sei $W:= B(x,r) \cap B(y,r)$. Für $z\in W$
 	\begin{equation}
@@ -840,12 +841,12 @@ Sei $m>\frac{n}{p}$ bzw $1 > \frac{n}{p}\iff p>n$.
 	\end{equation}
 	Also
 	\begin{equation}
-		|u(x)-u(y)| \le \not \int_W | u(x) - u(z)| \, \mathrm dz + \not \int_W |u(y)-u(z)|\, \mathrm dz
+		|u(x)-u(y)| \le \fint_W | u(x) - u(z)| \, \mathrm dz + \fint_W |u(y)-u(z)|\, \mathrm dz
 	\end{equation}
 	wobei 
 	\begin{align*}
-	\not \int_W |u(x)-u(z)|\, \mathrm dz &\le \frac{|B(x,r)|}{|W|} \frac{1}{|B(x,r)|} \int_{B(x,r)} |u(x)- u(z)|\, \mathrm dz\\
-	&= C_n \not \int_{B(x,r)} |u(x)-u(z)|\, \mathrm dz \\
+	\fint_W |u(x)-u(z)|\, \mathrm dz &\le \frac{|B(x,r)|}{|W|} \frac{1}{|B(x,r)|} \int_{B(x,r)} |u(x)- u(z)|\, \mathrm dz\\
+	&= C_n \fint_{B(x,r)} |u(x)-u(z)|\, \mathrm dz \\
 	&\le \frac{c_n}{\omega_n} \int_{B(x,r)} \frac{|\nabla u(y)|}{|x-y|^{n-1}} \, \mathrm dy \\
 	&\le \frac{c_n}{\omega_n} \left ( \int_{B(x,r)} |\nabla u(y)|^p \, \mathrm dy \right )^{1/p} \left ( \underbrace{\int_{B(x,r)} \frac{1}{|x-y|^{(n-1) p/(p-1)}}\, \mathrm dy}_{=I(r)} \right )^{(p-1)/p}\\
 \end{align*}
@@ -928,8 +929,9 @@ Ist $\frac{n}{p}\in \mathbb N$ dann gilt die Einbettung für $k=m-\frac{n}{p}-1$
 										 &\le C' \sum_{|\alpha | \le m} \| \partial^\alpha u \|_p \le C'' \| u\|_{m,p} 
 		\end{align*}
 		Somit $\|u\|_{m-l, r} \le \tilde c \| u\|_{m,p}$ für $\tilde c>0$.
-	\item Für $p<n$, $\frac{n}{p} \not\int \mathbb N$, gilt die Behauptung des Theorems in der Form der Bemerkung nach dem Theorem
- 		\begin{proof}
+		\end{proof}
+	\item Für $p<n$, $\frac{n}{p} \not\in \mathbb N$, gilt die Behauptung des Theorems in der Form der Bemerkung nach dem Theorem.
+	\begin{proof}
 			Wähle $l\in \mathbb N$ mit
 			\begin{equation}
 				l < \frac{n}{p} < l+1
@@ -951,23 +953,22 @@ Ist $\frac{n}{p}\in \mathbb N$ dann gilt die Einbettung für $k=m-\frac{n}{p}-1$
  		\begin{equation}
  		W^{m,p}(\Omega) \to C^{k,\gamma}(\overline{\Omega}) \quad k=m-\frac{n}{p} -1, \gamma \in (0,1).
  		\end{equation}
- 		Beweis beruht auf Theorem \ref{3.7} bzw auf
+ 		Der Beweis beruht auf Theorem \ref{3.7} bzw auf
  		\begin{equation}
- 			W_=^{1,n}(\Omega) \to L^q(\Omega) \quad n \le q <\infty.
+ 			W_0^{1,n}(\Omega) \to L^q(\Omega) \quad n \le q <\infty.
  		\end{equation}
- 		(falls $\Omega$ beschränkt ist braucht man das nicht vgl. Evans.) Wähle $l=\frac{n}{p}-1$. Dann gilt
+ 		(falls $\Omega$ beschränkt ist braucht man das nicht (vgl. Evans.) Wähle $l=\frac{n}{p}-1$. Dann gilt
 		\begin{equation}
 			\frac{1}{r} = \frac{1}{p} - \frac{l}{n} = \frac{1}{p} - \frac{1}{n} \left ( \frac{n}{p} -1 \right ) = \frac{1}{n}
 		\end{equation} (FIXME)
 		und somit $r=n$. Nach (2), Theorem \ref{3.7} und (1) gilt
 		\begin{equation}
-			W_0^{m,p}(\Omega) \to W_0^{m-l,n}(\Omega)\to W_=^{m-l-1,n,q}(\Omega) \to C^{m-\frac{n}{p}-1, \gamma} (\overline \Omega)
+			W_0^{m,p}(\Omega) \to W_0^{m-l,n}(\Omega)\to W_0^{m-l-1,n,q}(\Omega) \to C^{m-\frac{n}{p}-1, \gamma} (\overline \Omega)
 		\end{equation}
 		wobei $\gamma = 1- \frac{n}{q} \in (0,1)$ und $n<q<\infty$.
-\end{proof}
  \end{enumerate}
  \end{proof}
-(FIXME) Korrekturen In Theorem 2 und Theorem 3 braucht $\Omega$ nicht beschränkt zu sein! 
+%(FIXME) Korrekturen In Theorem 2 und Theorem 3 braucht $\Omega$ nicht beschränkt zu sein! 
 
 \begin{thm}\label{3.7}
  Sei $\Omega\subset \mathbb R^n$ offen und $m=\frac{n}{p}$. Dann gilt
@@ -981,7 +982,7 @@ Ist $\frac{n}{p}\in \mathbb N$ dann gilt die Einbettung für $k=m-\frac{n}{p}-1$
  \begin{equation}\label{3.7.1}
   W_0^{1,n}(\Omega) \to L^q(\Omega)\quad q \in [n,\infty)
  \end{equation}
-Dann gilt für $m=\frac{n}{p}>1$ nach Theorem \ref{3.3}
+Dann gilt für $m=\frac{n}{p}>1$ nach Theorem \ref{3.5}
 \begin{equation}
  W_0^{m,p}(\Omega) \to W_0^{1,r}
 \end{equation}
@@ -1010,7 +1011,7 @@ Wir zeigen induktiv, dass
 \end{equation}
 D.h. $\gamma=n+j$. Dann $\gamma \frac{n}{n-1} = (n+i) \frac{n}{n-1} = q_{i+1}$ und somit nach  \eqref{3.7.2}
 \begin{equation}
- (\int |u|^{q_j+1} \, \mathrm dx)^{(n-1)/n} \le (n+j) ( \int |u|^{q_j}\, \mathrm dx)^{(n-1)/n} \| \nabla u\|_n
+ \left (\int |u|^{q_j+1} \, \mathrm dx\right )^{(n-1)/n} \le (n+j) \left ( \int |u|^{q_j}\, \mathrm dx\right )^{(n-1)/n} \| \nabla u\|_n
 \end{equation}
 d.h.
 \begin{equation}
@@ -1030,7 +1031,7 @@ nach Induktionsannahme. Durch das übliche Approximationsargument ($C_0^\infty(\
 
 Da $q_j \to \infty$ ($j\to \infty$) und $W_0^{1,n}(\Omega) \to L^n(\Omega)$ folgt die Behauptung \eqref{3.7.1}.
 \end{proof}
-\begin{thm}[Rellich-Kondrachov]
+\begin{thm}[Rellich-Kondrachov]\label{3.8}
  Sei $\Omega \subset \mathbb R^n$ offen und beschränkt. Sei $p\le n$. Dann ist die Einbettung 
  \begin{equation}
   W_0^{1,p}(\Omega) \to L^q(\Omega) \quad (1\le q < p^*)
@@ -1060,10 +1061,11 @@ und
 \end{align*}
 Somit ist $A_\varepsilon$ gleichmäßig beschränkt und gleichgradig stetig und somit ist
 $\overline{A_\varepsilon}^{\|\cdot \|_\infty}$ kompakt in $C(\overline{\Omega})$ (Arzela-Acoli). Daraus folgt dass $\overline{A_\varepsilon}^{\| \cdot \|_1}$ kompakt ist in $L^1(\Omega)$.
-(\textbf{Beweis:} Sei $(u_n)$ eine Folge in $\overline{A_\varepsilon}^{\|\cdot \|_1}$. Dann existiert $(v_n)$ in $A_\varepsilon$ mit $\| u_n - v_n\|_1 < \frac{1}{n}$ Da $\overline{A_\varepsilon}^{\|\cdot \|_\infty}$ kompakt ist, existieren Teilfolgen $(v_{n_k})$ und $v\in C(\overline{\Omega})$ mit $\| v_{n_k} -v\|_\infty \to 0$. $\overline \Omega$ beschränkt, so folgt $v\in L^1(\overline{\Omega})$ underbrace
+
+\textbf{Beweis der Aussage:} Sei $(u_n)$ eine Folge in $\overline{A_\varepsilon}^{\|\cdot \|_1}$. Dann existiert $(v_n)$ in $A_\varepsilon$ mit $\| u_n - v_n\|_1 < \frac{1}{n}$ Da $\overline{A_\varepsilon}^{\|\cdot \|_\infty}$ kompakt ist, existieren Teilfolgen $(v_{n_k})$ und $v\in C(\overline{\Omega})$ mit $\| v_{n_k} -v\|_\infty \to 0$. $\overline \Omega$ beschränkt, so folgt $v\in L^1(\overline{\Omega})$ und
 \begin{align*}
  \|u_{n_k}-v\|_{L^1(\Omega)} &\le \| v_{n_k}-v\|_{L^1(\Omega)} + \frac{1}{n_k}\\
- &\le c\| v_{n_k}-v\|_\infty + \frac{1}{n_k} \to 0 \quad (k\to \infty)
+ &\le c\| v_{n_k}-v\|_\infty + \frac{1}{n_k} \to 0 \quad (k\to \infty).
 \end{align*}
 \end{proof}
 \textbf{Schritt 2:} Für alle $u\in A$ gilt
@@ -1127,6 +1129,7 @@ und aus $u\in A$ folgt $u_\varepsilon \in A_\varepsilon$ wobei $\| u_\varepsilon
  A\subset \bigcup_{i=1}^N B(u_i, \psi_\varepsilon).
 \end{equation}
 Also ist $A$ total beschränkt. Wir haben also gezeigt, dass $W_0^{1,1}(\Omega) \to L^1(\Omega)$ kompakt für $p<n$.
+\end{proof}
 
 Sei $p>1$.  Da $\Omega$ beschränkt ist, ist $L^p(\Omega)\to L^1(\Omega)$ stetig und somit auch 
 $W_0^{1,p}(\Omega) \to W_0^{1,1}(\Omega)$ stetig. Also ist $W_0^{1,p}(\Omega) \to L^{1}(\Omega)$ kompakt. Im Fall $p<n$ ist $W_0^{1,p}(\Omega) \to L^{p^*}(\Omega)$ stetig und für $1\le q<p^*$ gilt
@@ -1235,7 +1238,6 @@ Wenn
 \end{equation}
 Da $C^\infty(\Omega) \cap W^{m,p}(\Omega)$ dicht ist in $W^{m,p}(\Omega)$ folgt daraus die Behauptung des Theorems.
 \end{proof}
-\end{proof}
 
 \begin{lem}\label{4.2}
  Seien $\Omega, \Omega'\subset \mathbb R^n$ offen und sei $g: \Omega' \to \Omega$ ein $C^1$-Diffeomorphismus
@@ -1251,7 +1253,7 @@ Da $C^\infty(\Omega) \cap W^{m,p}(\Omega)$ dicht ist in $W^{m,p}(\Omega)$ folgt 
 Also $\|Tu\|_p \le C' \|u\|_p$.  Ebenso
 \begin{align*}
  \int_\Omega |u(y)|^p\, \mathrm dy &= \int |u(g(x))|^p |\det Dg(x)|\,\mathrm dx \\
- \le C\int_\Omega' |u(g(x))|^p\, \mathrm dx = C\|Tu\|_p^p.
+ &\le C\int_\Omega' |u(g(x))|^p\, \mathrm dx = C\|Tu\|_p^p.
 \end{align*}
 $T$ ist bijektiv, denn für $u\in L^p(\Omega')$ ist $u\circ g^{-1} \in L^p(\Omega)$ und  $T(u\circ g^{-1})=u$.
 \end{proof}
@@ -1287,7 +1289,7 @@ in $L^p$. Also ist $Tu\in W^{1,p}(\Omega')$ und
 Daraus folgt
 \begin{align*}
  \|\partial_i(Tu)\|_p &\le \sum_{l=1}^n \|T\partial_l u \|_p \| \partial_i g_l\|_\infty\\
- &\stackrel{Lm \ref{4.2}}\le C \sum_{l=1}^n \| \partial_l u\|_p \| \partial_i g_l\|_\infty \le \tilde C \|u\|_{1,p}.
+ &\stackrel{\text{Lem.} \ref{4.2}}\le C \sum_{l=1}^n \| \partial_l u\|_p \| \partial_i g_l\|_\infty \le \tilde C \|u\|_{1,p}.
 \end{align*}
 Es folgt
 \begin{equation}
@@ -1308,7 +1310,7 @@ Es folgt
  Für $x\in \Omega_0$ und $\varepsilon >0$ klein genug gilt
  \begin{align*}
   \partial_i(J_\varepsilon * u) (x)&= \lim_{h\to 0} \frac{1}{h} \left [ (J_\varepsilon * u) (x+he_i) - (J_\varepsilon*u) (x)\right ] \\
-  &\stackrel{x\in \Omega_c}=\lim_{h\to 0} \int J_{varepsilon}(y) \left [ \frac{u(x+he_i -y) - u(x-y)}{h} \right ]\, \mathrm dy.
+  &\stackrel{x\in \Omega_c}=\lim_{h\to 0} \int J_{\varepsilon}(y) \left [ \frac{u(x+he_i -y) - u(x-y)}{h} \right ]\, \mathrm dy.
  \end{align*}
  Also gilt
  \begin{equation}\label{eq:4.4}
@@ -1324,7 +1326,7 @@ Es folgt
  \end{equation}
  Anderersets,
  \begin{equation}
-  \int \partial_i (J_{varepsilon_k} * u) \phi \, \mathrm dx = - \int (J_{\varepsilon_k} * u) \partial_i \phi \, \mathrm dx \to - \in u\partial_i \phi \, \mathrm dx.
+  \int \partial_i (J_{\varepsilon_k} * u) \phi \, \mathrm dx = - \int (J_{\varepsilon_k} * u) \partial_i \phi \, \mathrm dx \to - \int u\partial_i \phi \, \mathrm dx.
  \end{equation}
 Also ist $u_i = \partial_i u$ in $\Omega_0$ und 
 \begin{equation}\label{eq:4.5}
@@ -1352,7 +1354,7 @@ Wir definieren $\partial_i u$ durch
 Dann ist $\partial_i u$ wohldefiniert, $\partial_i u\in L^1_{\text{loc}}(\Omega)$ und $\partial_i u$ ist die schwache Ableitung von $u$ nach $x_i$.  Aus \eqref{eq:4.5} folgt $\|\partial_i u\|_\infty \le |u|_{0,1}$.
 \end{proof}
 \begin{satz}\label{4.5}
- Seien $\Omega, \Omega'\subset \mathbb R^n$ offen, $g: \Omega' \to \Omega$ bijektiv mit $g, g^{-1}$ Lipschitz. Sei $u\in W^{1,p}(\Omega)$ mit $\supp(u) \subset \subset \Omega$. Dann ist $Tu=u\circ g \in W^{1,p}(\Omega')$ und es gilt
+ Seien $\Omega, \Omega'\subset \mathbb R^n$ offen und beschränkt, $g: \Omega' \to \Omega$ bijektiv mit $g, g^{-1}$ Lipschitz. Sei $u\in W^{1,p}(\Omega)$ mit $\supp(u) \subset \subset \Omega$. Dann ist $Tu=u\circ g \in W^{1,p}(\Omega')$ und es gilt
  \begin{equation}
   \partial_i (Tu) = \sum_{l=1}^n T(\partial_l u) \cdot (\partial_i g_l)
  \end{equation}
@@ -1375,7 +1377,7 @@ und $\|Tu\|_{W^{1,p}(\Omega')} \le C\|u\|_{W^{1,p}(\Omega)}$.
  \begin{equation}
  E: W^{1,p}(\Omega) \to W_{0}^{1,p}(\Omega_1), \quad 1\le p <\infty,
  \end{equation}
- mit $Eu\big|_\Omega=u$ für alle $u\in W^{1,p}(\Omega)$.
+ mit $Eu\big|_\Omega=u$ für alle $u\in W^{1,p}(\Omega)$. 
 \end{thm}
 \begin{proof}
  Sei zuerst $\Omega=\{(x', x_n) |x_n >0\}$ und $u\in C^1(\overline{\Omega} \cap W^{1,p}(\Omega)$. und $u\in C^1(\overline{\Omega}) \cap W^{1,p}(\Omega)$. Seien $u^+, \partial_i u^+$ die stetigen Fortsetzungne von $u_i \partial_i u$ auf $\overline{\Omega}$. Wir definieren für $x_n \le 0$
@@ -1405,7 +1407,107 @@ Dann ist $Eu\in C^1(\overline{\mathbb R^n})$. und
  \| Eu\|_{W^{1,p}(\mathbb R^n)} \le C\|u\|_{W^{1,p}(\Omega)}.
 \end{equation}
 \end{proof}
+\begin{thm}[Spursatz] \label{4.7}
+Sei $\Omega \subset \mathbb R^n$ offen und beschränkt mit Lipschitz-Rand. Dann existiert eine beschränkte, lineare Abbildung
+\begin{equation}
+T: W^{1,p}(\Omega) \to L^p(\partial \Omega)
+\end{equation}
+welche eindeutig bestimmt ist durch
+\begin{equation}
+Tu = u\big|_{\partial \Omega}, \qquad \text{für } u\in C(\overline{\Omega}) \cap W^{1,p}(\Omega).
+\end{equation}
+\end{thm}
+Der Operator $T$ heißt \emph{Spuroperator} und $Tu$ ist die Spur von $u$ auf dem Rand $\delta \Omega$.
+\chapter{Einbettungssätze für $W^{m,p}(\Omega)$} (FIXME: Beweise, Bemerkungen, Beispiele müssen noch ergänzt werden)
+\begin{satz} Sei $\Omega \subset \mathbb R^n$ offen und beschränkt mit Lipschitzrand. Dann gilt
+\begin{align*}
+W^{1,p}(\Omega) &\to L^q(\Omega) \begin{cases} p \le q \le p^*, \quad 1 \le p\le n\\  p \le q <\infty, p =n \end{cases}\\
+W^{1,p}(\Omega) &\to C^{0,\gamma}(\overline{\Omega}) \quad \gamma = 1- \frac{n}{q}, \quad p >n,
+\end{align*}
+wobei $\frac{1}{p^*}= \frac{1}{p}-\frac{1}{n}$.
+\end{satz}
+
+\begin{thm}
+Sei $\Omega \subset \mathbb R^n$ offen und beschränkt mit Lipschitzrand. Wenn
+\begin{enumerate}[a)]
+\item $m<\frac{n}{p}$ dann
+\begin{align*}
+W^{m,p}(\Omega) \to L^p(\Omega)&\ \quad p\le q \le p^*\\
+&\ \quad \frac{1}{p^*} = \frac{1}{p} - \frac{m}{n}.
+\end{align*}
+\item $m= \frac{n}{p}$ dann
+\begin{equation}
+W^{m,p}(\Omega) \to L^p(\Omega) \quad p \le q <\infty.
+\end{equation}
+\item $m>\frac{n}{p}$ dann
+\begin{equation}
+W^{m,p}(\Omega) \to C^{k,\gamma}(\overline{\Omega}) \quad m- \frac{n}{p} \ge k + \gamma,
+\end{equation}
+wobei $k \in \mathbb N_0$ die größte ganze Zahl kleiner als $m- \frac{p}{\gamma}$ und $\gamma \in (0,1)$ ist.
+\end{enumerate} 
+Für $W_0^{m,p}(\Omega)$ gelten die analogen Aussagen für beliebige $\Omega \subset \mathbb R^n$ offen.
+\end{thm}
+
+\begin{thm}
+Sei $\Omega \subset \mathbb R^n$ offen und beschränkt mit Lipschitzrand. Dann ist die Einbettung
+\begin{equation}
+W^{1,p}(\Omega) \to L^q(\Omega) \quad 1\le q < p^*
+\end{equation}
+kompakt für $\frac{1}{p^*}= \frac{1}{p} - \frac{1}{n}$ falls $p<n$ und $p^*=\infty$ falls $p \ge n$.
+\end{thm}
+
+\chapter{Die Sobolevräume $H^s(\mathbb R^n)$}
+(FIXME) Hauptteil der Beweise fehlt noch.
+Sei $H^m(\mathbb R^n) := W^{m,2}(\mathbb R^n)$.
+\begin{satz}
+Sei $m\in \mathbb N_0$. Dann gilt
+\begin{enumerate}[(a)]
+\item $H^m(\mathbb R^n) = \{ u\in L^2(\mathbb R^n)| k \mapsto |k|^m \hat u(k) \text{ ist quadratintegrierbar } \}$ und für alle $u\in H^m(\mathbb R^n), |\alpha|\le m$ gilt $\widehat{\partial^\alpha u} (k) = (ik)^\alpha \hat u(k)$.
+\item Die Norm von $H^m(\mathbb R^n)$ ist äquivalent zur Norm
+\begin{equation}
+\left ( \int |\hat u(k)|^2 (1+|k|^2)^m \, \mathrm dk \right )^n.
+\end{equation}
+\end{enumerate}
+\end{satz}
+Für $s\in \mathbb R$ ist
+\begin{equation}
+H^s(\mathbb R^n):= \left \{ u \in \mathcal S'(\mathbb R^n) \bigg | \int |\hat u(p)|^2 (1+p^2)^s\, dp < \infty \right \}
+\end{equation}
+und für $u,v \in H^s(\mathbb R^n)$,
+\begin{equation}\label{eq6.1}
+\langle u,v\rangle := \int \overline{\hat u(p)} \hat v(p) \, \mathrm dp.
+\end{equation}
+\begin{thm}
+Für alle $s\ge 0$ ist $H^s(\mathbb R^n)$ versehen mit dem Skalarprodukt \eqref{eq6.1} ein Hilbertraum und $\mathcal S(\mathbb R^n)$ ist dicht in $H^s(\mathbb R^n)$. 
+\end{thm}
+\begin{lem}
+Sei $u\in H^s(\mathbb R^n)$ und $|\alpha|\le s$. Durch $u\mapsto \partial^\alpha u$ wird eine beschränkte lineare Abbildung
+\begin{equation}
+\partial^\alpha : H^s(\mathbb R^n) \to H^{s-|\alpha|} (\mathbb R^n)
+\end{equation}
+definiert.
+\end{lem}
+
+\begin{lem}
+Sei $g\in L^1(\mathbb R^n)$ und $k\in \mathbb N_0$ mit $\int |p|^k |g(p)|\, \mathrm dp < \alpha$. Dann ist die Funktion $u(x) = \int e^{ip\cdot x} g(p) \, \mathrm dp$ in $C^k(\mathbb R^n)$ und für $|\alpha|\le k$ gilt
+\begin{equation}
+\partial^\alpha u(x) = \int e^{ip\cdot x} (ip)^\alpha g(p) \, \mathrm dp.
+\end{equation}
+\end{lem}
+
+\begin{thm}
+Falls $s- \frac{n}{2}\ge k +\gamma$ mit $k\in \mathbb N_0$ und $\gamma \in (0,1)$, dann gilt
+\begin{equation}
+H^s(\mathbb R^n) \to C^{k,\gamma}(\overline{\mathbb R^n})
+\end{equation}
+und für $|\alpha|\le k$ gilt
+\begin{equation}
+|\partial^\alpha u(x)|\to 0 \quad (|x|\to \infty).
+\end{equation}
+\end{thm}
+
 FIXME: Es fehlen drei Vorlesung. Heute ist der 9.6.15
+\setcounter{thm}{5}
 \begin{thm}\label{4.6}
 Jede Distribution $u\in H^{-s}(\mathbb R^n)$ lässt sich erweitern zu einem (eindeutig bestimmten linearen Funktional $L_u \in (H^s)^*$ wobei 
 \begin{equation}
@@ -1468,9 +1570,10 @@ wobei $\hat f_\alpha\in L^2$. Also
 \end{align}
 was quadratintegrierbar ist. Also $u\in H^{-m}$
 \end{proof}
+\chapter{Anwendungen und Ergänzungen}
 \section{Elliptische Regularität}
 
-\begin{lem}
+\begin{lem}\label{thm6.8}
 Sind $u,v\in H^s$ und $\Delta u=v$ dann gilt $u\in H^{s+2}$.
 \end{lem}
 \begin{proof}
@@ -1514,10 +1617,10 @@ für $k=2, \ldots, m+2$.
 
 Aus $u\in H^3$ folgt $\phi u\in H^2$ für alle $\phi \in C_0^\infty(\Omega)$. Also gilt \eqref{4.?} für $k=2$. Wir rechnen nun den Induktionsschritt von $k=m+1$ auf $k=m+2$.
 
-Sei \eqref{4.?} richtig für $k=m+1$. Dann gilt für $\phi \in C_0^\infty(\Omega)$
+Sei \eqref{eq:4.?} richtig für $k=m+1$. Dann gilt für $\phi \in C_0^\infty(\Omega)$
 \begin{align}
-\Delta(\phi u) &= (\Delta \phi u) + 2\underbrace{\nabla \phi \cdot \nabla u}_{\div(\nabla \phi \cdot u)- \Delta \phi u} + \phi \Delta u\\
-&= - \Delta \phi u + 2\div (\nabla \phi \cdot u) + \phi(v-E) u
+\Delta(\phi u) &= (\Delta \phi u) + 2\underbrace{\nabla \phi \cdot \nabla u}_{\operatorname{div}(\nabla \phi \cdot u)- \Delta \phi u} + \phi \Delta u\\
+&= - \Delta \phi u + 2\operatorname{div} (\nabla \phi \cdot u) + \phi(v-E) u
 \end{align}
 Nach Induktionsannahme gilt
 \begin{equation}
@@ -1525,11 +1628,11 @@ Nach Induktionsannahme gilt
 \end{equation}
 und somit
 \begin{equation}
-\div(\nabla \phi \cdot u) \in H^m, \quad (v-E) \phi u \in H^m
+\operatorname{div}(\nabla \phi \cdot u) \in H^m, \quad (v-E) \phi u \in H^m
 \end{equation}
 denn $V-E\in C^m(\Omega)$ und $\partial^\alpha(v-E)\in L^\infty(\supp \phi)$ für $|\alpha|\le m$.
 
-Also $\Delta (\phi u) \in H^m$ und somit $\phi u\in H^{m+2}$ nach Lemma \ref{4.8}. Das beweist \eqref{eq:4.?} für $k=m+2$.
+Also $\Delta (\phi u) \in H^m$ und somit $\phi u\in H^{m+2}$ nach Lemma \ref{thm6.8}. Das beweist \eqref{eq:4.?} für $k=m+2$.
 
 \end{proof}
 
@@ -1548,7 +1651,7 @@ Das fordert $f\in C(\Omega)$ was oft zu restriktiv ist. Sei $u$ dennoch klassisc
 
 Wir multiplizieren $-\Delta u=f$ mit $\phi \in C_0^\infty(\Omega)$ und benutzen dass
 \begin{equation}
-\div(\phi \nabla u) = \nabla \phi \nabla u + \phi \Delta u
+\operatorname{div}(\phi \nabla u) = \nabla \phi \nabla u + \phi \Delta u
 \end{equation}
 wegen $\int_{\partial\Omega} \phi \overline{\nabla u} \cdot \overline u \, \mathrm d\sigma =0$ folgt aus Gauß
 \begin{equation}
@@ -1560,7 +1663,7 @@ Somit
 \end{equation}
 was auch für $u\in H_0^1(\Omega)$ sinnvoll ist und sich auf alle $\phi \in H_0^1(\Omega)$ ausdehnen lässt (wegen $C_0^\infty(\Omega)\subset H_0^1(\Omega)$ dicht).  Das motiviert:
 \begin{df}
-Eine schwache Lösung von \eqref{4.??} ist eine Funktion $u\in H_0^1(\Omega)$ mit
+Eine schwache Lösung von \eqref{eq:4.??} ist eine Funktion $u\in H_0^1(\Omega)$ mit
 \begin{equation}
 \int \nabla u \cdot \nabla u \, \mathrm dx = \int v f\, \mathrm dx
 \end{equation}
@@ -1655,7 +1758,7 @@ und $(\hat \phi * \hat f) (x) = \int \hat \phi(x-y) \hat f(y)\, \mathrm dx$ ($x\
 \begin{proof}
 \textbf{Schritt 1:} $y\mapsto \hat \phi(x-y) \hat f(y)$ integrierbar und $\hat \phi * \hat f \in C^\infty(\mathbb R^n)$.
 \begin{align}
-(1+x^2)^{s/2} \int |\hat \phi(x-y)| |\hat f(y)|\, \mathrm dy & \\stackrel{\text{Lem.} 1}\le 2^{|s/2|} \int (1+(x-y)^2)^{|s/2|} |\hat \phi(x-y)|\cdot (1+y^2)^{s/2} |\hat f(y)|\, \mathrm dy\\
+(1+x^2)^{s/2} \int |\hat \phi(x-y)| |\hat f(y)|\, \mathrm dy & \stackrel{\text{Lem.} 1}\le 2^{|s/2|} \int (1+(x-y)^2)^{|s/2|} |\hat \phi(x-y)|\cdot (1+y^2)^{s/2} |\hat f(y)|\, \mathrm dy\\
 &\le 2^{|s/2|} \| \phi\|_{|s|} \|f\|_s <\infty (x\in \mathbb R^n)\label{eq:5.1}
 \end{align}
 1.2. $\hat \phi * \hat f$ stetig. Sei $x\in \mathbb R^n$, denn 
@@ -2357,8 +2460,8 @@ Sei $X$ ein normierter Vektorraum. Dann
 
 Dann gilt
 \begin{align*}
-\| [x_1 ] + [x_2] \| = \| [y_1] + [y_2]\|\\
-= \| [y_1 + y_2] \| \le \| y_1 + y_2\| \le \| y_1\| + \|y_2\| \le \| [x_1] \| + \| [x_2] \| + 2\varepsilon.
+\| [x_1 ] + [x_2] \| &= \| [y_1] + [y_2]\|\\
+&= \| [y_1 + y_2] \| \le \| y_1 + y_2\| \le \| y_1\| + \|y_2\| \le \| [x_1] \| + \| [x_2] \| + 2\varepsilon.
 \end{align*}
 \item Wir verwenden, dass ein normierter Raum genau dann vollständig ist, wenn jede absolut konvergente Reihe konvergent ist.
 
@@ -2367,7 +2470,7 @@ Sei also $\sum_{k\ge 0} \| [x_k] \| <\infty$. Zu zeigen: $\sum_{k=1}^\infty [x_k
 Außerdem
 \begin{align*}
 \| [y] - \sum_{k=1}^N [x_k] \| &= \| [y] - \sum_{k=1}^N [y_k] \| \\
-&= \| [y-\sum_{k=1}^N y_k] \| \le \| y- \sum_{k=1}^N y_k \| \to 0 (N\to \infty).
+&= \| [y-\sum_{k=1}^N y_k] \| \le \| y- \sum_{k=1}^N y_k \| \to 0\quad (N\to \infty).
 \end{align*}
 \end{enumerate}
 \end{proof}
@@ -2446,7 +2549,7 @@ ist abgeschlossen.
 \begin{proof}
 $|\| f\| | \ge, | \| \lambda f \| | = | \lambda | \| f\|.$
 
-Sei $f\in F(X_0, X_1)$. Aus Hadamard Satz \ref{4.10}?
+Sei $f\in F(X_0, X_1)$. Aus Hadamard Satz \ref{4.10} (?FIXME)
 \begin{align*}
 \sup_{z\in S} \| f(z)\|_t &= \sup_{z\in \partial S} \| f(z)\|_t\\
 &= \max \{ \sup_{t\in \mathbb R} \underbrace{\| f(it)\|_t}_{\le \| f(it)\|_0}, \sup_{t\in \mathbb R} \underbrace{\| f(1+it)\|_t}_{\le \| f(1+it)\|_1}\}\\
@@ -2787,8 +2890,8 @@ Andere Anwendungen sind zu finden in:
 \item Reed, Simon: MMMP, Bd 2.
 \end{itemize}
 
-\section{Variationsprobleme aus der Quantenmechanik}
-\subsection{Quadratische Formen}
+\chapter{Variationsprobleme aus der Quantenmechanik}
+\section{Quadratische Formen}
 Wir betrachten quadratische Energieformen der Art
 \begin{equation}
 E(\phi) = \int |\nabla \phi|^2\, \mathrm dx + \int V|\phi|^2\, \mathrm dx
@@ -2859,7 +2962,7 @@ Dann ist $\phi \mapsto q(\phi, \phi)$ schwach folgenunterhalbstetig, d.h. $\phi_
 \begin{proof}
 vgl. Übung.
 \end{proof}
-\begin{satz}
+\begin{satz}\label{9.2}
 Ist zusätzlich zu obigen Annahmen an $K$ $\sqrt{V_-} : H^1 \to L^2$ kompakt und $\lambda:= \inf\{E(\phi) | \|\phi\| =1\} <0$. Dann existiert $\phi \in D(E)$ mit $\| \phi \| 1$ und $E(\phi)=\lambda$. Außerdem gilt $(-\Delta + V) \phi = \lambda \phi$ im Distributionssinn. Falls $V: H^1 \to L^2$, dann $\phi \in H^2(\mathbb R^d)$ und die Schrödingergleichung gilt im schwachen Sinn.
 \end{satz}
 \begin{proof}
@@ -2886,7 +2989,7 @@ Aus \eqref{date:10.7(1)} und \eqref{date:10.7(2)} folgt
 \begin{equation}\label{date:10.7(3)}
 E(\phi) \le \liminf_{n\to \infty} E(\phi_n) = \lambda <0.
 \end{equation}
-Es bleibt zu zeigen, dass $\| \phi\| =1$. Aus $H\to L^2$ stetig folgt $\phi_n \to \phi$ in $L^2$ und somit $\| \phi\| \le \liminf \|\phi_n \|=1$. Außerdem $\phi \neq 0$ nach \eqref{date:10.7(3)}. Angenommen $0 <\|\phi\|<1$, dann
+Es bleibt zu zeigen, dass $\| \phi\| =1$. Aus $H\to L^2$ stetig folgt $\phi_n \to \phi$ in $L^2$ und somit $\| \phi\| \le \liminf \|\phi_n \|=1$. Außerdem $\phi \neq 0$ nach \eqref{date:10.7(2)} (FIXME: Korrekt?). Angenommen $0 <\|\phi\|<1$, dann
 \begin{equation}
 \lambda \le E(\frac{\phi}{\|\phi\|} ) = \underbrace{\frac{1}{\|\phi\|^2}}_{>1} \underbrace{E(\phi)}_{\le \lambda <0} <\lambda
 \end{equation}
@@ -2901,20 +3004,55 @@ Und damit
 \end{equation}
 für alle $\eta \in C_0^\infty$, d.h. $(-\Delta + V- \lambda) \phi=0$ in $\mathcal D'$. Wenn $V\phi \in L^2$ dann $\Delta \phi = (\lambda- V) \phi \in L^2$. Also $\phi \in H^2(\mathbb R^d)$.
 \end{proof}
+% Vorlesung vom 13.07. fehlt (paar Sachen wurden bereits ergänzt)
+Wir zeigen, dass Satz \ref{9.2} anwendbar ist auf das Coulombpotential
+\begin{equation}\label{eq:9.?}
+V(x) = - \frac{Z}{|x|}, \quad Z>0.
+\end{equation}
 
-% Vorlesung vom 13.07. fehlt
-\chapter{Concentration Compactness und Choquard-Pekard-Funktional}
+\begin{satz}
+Sei $V\in L^1_{\text{loc}}(\mathbb R^d)$ gegeben durch \eqref{eq:9.?}. Dann ist $\sqrt{|V|}: H^1(\mathbb R^d) \to L^2(\mathbb R^d)$ kompakt.
+\end{satz}
+\begin{proof}
+(FIXME: Beweis fehlt.)
+\end{proof}
 
-\setcounter{thm}{4}
+\section{Concentration Compactness und Choquard-Pekard-Funktional} (FIXME: Hier fehlt noch einiges)
+Wir untersuchen nun das Funktion $E: H^1(\mathbb R^3) \to \mathbb R$ definiert durch
+\begin{equation}
+E(\phi) = \int |\nabla \phi|^2\, \mathrm dx - \int \frac{|\phi(x)|^2 |\phi(y)|^2}{|x-y|} \, \mathrm dx \mathrm dy
+\end{equation}
+unter der Nebenbedingung 
+\begin{equation}
+\int |\phi(x)|^2\, \mathrm dx =1
+\end{equation}
+auf Existenz eines Minimierers. Die Methode, welche dazu entwickelt wurde ist auf viele andere Variationsprobleme anwendbar.
+%\setcounter{thm}{3}
 \begin{lem}\label{5.5}
 Für alle $\varepsilon \in (0,1)$ existiert $C_\varepsilon >0$ und
 \begin{equation}
 E(\phi) \ge (1-\varepsilon) \int |\nabla \phi|^2- C_{\varepsilon} (\int |\phi|^2\, \mathrm dx)^3
 \end{equation}
 \end{lem}
+\begin{satz}\label{9.5}
+Falls $\phi \in H^1(\mathbb R^3)$, $\int |\phi|^2\, \mathrm dx =1$ und $E(\phi) = \lambda$, dann ist $\phi \in H^2(\mathbb R^3)$ und 
+\begin{equation}
+(-\Delta - 2 V_\phi) \phi = \mu \phi
+\end{equation}
+wobei $V_\phi(x):= \int |x-y|^{-1}|\phi(y)|^2\, \mathrm dy$.
+\end{satz}
 
+\begin{lem}\label{9.6}
+Ist $(\phi_n)$ eine beschränkte Folge in $H^1(\mathbb R^3)$ und $\|\phi_n - \phi\|_{L^2(\mathbb R^3)}\to 0$, dann ist $\phi \in H^1(\mathbb R^3)$ und
+\begin{equation}
+\int \frac{|\phi_n(x)|^2|\phi_n(y)|^2}{|x-y|} \, \mathrm dx \mathrm dy \to \int \frac{|\phi(x)|^2|\phi(y)|^2}{|x-y|} \, \mathrm dx \mathrm dy \quad (n\to \infty).
+\end{equation}
+\end{lem}
 
-\setcounter{thm}{7}
+%\begin{lem}\label{9.7}
+%Sei $(\phi_n)$ eine Folge in $H^1(\mathbb R^3)$ mit $\int |\phi_n(x)|^2 \, \mathrm dx = 1, E(\phi_n) \to \lambda$ und $\phi_n \to \phi$. Dann ist $\phi \in H^1(\mathbb R^3)$ und $E(\phi) = \lambda$.
+%\end{lem}
+%\setcounter{thm}{7}
 \begin{lem}\label{5.8}
 Sei $(\phi_n)$ eine Folge in $H^1$ mit
 \begin{equation}
@@ -3043,7 +3181,7 @@ E(\phi_n) = E(\phi) + E(\phi_n - \phi) + o(1) \quad (n\to \infty).
 \end{equation}
 \end{lem}
 \begin{proof}
-Sei $\eta_n := \phi_n - \phi$. Dann $\eta_n rightharpoonup 0$ in $H^1$ und
+Sei $\eta_n := \phi_n - \phi$. Dann $\eta_n \rightharpoonup 0$ in $H^1$ und
 \begin{align*}
 \int |\nabla \phi_n|^2\, \mathrm dx &= \int |\nabla \phi + \nabla_n|^2\, \mathrm dx \\
 &=\int |\nabla \phi|^2 + |\nabla \eta_n|^2+ 2\Re \underbrace{\int \overline{\nabla \phi} \cdot \nabla \eta_n \, \mathrm dx}_{\to 0 \quad (n\to \infty)}
@@ -3100,6 +3238,45 @@ E(\psi_k) &= E(\psi) + E(\eta_k) + o(1)\\
 
 Dann ist die Annahme $0 < \int |\psi|^2 \, \mathrm dx <1$ falsch. Da $\psi \neq 0$ (Theorem \ref{5.9}) muss also $\int |\psi|^2 \, \mathrm dx =1$. Aus $\psi_k \rightharpoonup \psi$ und $\underbrace{\|\psi_k \|}_{=1} \to \underbrace{\| \psi\|}_{=1}$ folgt $\psi_k \to \psi$ in $L^2$.  Aus Lemma \ref{5.8} folgt $E(\psi)=\lambda$.
 \end{proof}
+
+\appendix
+\chapter{Hölderräume}
+Sei $\Omega \subset \mathbb R^n$ offen und sei $k\in \mathbb N_0$. Wir definieren
+\begin{align*}
+C_B(\Omega) &= C(\Omega) \cap L^\infty (\Omega)\\
+C_B^k(\Omega) &= \{u\in C^k(\Omega) |\partial^\alpha u\in L^\infty \text{ für } |\alpha|\le k\}\\
+C^k(\overline{\Omega}) &= \{u\in C^k(\Omega) |\partial^\alpha u \text{ ist beschränkt und glm. stetig für } |\alpha|\le k\}.
+\end{align*}
+Die Vektorräume $C_B^k(\Omega)$ und $C^k(\overline{\Omega})$ versehen wir mit der Norm
+\begin{equation}
+\|u\|_{C_B^k(\Omega)} = \max_{|\alpha|\le k} \sup_{x\in \Omega} |\partial^\alpha u(x)|.
+\end{equation}
+\begin{satz}
+$C_B^k(\Omega)$ ist ein Banachraum und $C^k(\overline{\Omega})$ ist ein abgeschlossener Unterraum von $C_B^k(\Omega)$.
+\end{satz}
+Eine Funktion $U: \Omega \to \mathbb C$ heißt \emph{Hölderstetig} mit Exponent $\gamma \in (0,1)$ falls
+\begin{equation}
+|u|_\gamma = \sup_{x,y \in \Omega, x\neq y} \frac{|u(x)-u(y)|}{|x-y|^\gamma} < \infty.
+\end{equation}
+Falls $|u|_{\gamma=1} <\infty$, dann heißt $u$ \emph{Lipschitz-stetig}. Für $\gamma \in (0,1]$ und $k\in \mathbb N_0$ definiert man
+\begin{align*}
+C^{0,\gamma}(\overline{\Omega}) &= \{ u\in C(\overline{\Omega}) |\, |\partial^\alpha u|_\gamma <\infty \text{ für } |\alpha|\le k\}\\
+&= \{u\in C_B^k(\Omega) | \, |\delta^\alpha u|_\gamma <\infty \text{ für } |\alpha|\le k\}.
+\end{align*}
+Die letzte Identität ergibt sich daraus dass eine Hölderstetige Funktion automatisch gleichmäßig stetig ist. Es gilt
+\begin{equation}
+\gamma' >\gamma \implies C^{k,\gamma'}(\overline{\Omega}) \to C^{k,\gamma}(\overline{\Omega}) \to C^k(\overline{\Omega}),
+\end{equation}
+wobei $C^{k,0}(\overline{\Omega}) = C^k(\overline{\Omega})$. Wir versehen $C^{k,\gamma}(\Omega)$ mit der Norm
+\begin{equation}\label{eq:a1}
+\begin{split}
+\| u\|_{k,\gamma} &= \| u\|_{C^k(\overline{\Omega})} + \max_{|\alpha|\le k} |\delta^\alpha u|_\gamma\\
+&= \max_{|\alpha|\le k} \| \partial^\alpha u\|_\infty + \max_{|\alpha|\le k} |\partial^\alpha u|_\gamma. 
+\end{split}
+\end{equation}
+\begin{thm}
+Für $k\in \mathbb N_0$ und $\gamma \in [0,1]$ ist $C^{k,\gamma}(\overline{\Omega})$ versheen mit der Norm \eqref{eq:a1} ein Banachraum.
+\end{thm}
 \begin{thebibliography}{xxx}
 \bibitem[AF]{AF} Robert A. Adams and John F.  Fournier, \textit{Sobolev Spaces}, 2nd Edition, Academic Press (2003).
 \end{thebibliography}
