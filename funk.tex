@@ -3014,10 +3014,41 @@ V(x) = - \frac{Z}{|x|}, \quad Z>0.
 Sei $V\in L^1_{\text{loc}}(\mathbb R^d)$ gegeben durch \eqref{eq:9.?}. Dann ist $\sqrt{|V|}: H^1(\mathbb R^d) \to L^2(\mathbb R^d)$ kompakt.
 \end{satz}
 \begin{proof}
-(FIXME: Beweis fehlt.)
+Sei $(\phi_n)$ beschränkte Folge in $H^1(\mathbb R^3)$. Nach Übergang zu einer Teilfolge, die wir ebenfalls mit $(\phi_n)$ bezeichnen, gilt $\phi_n \rightharpoonup \phi$ in $H^1(\mathbb R^3)$ und $\phi_n \to \phi$ in $L^2_{\text{loc}}(\mathbb R^3)$, d.h. $\int_K |\phi_n - \phi|^2 \, \mathrm dx \to 0$ für $K\subset \mathbb R^3$ kompakt (vgl. Blatt 6).
+
+Wir zeigen $$\underbrace{\langle \phi_n, V_- \phi_n\rangle}_{=\| \sqrt{V_-} \phi_n\|^2} \to \underbrace{\langle \phi, V_- \phi\rangle}_{=\| \sqrt{V_-} \phi\|^2}$$
+Wegen $\sqrt{V_-} \phi_n \rightharpoonup \sqrt{V_-} \phi$ in $L^2$ folgt dann $\| \sqrt{V_-} \phi_n \sqrt{V_-} \phi\|\to 0$.
+
+Es gilt
+\begin{align*}
+&|\langle \phi_n, V_- \phi_n \rangle - \langle \phi, V_- \phi\rangle|
+\le |\langle \phi_n - \phi, V_- \phi\rangle | + |\langle \phi_n, V_-(\phi_n - \phi) \rangle |\\
+&\ \qquad \le |\langle \phi_n - \phi, V_- \chi_R \phi\rangle| + |\langle \phi_n, V_- \chi_R (\phi_n - \phi)\rangle | + |\langle \phi_n - \phi, V_- \overline\chi_R \phi\rangle|+ |\langle \phi_n , V_- \overline{\chi_R} (\phi_n - \phi)\rangle|,
+\end{align*}
+wobei $\chi_R= \chi_{B_R(0)}, \overline{\chi_R} = 1- \chi_R$.  
+
+Es gilt
+\begin{equation}
+|\langle \phi_n - \phi, V_- \overline{\chi_R} \phi\rangle| \le \| \phi_n - \phi\| \| \phi\| \cdot \frac{z}{R} \le \frac{C}{R},
+\end{equation}
+ebenso
+\begin{equation}
+|\langle \phi_n, V_- \overline{\chi_R}(\phi_n - \phi)\rangle | \le \frac{c}{R}
+\end{equation}
+für fast alle $n\in \mathbb N$. Für gegebenes $\varepsilon>0$ wähle $R>0$ so groß, dass $\frac{c}{R} <\varepsilon$. Außerdem folgt wegen kompakter Konvergenz
+\begin{equation}
+\| \chi_R(\phi_n - \phi)\| \to 0.
+\end{equation}
+Also folgt hinreichend große $n$%
+\begin{align*}
+|\langle \phi_n, V_- \chi_R(\phi_n- \phi)\rangle | &\le \varepsilon \| V_- \phi_n\|\\
+|\langle \phi_n - \phi, V_- \chi_R \phi\rangle |&\le \varepsilon \| V_- \phi\|,
+\end{align*}
+wobei $$\| V_- \phi_n\|^2 = z^2 \int \frac{1}{|x|^2} |\phi_n(x)|^2\, \mathrm dx \le z^2 C\int |\nabla \phi_n|^2\, \mathrm dx \le \text{const}.$$
+für fast ale $N$, da $(\phi_n)$ beschränkt in $H^1$. Also $|\langle \phi_n, V_- \phi_n\rangle - \langle \phi, V_-\phi\rangle|< 2\varepsilon$ für  $n$ groß genug.
 \end{proof}
 
-\section{Concentration Compactness und Choquard-Pekard-Funktional} (FIXME: Hier fehlt noch einiges)
+\section{Concentration Compactness und Choquard-Pekard-Funktional}
 Wir untersuchen nun das Funktion $E: H^1(\mathbb R^3) \to \mathbb R$ definiert durch
 \begin{equation}
 E(\phi) = \int |\nabla \phi|^2\, \mathrm dx - \int \frac{|\phi(x)|^2 |\phi(y)|^2}{|x-y|} \, \mathrm dx \mathrm dy
@@ -3028,12 +3059,30 @@ unter der Nebenbedingung
 \end{equation}
 auf Existenz eines Minimierers. Die Methode, welche dazu entwickelt wurde ist auf viele andere Variationsprobleme anwendbar.
 %\setcounter{thm}{3}
+
+Beachte im folgenden, dass $E(\phi_d)= E(\phi)$, wenn $\phi_d(x) = \phi(x-d)$.
 \begin{lem}\label{5.5}
 Für alle $\varepsilon \in (0,1)$ existiert $C_\varepsilon >0$ und
 \begin{equation}
-E(\phi) \ge (1-\varepsilon) \int |\nabla \phi|^2- C_{\varepsilon} (\int |\phi|^2\, \mathrm dx)^3
+E(\phi) \ge (1-\varepsilon) \int |\nabla \phi|^2- C_{\varepsilon} \left (\int |\phi|^2\, \mathrm dx\right )^3
 \end{equation}
 \end{lem}
+\begin{proof}
+Es ist
+\begin{equation}
+\int \frac{|\phi(x)|^2|\phi(y)|^2}{|x-y|} \, \mathrm dx \, \mathrm dy = \int |\phi(x)|^2 V_\phi(x) \, \mathrm dx, \quad V_\phi(x) := \int \frac{|\phi(y)|^2}{|x-y|} \, \mathrm dy.
+\end{equation}
+Es gilt mit Hölder, Hardy-Ungleichung und Youngscher Ungleichung
+\begin{align*}
+V_\phi(x) &\le \| \phi\| \left ( \int \frac{|\phi(y)|^2}{|x-y|^2}\, \mathrm dy \right )^{1/2} = \| \phi\| \left ( \int \frac{|\phi(x-y+y)|^2}{|x-y|^2} \, \mathrm dy\right )^{1/2}\\
+&\le c\| \phi\| \| \nabla \phi\| \le \frac{c}{2} (\varepsilon \| \nabla \phi\|^2 + \frac{1}{\varepsilon} \| \phi\|^2).
+\end{align*}
+Analog folgt
+\begin{equation}
+E(\phi) \ge \| \nabla \phi\|^2 ( 1- \frac{c \varepsilon}{2}) - \frac{c}{2\varepsilon} \|\phi\|^6.
+\end{equation}
+\end{proof}
+Nach Lemma \eqref{5.5} ist $\lambda = \inf \{ E(\phi)  | \phi \in H^1, \| \phi\|_2=1\} >-\infty$. Mann kann zeigen, dass $\lambda <0$.
 \begin{satz}\label{9.5}
 Falls $\phi \in H^1(\mathbb R^3)$, $\int |\phi|^2\, \mathrm dx =1$ und $E(\phi) = \lambda$, dann ist $\phi \in H^2(\mathbb R^3)$ und 
 \begin{equation}
@@ -3041,6 +3090,23 @@ Falls $\phi \in H^1(\mathbb R^3)$, $\int |\phi|^2\, \mathrm dx =1$ und $E(\phi) 
 \end{equation}
 wobei $V_\phi(x):= \int |x-y|^{-1}|\phi(y)|^2\, \mathrm dy$.
 \end{satz}
+\begin{proof}
+Für alle $\eta \in C_0^\infty(\mathbb R^3), \varepsilon \in \mathbb R$ gilt
+\begin{equation}
+E\left (\frac{\phi + \varepsilon \eta}{\| \phi + \varepsilon \eta\|} \right ) \ge \lambda = E(\phi).
+\end{equation}
+Also 
+\begin{equation}
+0 = \frac{\mathrm d}{\mathrm d\varepsilon} E\left (\frac{\phi - \varepsilon \eta}{\| \phi + \varepsilon \eta\|} \right )\bigg |_{\varepsilon=0} = 2\Re \langle \phi, (- \Delta - 2V_\phi- \mu) \eta\rangle.
+\end{equation}
+Ebenso für $\eta \mapsto i \eta$. Also
+\begin{equation}
+\langle \phi, (-\Delta - 2V_\phi- \mu) \eta\rangle =0
+\end{equation}
+für alle $\eta \in C_0^\infty(\mathbb R^3)$.
+
+Also $-\Delta \phi = (2V_\phi + \mu) \phi$ in $H^{-1}$, wobei $V_\phi \in L^\infty$ (siehe Lemma \eqref{5.5}) und somit $-\Delta \phi \in L^2$, also $\phi \in H^2(\mathbb R^3)$.
+\end{proof}
 
 \begin{lem}\label{9.6}
 Ist $(\phi_n)$ eine beschränkte Folge in $H^1(\mathbb R^3)$ und $\|\phi_n - \phi\|_{L^2(\mathbb R^3)}\to 0$, dann ist $\phi \in H^1(\mathbb R^3)$ und
@@ -3048,6 +3114,24 @@ Ist $(\phi_n)$ eine beschränkte Folge in $H^1(\mathbb R^3)$ und $\|\phi_n - \ph
 \int \frac{|\phi_n(x)|^2|\phi_n(y)|^2}{|x-y|} \, \mathrm dx \mathrm dy \to \int \frac{|\phi(x)|^2|\phi(y)|^2}{|x-y|} \, \mathrm dx \mathrm dy \quad (n\to \infty).
 \end{equation}
 \end{lem}
+\begin{proof}
+Wir wollen die Hardyungleichung verwenden. Es gilt
+\begin{align*}
+&\int \frac{|\phi(x)|^2 |\phi(y)|^2 - |\phi_n(x)|^2|\phi_n(y)|^2}{|x-y|}\, \mathrm dx \, \mathrm dy\\
+&\ \qquad = \underbrace{\int  |\phi(x)|^2 \overline{\phi(y)} (\phi(y)- \phi_n(y)) \frac{\mathrm dx\, \mathrm dy}{|x-y|}}_{=:(\mathrm A)} + \underbrace{\int  |\phi(x)|^2 (\overline{\phi(y)}- \overline{\phi_n(y)}) \phi_n(y) \frac{\mathrm dx\, \mathrm dy}{|x-y|}}_{=:(\mathrm B)}\\
+&\ \qquad\quad +\underbrace{\int  \overline{\phi(x)} (\phi(x)- \phi_n(x)) |\phi_n(y)|^2 \frac{\mathrm dx\, \mathrm dy}{|x-y|}}_{=:(\mathrm C)} + \underbrace{\int   (\overline{\phi(x)}- \overline{\phi_n(x)}) \phi_n(x) |\phi_n(y)|^2 \frac{\mathrm dx\, \mathrm dy}{|x-y|}}_{=:(\mathrm D)}.
+\end{align*}
+Es ist
+\begin{align*}
+|(D)|&\le \int |\phi(x)-\phi_n(x)| |\phi_n(x)| V_{\phi_n}(x) \, \mathrm dx \\
+ &\le \| V_{\phi_n}\|_\infty \| \phi- \phi_n\|_2 \| \phi_n\| \to 0 \quad (n\to \infty),
+\end{align*}
+denn wie vorher folgt
+\begin{equation}
+\|V_{\phi_n}\|_\infty \le C\| \nabla \phi_n\| \| \phi\| \le C \| \nabla \phi_n\| + \| \phi\|) \le \text{const.}
+\end{equation}
+Analog ergibt sich $(\mathrm A), (\mathrm B), (\mathrm C)\to 0$ für $n\to \infty$.
+\end{proof}
 
 %\begin{lem}\label{9.7}
 %Sei $(\phi_n)$ eine Folge in $H^1(\mathbb R^3)$ mit $\int |\phi_n(x)|^2 \, \mathrm dx = 1, E(\phi_n) \to \lambda$ und $\phi_n \to \phi$. Dann ist $\phi \in H^1(\mathbb R^3)$ und $E(\phi) = \lambda$.
@@ -3060,7 +3144,16 @@ Sei $(\phi_n)$ eine Folge in $H^1$ mit
 \end{equation}
 Dann ist $\phi \in H^1(\mathbb R^3)$ und $E(\phi) = \lambda$.
 \end{lem}
-
+\begin{proof}
+nach Lemma \ref{5.5} ist $(\phi_n)$ beschränkt, also $\phi_n \rightharpoonup \phi$ in $H^1(\mathbb R^3)$. Nach Lemma \ref{5.1} folgt
+\begin{equation}
+\int |\nabla \phi|^2\, \mathrm dx \le \liminf \int |\nabla \phi_n|^2\, \mathrm dx
+\end{equation}
+wegen $\phi_n \rightharpoonup \phi$ und Lemma \ref{5.8} folgt
+\begin{equation}
+\lambda \le E(\phi) \le \liminf E(\phi_n) = \lambda.
+\end{equation}
+\end{proof}
 % Vorlesung vom 17.07.
 Eine Folge $(\phi_n)$ in $H^1(\mathbb R^n)$ mit $\int |\phi_n|^2=1$ und $E(\phi_n) \to \lambda$ nennen wir eine minimierende Folge für $E$. Nach Lemma \ref{5.8} genügt es eine $L^2$-konvergente minimierende Folge zu finden um Existenz eines Minimierers für $E$ nachzuweisen.  
 
