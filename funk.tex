@@ -1418,36 +1418,103 @@ Tu = u\big|_{\partial \Omega}, \qquad \text{für } u\in C(\overline{\Omega}) \ca
 \end{equation}
 \end{thm}
 Der Operator $T$ heißt \emph{Spuroperator} und $Tu$ ist die Spur von $u$ auf dem Rand $\delta \Omega$.
-\chapter{Einbettungssätze für $W^{m,p}(\Omega)$} (FIXME: Beweise, Bemerkungen, Beispiele müssen noch ergänzt werden)
-\begin{satz} Sei $\Omega \subset \mathbb R^n$ offen und beschränkt mit Lipschitzrand. Dann gilt
+\chapter{Einbettungssätze für $W^{m,p}(\Omega)$} (FIXME: refs anpassen)
+\begin{satz}\label{5.1} Sei $\Omega \subset \mathbb R^n$ offen und beschränkt mit Lipschitzrand. Dann gilt
 \begin{align*}
-W^{1,p}(\Omega) &\to L^q(\Omega) \begin{cases} p \le q \le p^*, \quad 1 \le p\le n\\  p \le q <\infty, p =n \end{cases}\\
+W^{1,p}(\Omega) &\to L^q(\Omega) \begin{cases} p \le q \le p^*, \quad 1 \le p\le n\\  p \le q <\infty, \quad p =n \end{cases}\\
 W^{1,p}(\Omega) &\to C^{0,\gamma}(\overline{\Omega}) \quad \gamma = 1- \frac{n}{q}, \quad p >n,
 \end{align*}
 wobei $\frac{1}{p^*}= \frac{1}{p}-\frac{1}{n}$.
 \end{satz}
-
+\begin{proof}
+Wir betrachten zunächst den Fall $p \leq n$. Nach Theorem \ref{4.6} existiert eine stetige lineare Abbildung
+\begin{equation*}
+E:W^{1,p} (\Omega) \rightarrow W_0^{1,p}(\mathbb{R}^n).
+\end{equation*}
+Weiterhin gilt nach Aufgabe 4.3 und Theorem \ref{3.4}
+\\
+\\
+$(1) \qquad \qquad \qquad W_0^{1,p}(\mathbb{R}^n) \rightarrow L^q (\mathbb{R}^n), \qquad p \leq q \leq p^*$
+\\
+\\ Wir bezeichnen diese Einbettung an dieser Stelle mit mit $I_q$. Ausserdem sieht man, dass die Abbildung 
+ $R_{\Omega}: L^q(\mathbb{R}^n) \rightarrow  L^q(\Omega), \ u \mapsto u|_{\Omega}$ beschränkt und linear ist. Damit ist die Abbildung
+\begin{align*}
+ R_{\Omega} \circ  I_q \circ E: W^{1,p}(\Omega) \rightarrow L^q (\Omega)
+ \end{align*}
+ stetig und linear.
+ \\
+ \\
+ $(2) \qquad \qquad \qquad R_{\Omega} I_q E u = (I_q E u)|_{\Omega} = (Eu)|_{\Omega} = u.$
+ \\
+ \\
+ Somit gilt $W^{1,p}(\Omega) \subseteq L^q(\Omega)$ und 
+ \begin{align*}
+ \Vert u \Vert_{L^q(\Omega)} \leq c \Vert u \Vert_{W^{1,p}(\Omega)}.
+ \end{align*}
+ Im Falle $p=n$ ist $(1)$ durch die Einbettung 
+ \begin{align*}
+ W^{1,p}(\mathbb{R}^n) \rightarrow L^q (\mathbb{R}^n), \qquad p \leq q < \infty
+ \end{align*}
+ zu ersetzen. 
+ \\ Für den Fall $p >n$ haben wir 
+ \begin{align*}
+ W_0^{1,p}(\mathbb{R}^n) \rightarrow C^{0,\gamma}(\mathbb{R}^n), \qquad \gamma = 1 - \frac{n}{p}
+ \end{align*}
+ an Stelle von $(1)$.
+ \\ Für $(2)$ nimmt man
+ \begin{align*}
+ R_{\Omega}: C^{0,\gamma} (\overline{\mathbb{R}^n}) \rightarrow C^{0,\gamma} (\overline{\Omega})
+ \end{align*}
+ und der Beweis verläuft analog.
+\end{proof}
 \begin{thm}
 Sei $\Omega \subset \mathbb R^n$ offen und beschränkt mit Lipschitzrand. Wenn
 \begin{enumerate}[a)]
-\item $m<\frac{n}{p}$ dann
+\item $m<\frac{n}{p}$, dann
 \begin{align*}
-W^{m,p}(\Omega) \to L^p(\Omega)&\ \quad p\le q \le p^*\\
-&\ \quad \frac{1}{p^*} = \frac{1}{p} - \frac{m}{n}.
+W^{m,p}(\Omega) \to L^p(\Omega),&\ \quad p\le q \le p^*, \ \frac{1}{p^*} = \frac{1}{p} - \frac{m}{n}.
 \end{align*}
-\item $m= \frac{n}{p}$ dann
+\item $m= \frac{n}{p}$, dann
 \begin{equation}
-W^{m,p}(\Omega) \to L^p(\Omega) \quad p \le q <\infty.
+W^{m,p}(\Omega) \to L^p(\Omega), \quad p \le q <\infty.
 \end{equation}
-\item $m>\frac{n}{p}$ dann
+\item $m>\frac{n}{p}$, dann
 \begin{equation}
-W^{m,p}(\Omega) \to C^{k,\gamma}(\overline{\Omega}) \quad m- \frac{n}{p} \ge k + \gamma,
+W^{m,p}(\Omega) \to C^{k,\gamma}(\overline{\Omega}), \quad m- \frac{n}{p} \ge k + \gamma,
 \end{equation}
 wobei $k \in \mathbb N_0$ die größte ganze Zahl kleiner als $m- \frac{p}{\gamma}$ und $\gamma \in (0,1)$ ist.
 \end{enumerate} 
 Für $W_0^{m,p}(\Omega)$ gelten die analogen Aussagen für beliebige $\Omega \subset \mathbb R^n$ offen.
 \end{thm}
-
+\begin{proof}
+$a)$ Nach Satz 5.1 gilt
+\begin{align*}
+W^{m,p}(\Omega) \rightarrow W^{m-1,p_1} (\Omega) \rightarrow \ldots \rightarrow L^q(\Omega),
+\end{align*}
+wobei $\frac{1}{p_l}= \frac{1}{p} - \frac{l}{n}$ und $q = p_m$.
+\\ Da offensichtlich $W^{m,p}(\Omega) \rightarrow L^p(\Omega)$ gilt, folgt $a)$ aus Aufgabe 4.3.
+\\
+\\$b)$ Der Fall $m=1$ ist nach obigem Satz bereits abgedeckt. Falls $m= \frac{n}{p}>1$, dann gilt
+\begin{align*}
+W^{m,p}(\Omega) \rightarrow W^{1,n}(\Omega) \rightarrow L^q(\Omega), \ n \leq q < \infty,
+\end{align*}
+denn $\frac{1}{p} - \frac{(m-1)}{n} = \frac{1}{n}.$ Offensichtlich gilt
+\begin{align*}
+W^{m,p}(\Omega) \rightarrow L^p (\Omega),
+\end{align*}
+woraus somit
+\begin{align*}
+W^{m,p}(\Omega) \rightarrow L^q (\Omega), \qquad p \leq q < \infty
+\end{align*}
+folgt.
+\\
+\\$c)$ Sei $p>n$, dann gilt $W^{m,p}(\Omega) \rightarrow C^{m-1,p}(\overline{\Omega})$ mit $\gamma = 1 - \frac{n}{p}$, denn für $u \in C^{\infty}(\Omega) \cap W^{m,p}(\Omega), \ |\alpha| \leq m-1$ gilt $\partial^{\alpha}u \in W^{1,p}(\Omega)$, also $\Vert \partial^{\alpha}u \Vert_{\gamma} \leq C \partial^{\alpha}u \Vert_{1,p}$ und damit
+\begin{align*}
+\Vert u \Vert_{m-1, \gamma} \leq \text{const} \Vert u \Vert_{m,p} < \infty.
+\end{align*}
+Insbesondere gilt $u \in C^{m-1, \gamma}(\overline{\Omega})$. Aus Meyers-Serrin und der Vollständigkeit von $C^{m-1,\gamma}(\overline{\Omega})$ folgt nun der Behauptung.
+\\ Der Rest des Beweises verläuft analog zum Beweis von Theorem 3.6.
+\end{proof}
 \begin{thm}
 Sei $\Omega \subset \mathbb R^n$ offen und beschränkt mit Lipschitzrand. Dann ist die Einbettung
 \begin{equation}
@@ -1455,7 +1522,13 @@ W^{1,p}(\Omega) \to L^q(\Omega) \quad 1\le q < p^*
 \end{equation}
 kompakt für $\frac{1}{p^*}= \frac{1}{p} - \frac{1}{n}$ falls $p<n$ und $p^*=\infty$ falls $p \ge n$.
 \end{thm}
-
+\begin{proof}
+Wähle $\Omega_1 \subset \mathbb{R}^n$ offen und beschränkt mit $\Omega \subset \subset \Omega_1.$ Dann gilt
+\begin{align*}
+W^{1,p}(\Omega) \overset{E}{\rightarrow} W_0^{1,p}(\Omega) \overset{\text{kompakt}}{\rightarrow} L^q(\Omega_1) \overset{\text{stetig}}{\rightarrow} L^q(\Omega),
+\end{align*}
+wobei die Kompaktheit von $W_0^{1,p}(\Omega) \rightarrow L^q(\Omega_1)$ aus der Bemerkung zum Theorem 3.8 folgt.
+\end{proof}
 \chapter{Die Sobolevräume $H^s(\mathbb R^n)$}
 (FIXME) Hauptteil der Beweise fehlt noch.
 Sei $H^m(\mathbb R^n) := W^{m,2}(\mathbb R^n)$.
@@ -1508,7 +1581,7 @@ und für $|\alpha|\le k$ gilt
 
 FIXME: Es fehlen drei Vorlesung. Heute ist der 9.6.15
 \setcounter{thm}{5}
-\begin{thm}\label{4.6}
+\begin{thm}\label{6.6}
 Jede Distribution $u\in H^{-s}(\mathbb R^n)$ lässt sich erweitern zu einem (eindeutig bestimmten linearen Funktional $L_u \in (H^s)^*$ wobei 
 \begin{equation}
 L_u(v) = \int \hat u(p) \hat v(-p)\, \mathrm dp \quad v\in H^s.
