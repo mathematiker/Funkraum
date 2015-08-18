@@ -3659,6 +3659,17 @@ Die Vektorräume $C_B^k(\Omega)$ und $C^k(\overline{\Omega})$ versehen wir mit d
 \begin{satz}
 $C_B^k(\Omega)$ ist ein Banachraum und $C^k(\overline{\Omega})$ ist ein abgeschlossener Unterraum von $C_B^k(\Omega)$.
 \end{satz}
+\begin{proof}
+Sei $(u_n)$ eine Cauchy-Folge in $C_B^k(\Omega)$. Dann ist $(\partial^\alpha u_n)$ für $|\alpha| \leq k$ eine Cauchy-Folge in $L^\infty(\Omega)$, also konvergent. Es existiert also $u_\alpha\in L^\infty(\Omega)$ mit $\partial^\alpha u_n \rightarrow u_\alpha$ gleichmäßig ($n\rightarrow\infty$). Da $\partial^\alpha u_n$ stetig ist, folgt $u_\alpha\in C(\Omega)$. Behauptung: $\partial^\alpha=u_\alpha$. Sei $x\in\Omega$ fest und sei
+\begin{align*}
+f_n(t)&=u_n(t,x_2,\ldots,x_n) \\
+f(t)&=u(t,x_2,\ldots,x_n) \\
+g_n(t)&=\partial_1 u_n(t,x_2,\ldots,x_n) \\
+g(t)&=u_{(1,0,\ldots,0)}(t,x_2,\ldots,x_n)
+\end{align*}
+Dann gilt $f_n\rightarrow f$ gleichmäßig und $g_n\rightarrow g$ gleichmäßig auf einer Umgebung von $x_1$, wobei $g_n=f_n'$. Daraus folgt, dass $f$ differenzierbar ist und $f'=g$. Ebenso für die anderen Variablen, das heißt $u\in C^1(\Omega)$ und $\partial^\alpha u=u_\alpha$ für $|\alpha|=1$. Per Induktion folgt $\partial^\alpha u=u_\alpha$ für $|\alpha|\leq k$. Damit ist gezeigt, dass $u\in C_B^k(\Omega)$, denn $\partial^\alpha u=u_\alpha \in L^\infty(\Omega)\cap C(\Omega)$. \\
+$C^k(\overline{\Omega})$ ist abgeschlossen: Falls $u\in C_B^k(\Omega)$ und $u_n\rightarrow u$ in $C^k(\overline{\Omega})$, dann $\partial^\alpha u_n \rightarrow \partial^\alpha u$ gleichmäßig für $|\alpha|\leq k$, wobei $\partial^\alpha u_n$ gleichmäßig stetig ist. Daraus folgt, dass $\partial^\alpha u$ gleichmäßig stetig ist (Übung).
+\end{proof}
 Eine Funktion $U: \Omega \to \mathbb C$ heißt \emph{Hölderstetig} mit Exponent $\gamma \in (0,1)$ falls
 \begin{equation}
 |u|_\gamma = \sup_{x,y \in \Omega, x\neq y} \frac{|u(x)-u(y)|}{|x-y|^\gamma} < \infty.
