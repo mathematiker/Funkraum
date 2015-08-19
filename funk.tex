@@ -954,7 +954,7 @@ folgt im Limes
 	\end{equation}
 	wobei $\tilde u$ der stetige Repräsentant von $u$ ist.
 \end{proof}
-\begin{thm}
+\begin{thm}\label{thm 3.6}
 	Sei $\Omega \subset \mathbb R^n$ offen, $1\le p < \infty$ und sei $m>\frac{n}{p}$. Dann gilt
 	\begin{equation}
 	W_0^{m,p}(\Omega) \to C^{k, \gamma}(\overline{\Omega})
@@ -1242,7 +1242,7 @@ kompakt und
 
  Wir wollen nun Einbettungssätze für $W^{m,p}(\Omega)$ beweisen. Diese führen wir auf Einbettungssätze für $W^{1,p}(\Omega)$ zurück.  
 
- Die Idee ist die Funktion $u\in W^{1,p}(\Omega)=W_0^{1,p}(\mathbb R^n)$ fortzusetzen zu Funktionen $\tilde u \in W^{1,p}(\tilde \Omega)$ mit $\tilde u = u$ in $\Omega\subset \tilde \Omega$.   Dann können wir die bekannten Sätze auf $W_0^{1,p}(\tilde \Omega)$ anwenden.   Genauer suchen wir eine beschränkte lineare Abbildung $E: W^{1,p}(\Omega)\to W_0^{1,p}(\tilde \Omega)$ mit $Eu=u$ in $\Omega$.  Die Existenz von $E$ impliziert dass $C^\infty(\overline{\Omega}) \cap W^{1,p}(\Omega)$ in $W^{1,p}(\Omega)$ dicht ist.
+ Die Idee ist die Funktion $u \in W^{1,p}(\Omega)=W_0^{1,p}(\mathbb{R}^n)$ fortzusetzen zu Funktionen $\tilde{u} \in W^{1,p}(\widetilde{ \Omega})$ mit $\tilde{u }= u$ in $\Omega\subset \widetilde{\Omega}$.   Dann können wir die bekannten Sätze auf $W_0^{1,p}(\widetilde{\Omega)}$ anwenden.   Genauer suchen wir eine beschränkte lineare Abbildung $E: W^{1,p}(\Omega)\to W_0^{1,p}(\widetilde{\Omega)}$ mit $Eu=u$ in $\Omega$.  Die Existenz von $E$ impliziert dass $C^\infty(\overline{\Omega}) \cap W^{1,p}(\Omega)$ dicht in $W^{1,p}(\Omega)$ liegt.
  
  \textbf{Erinnerung:} Nach Meyers-Serrin ist $C^\infty(\Omega) \cap W^{1,p}(\Omega)$ dicht in $W^{1,p}(\Omega)$ wobei $C^\infty(\Omega) \supset C^\infty(\overline{\Omega})$.
 
@@ -1252,12 +1252,13 @@ Diese Dichtheit brauchen wir für die Konstruktion von E:
 \begin{df}
  Der Rand von $\Omega\subset \mathbb R^n$ ist von der Klasse $C^\infty$ falls zu jedem $x_0 \in \partial \Omega$ eine Umgebung $U\subset \mathbb R^n$ und eine stetige Abbildung
  \begin{equation}
-  h: B(0, \eta) \to \mathbb R \quad B(0,\eta) \subset \mathbb R^{n-1}
+  h: B(0, \eta) \to \mathbb \mathbb{R}, \quad B(0,\eta) \subset \mathbb R^{n-1}
  \end{equation}
-existiert so, dass (nach Verschiebung und Rotation des Koordinatensystems).
+existiert so, dass (nach Verschiebung und Rotation des Koordinatensystems)
 \begin{equation}
  \Omega \cap U = \{ (x', x_n) \in U| x_n >h(x') , x'\in B(0, \eta)\}
 \end{equation}
+gilt.
 \end{df}
 \begin{thm}\label{thm3.9}
  Ist $\Omega \subset \mathbb R^n$ offen, beschränkt und $\partial \Omega$ von der Klasse $C^0$, dann ist $C^\infty(\overline{\Omega}) \cap W^{m,p}(\Omega)$ dicht in $W^{m,p}(\Omega)$ für $m\in \mathbb N$, $1\le p <\infty$.
@@ -1284,12 +1285,9 @@ Sei $u\in C^\infty(\Omega) \cap W^{m,p}(\Omega)$. Wir wollen $u$ approximieren d
 \end{equation}
 Für $i=1,\ldots, N$ setzen wir $u_i$ durch $0$ auf $\mathbb R^n$ fort und definieren
 \begin{equation}
- u_{i,\tau}(x) =u_i(x+ \tau e_n) \quad \tau >0
+ u_{i,\tau}(x) =u_i(x+ \tau e_n) \quad \tau >0,
 \end{equation}
 wobei $e_n=(0,\ldots,0,1)$.
-
-FIXME(BILD?)
-
 $u_i$ ist $C^\infty$ in 
 \begin{equation}
 U_i \cap \Omega = \{(x', x_n) \in U_i | x_n > h(x'), x' \in B(0,\eta_i)\}.
@@ -1298,16 +1296,16 @@ $u_i$ ist $C^\infty$ in
 \begin{equation}
  \{(x', x_n) \in U_i | x_n > h(x') - \tau \quad x'\in B(0,\eta_i)\}
 \end{equation}
-was eine offene Umgebung der kompakten Menge $\supp(u_{i,\tau}) \cap \overline{\Omega}$. Also ist $u_{i,\tau}\in C^\infty(\overline{\Omega})$. Es folgt $u_0 + \sum_{i=1}^N u_{i,\tau} \in C^\infty(\overline{\Omega})$ wobei
+was eine offene Umgebung der kompakten Menge $\supp(u_{i,\tau}) \cap \overline{\Omega}$. Also ist $u_{i,\tau}\in C^\infty(\overline{\Omega})$. Es folgt $u_0 + \sum_{i=1}^N u_{i,\tau} \in C^\infty(\overline{\Omega})$, wobei
 \begin{align*}
  \| u_0 + \sum_{i=1}^N u_{i,\tau} -u\|_{m,p} &= \| \sum_{i=1}^N (u_{i,\tau} - u_i)\|_{m,p}\\
- &\le \sum_{i=1}^N \| u_{i,\tau} - u_i \|_{m,p, \Omega} \to 0 (\tau \to 0).
+ &\le \sum_{i=1}^N \| u_{i,\tau} - u_i \|_{m,p, \Omega} \to 0 \qquad (\tau \to 0),
 \end{align*}
-Wenn
+denn
 \begin{equation}
- \| u_{i,\tau} - u_i \|^p_{m,p, \Omega} = \sum_{|\alpha|\le m} \int_\Omega | \partial^\alpha u_i (x+ \tau e_n) - \partial^\alpha u_i (x)|^p \to 0 (\tau \to 0). 
+ \| u_{i,\tau} - u_i \|^p_{m,p, \Omega} = \sum_{|\alpha|\le m} \int_\Omega | \partial^\alpha u_i (x+ \tau e_n) - \partial^\alpha u_i (x)|^p \to 0 \qquad (\tau \to 0). 
 \end{equation}
-Da $C^\infty(\Omega) \cap W^{m,p}(\Omega)$ dicht ist in $W^{m,p}(\Omega)$ folgt daraus die Behauptung des Theorems.
+Da $C^\infty(\Omega) \cap W^{m,p}(\Omega)$ dicht  in $W^{m,p}(\Omega)$ ist, folgt daraus die Behauptung des Theorems.
 \end{proof}
 
 \begin{lem}\label{4.2}
@@ -1330,12 +1328,12 @@ $T$ ist bijektiv, denn für $u\in L^p(\Omega')$ ist $u\circ g^{-1} \in L^p(\Omeg
 \end{proof}
 
 \begin{satz}
- Seien $\Omega, \Omega'\subset \mathbb R^n$ offen und $g: \Omega'\to \Omega$ sei wie in Lemma 2. 
+ Seien $\Omega, \Omega'\subset \mathbb R^n$ offen und $g: \Omega'\to \Omega$ sei wie in Lemma \ref{4.2}. 
  Dann ist $T: W^{1,p}(\Omega) \to W^{1,p}(\Omega'), 1\le p <\infty,$ bijektiv und beschränkt mit 
  beschränkter Inversen. Die Ableitung von $Tu, u \in W^{1,p}(\Omega)$, sind durch die Kettenregel gegeben.
 \end{satz}
 \begin{proof}
- Sei $u\in W^{1,p}(\Omega)$. Nach Meyer-Serrin existiert eine Folge $u_k \in C^\infty(\Omega \cap W^{1,p}(\Omega)$ mit $u_k \to u in W^{1,p}(\Omega)$. 
+ Sei $u\in W^{1,p}(\Omega)$. Nach Meyer-Serrin existiert eine Folge $u_k \in C^\infty(\Omega) \cap W^{1,p}(\Omega)$ mit $u_k \to u in W^{1,p}(\Omega)$. 
  $Tu_k=u_k \circ g$ ist in $C^1$ und nach der Kettenregel gilt
  \begin{equation}
   \partial_i (u_k \circ g) = \sum_{l=1}^n ((\partial_l u_k)\circ g)\cdot(\partial_i g_l).
@@ -1344,23 +1342,24 @@ $T$ ist bijektiv, denn für $u\in L^p(\Omega')$ ist $u\circ g^{-1} \in L^p(\Omeg
  \begin{equation}\label{eq:4.1}
   \partial_i (Tu_k) = \sum_{l=1}^n T(\partial_l u_k) (\partial_i g_l)
  \end{equation}
-Da $u_k \to u$ in $W^{1,p}(\Omega)$ also nach Lemma \eqref{4.2}
+Nach Lemma \eqref{4.2} gilt wegen $u_k \to u$ in $W^{1,p}(\Omega)$:
 \begin{align}
- T u_k \to Tu &\ \quad \text{ in } L^p, \label{eq:4.2} \\ \quad T(\partial_l u_k) \to T(\partial_l) &\ \quad \text{ in } L^p \label{eq:4.3}
+ T u_k \to Tu &\ \quad \text{ in } L^p, \label{eq:4.2} \\ \quad T(\partial_l u_k) \to T(\partial_l) &\ \quad \text{ in } L^p. \label{eq:4.3}
 \end{align}
-
-Da $\partial_i g_l \in L^\infty$ folgt aus \eqref{eq:4.1}, \eqref{eq:4.3} dass
+\ 
+\\
+Da $\partial_i g_l \in L^\infty$, folgt 
 \begin{equation}
  \partial_i(Tu_k) \to \sum_{l=1}^n T(\partial_l u) ( \partial_i g_l) \quad ( k\to \infty)
 \end{equation}
 in $L^p$. Also ist $Tu\in W^{1,p}(\Omega')$ und 
 \begin{equation}
- \partial_i(Tu) = \sum_{l=1}^n T(\partial_l u) (\partial_i g_l)
+ \partial_i(Tu) = \sum_{l=1}^n T(\partial_l u) (\partial_i g_l).
 \end{equation}
 Daraus folgt
 \begin{align*}
  \|\partial_i(Tu)\|_p &\le \sum_{l=1}^n \|T\partial_l u \|_p \| \partial_i g_l\|_\infty\\
- &\stackrel{\text{Lem.} \ref{4.2}}\le C \sum_{l=1}^n \| \partial_l u\|_p \| \partial_i g_l\|_\infty \le \tilde C \|u\|_{1,p}.
+ &\stackrel{\text{Lem.} \ref{4.2}}\le C \sum_{l=1}^n \| \partial_l u\|_p \| \partial_i g_l\|_\infty \le \widetilde C \|u\|_{1,p}.
 \end{align*}
 Es folgt
 \begin{equation}
@@ -1369,7 +1368,7 @@ Es folgt
 \end{proof}
 
 \begin{satz}
- Sei $\Omega\subset \mathbb R^n$ offen. Dann gilt $C^{0,1}(\overline{\Omega})\subset W^{1,\alpha}(\Omega)$ und für $u\in C^{0,1}(\overline{\Omega}$ und für $u\in C^{0,1}(\overline{\Omega})$ und für $u\in C^{0,1}(\overline{\Omega})$ gilt
+ Sei $\Omega\subset \mathbb R^n$ offen. Dann gilt $C^{0,1}(\overline{\Omega})\subset W^{1,\infty}(\Omega)$ und für $u\in C^{0,1}(\overline{\Omega})$ gilt
  \begin{equation}
   \max_{i=1,\ldots, n} \| \partial_i u\|_\infty\le |u|_{0,1}.
  \end{equation}
@@ -1377,23 +1376,22 @@ Es folgt
 
 \begin{proof}
  Sei $\Omega_c \subset \subset \Omega$ und offen. Sei $e_i = (0,\ldots, 1, \ldots, 0)$ der $i-te$ Einheitsvektor von $\mathbb R^n$.
- 
- Für $x\in \Omega_0$ und $\varepsilon >0$ klein genug gilt
+Für $x\in \Omega_0$ und $\varepsilon >0$ klein genug gilt
  \begin{align*}
   \partial_i(J_\varepsilon * u) (x)&= \lim_{h\to 0} \frac{1}{h} \left [ (J_\varepsilon * u) (x+he_i) - (J_\varepsilon*u) (x)\right ] \\
   &\stackrel{x\in \Omega_c}=\lim_{h\to 0} \int J_{\varepsilon}(y) \left [ \frac{u(x+he_i -y) - u(x-y)}{h} \right ]\, \mathrm dy.
  \end{align*}
  Also gilt
  \begin{equation}\label{eq:4.4}
-  \|\partial_i (J_\varepsilon * u) \|_\infty \le |u|_{0,1} \quad u\in C^{0,1}(\Omega).
+  \|\partial_i (J_\varepsilon * u) \|_\infty \le |u|_{0,1}, \quad u\in C^{0,1}(\Omega).
  \end{equation}
- Da $L^\infty(\Omega_0) = L^1(\Omega_0)^*$ und $L^1(\Omega_0)$ seperabel ist, ist jede abgeschlossene Kugel in $L^\infty(\Omega_c)$ schwach-$*$-folgenkompakt. Wegen \eqref{eq:4.4} existiert somit eine Folge $\varepsilon_k \downarrow 0$, so dass 
+ Da $L^\infty(\Omega_0) = L^1(\Omega_0)^*$ und $L^1(\Omega_0)$ seperabel ist, ist jede abgeschlossene Kugel in $L^\infty(\Omega_c)$ schwach-$*$-folgenkompakt. Wegen der oberen Abschätzung existiert somit eine Folge $\varepsilon_k \downarrow 0$, so dass 
  \begin{equation}
-  \partial_i (J_{\varepsilon_k} * u) \stackrel{*}{\to} u_i \in L^\infty(\Omega_0)
+  \partial_i (J_{\varepsilon_k} * u) \stackrel{*}{\to} u_i \in L^\infty(\Omega_0),
  \end{equation}
- Also für alle $\phi \in C_0^\infty(\Omega_c) \subset L^1(\Omega_0)$
+also für alle $\phi \in C_0^\infty(\Omega_c) \subset L^1(\Omega_0)$
  \begin{equation}
-  \int \partial_i (J_{\varepsilon_k} *u) \phi \, \mathrm dx \stackrel{(k\to \infty}{\to} \int u_i \phi \, \mathrm dx.
+  \int \partial_i (J_{\varepsilon_k} *u) \phi \, \mathrm dx \stackrel{(k\to \infty)}{\to} \int u_i \phi \, \mathrm dx.
  \end{equation}
  Anderersets,
  \begin{equation}
@@ -1406,11 +1404,11 @@ Also ist $u_i = \partial_i u$ in $\Omega_0$ und
 &\le \liminf_{k\to \infty} \| \partial_i (J_{\varepsilon_k} * u) \|_{L^\infty(\Omega_0)} \le |u|_{0,1}. 
 \end{split}
 \end{equation}
-Diese Ergebnisse sind anwendbar auf jede Teilmenge $\Omega_n\subset \subset \Omega$ eine Folge $\Omega_1 \subset \Omega_2 \subset \Omega_3 \subset \ldots \subset \Omega$ mit
+Diese Ergebnisse sind anwendbar auf jede Teilmenge $\Omega_n\subset \subset \Omega$ einer Folge $\Omega_1 \subset \Omega_2 \subset \Omega_3 \subset \ldots \subset \Omega$ mit
 \begin{equation}
  \bigcup_{n=1}^\infty \Omega_n = \Omega.
 \end{equation}
-Für jedes $\Omega_n$ existert also eine schwache Ableitung $\partial_i u^{(n)}$ von $u$ in $\Omega_n$-
+Für jedes $\Omega_n$ existert also eine schwache Ableitung $\partial_i u^{(n)}$ von $u$ in $\Omega_n$.
 
 Für $l<n$ gilt 
 \begin{equation}
@@ -1422,7 +1420,7 @@ Wir definieren $\partial_i u$ durch
 \begin{equation}
  \partial_i u\big |_{\Omega_l}  = \partial_i u^{(l)}
 \end{equation}
-Dann ist $\partial_i u$ wohldefiniert, $\partial_i u\in L^1_{\text{loc}}(\Omega)$ und $\partial_i u$ ist die schwache Ableitung von $u$ nach $x_i$.  Aus \eqref{eq:4.5} folgt $\|\partial_i u\|_\infty \le |u|_{0,1}$.
+Dann ist $\partial_i u$ wohldefiniert, $\partial_i u\in L^1_{\text{loc}}(\Omega)$ und $\partial_i u$ ist die schwache Ableitung von $u$ nach $x_i$. Es folgt $\|\partial_i u\|_\infty \le |u|_{0,1}$.
 \end{proof}
 \begin{satz}\label{4.5}
  Seien $\Omega, \Omega'\subset \mathbb R^n$ offen und beschränkt, $g: \Omega' \to \Omega$ bijektiv mit $g, g^{-1}$ Lipschitz. Sei $u\in W^{1,p}(\Omega)$ mit $\supp(u) \subset \subset \Omega$. Dann ist $Tu=u\circ g \in W^{1,p}(\Omega')$ und es gilt
@@ -1436,35 +1434,35 @@ und $\|Tu\|_{W^{1,p}(\Omega')} \le C\|u\|_{W^{1,p}(\Omega)}$.
 \end{proof}
 
 \begin{df}
- Der Rand vn $\Omega \subset \mathbb R^n$, ist von der Klasse $C^{0,1}$ (Lipschitz-Rand) für jedes $x_0 \in \partial \Omega$ eine Umgebung $U\subset \mathbb R^n$ und Abbildung $h: B(0, \eta) \to \mathbb R$, $B(0,\eta) \subset \mathbb R^{n-1}$ von der Klase $C^{0,1}$ existiert, so dass
+ Der Rand von $\Omega \subset \mathbb R^n$ ist von der Klasse $C^{0,1}$ (Lipschitz-Rand), falls für jedes $x_0 \in \partial \Omega$ eine Umgebung $U\subset \mathbb R^n$ und eine Abbildung $h: B(0, \eta) \to \mathbb R$, $B(0,\eta) \subset \mathbb R^{n-1}$ von der Klasse $C^{0,1}$ existiert, so dass
  \begin{equation}
-  \Omega \cap U = \{(x', x_n) | x_n > h(x'), x'\in B(0,\eta)\}.
+  \Omega \cap U = \{(x', x_n) | x_n > h(x'), x'\in B(0,\eta)\}
  \end{equation}
- Nach Verschiebung nach Verschiebung und Rotation des Koordinatensystems.
+ (nach Verschiebung und Rotation des Koordinatensystems) gilt.
 \end{df}
 
 \begin{thm}\label{4.6}
- Sei $\Omega\subset \mathbb R^n$ offen und beschränkt mit Rand der Klasse $C^{0,1}$. Sei $\Omega \subset \subset \Omega_1$. Dann existiert eine stetige lineare Abbildung
+ Sei $\Omega\subset \mathbb R^n$ offen und beschränkt mit Rand der Klasse $C^{0,1}$. Sei weiterhin $\Omega \subset \subset \Omega_1$ gegeben. Dann existiert eine stetige lineare Abbildung
  \begin{equation}
- E: W^{1,p}(\Omega) \to W_{0}^{1,p}(\Omega_1), \quad 1\le p <\infty,
+ E: W^{1,p}(\Omega) \to W_{0}^{1,p}(\Omega_1), \quad 1\le p <\infty
  \end{equation}
  mit $Eu\big|_\Omega=u$ für alle $u\in W^{1,p}(\Omega)$. 
 \end{thm}
 \begin{proof}
- Sei zuerst $\Omega=\{(x', x_n) |x_n >0\}$ und $u\in C^1(\overline{\Omega} \cap W^{1,p}(\Omega)$. und $u\in C^1(\overline{\Omega}) \cap W^{1,p}(\Omega)$. Seien $u^+, \partial_i u^+$ die stetigen Fortsetzungne von $u_i \partial_i u$ auf $\overline{\Omega}$. Wir definieren für $x_n \le 0$
+ Sei zunächst $\Omega=\{(x', x_n) |x_n >0\}$ und $u\in C^1(\overline{\Omega}) \cap W^{1,p}(\Omega)$. Seien $u^+, \partial_i u^+$ die stetigen Fortsetzungen von $u,\ \partial_i u$ auf $\overline{\Omega}$. Wir definieren für $x_n \le 0$
  \begin{equation}
-  u^{-}(x', x_n) = - 3 u^+(x', -x_n) + 4u^+\left (x_1' - \frac{1}{2} x_n\right )
+  u^{-}(x', x_n) = - 3 u^+(x', -x_n) + 4u^+\left (x_1', - \frac{1}{2} x_n\right )
  \end{equation}
- Dann gilt $u^{-1}(x',0)=u^+(x',0)$ und für
+ Dann gilt $u^{-}(x',0)=u^+(x',0)$ und für
  $i=1, \ldots, n-1$ gilt
  \begin{align*}
   \lim_{x_n\to 0-} \partial_i  u^{-1}(x', x_n) &= - 3\partial_i u^{+}(x',0) + 4\partial_i u^+(x',0) \\
-  &=\partial_i u^+ (x',0).
+  &=\partial_i u^+ (x',0)
  \end{align*}
 und 
 \begin{align*}
  \lim_{x_n\to 0-} \partial_n u^{-} (x', x_n) &= \lim_{x_n\to 0} (3(\partial_n u^+) (x', -x_n) - 2(\partial_n u^+) (x', -\frac{x_n}{2}))\\
- &=\partial_n u^{-}(x',0)
+ &=\partial_n u^{+}(x',0)
 \end{align*}
 Wir definieren
 \begin{equation}
@@ -1473,7 +1471,7 @@ Wir definieren
                   u^{-}(x', x_n) \quad x_n <0.
                  \end{cases}
 \end{equation}
-Dann ist $Eu\in C^1(\overline{\mathbb R^n})$. und 
+Dann ist $Eu\in C^1(\overline{\mathbb R^n})$ und 
 \begin{equation}
  \| Eu\|_{W^{1,p}(\mathbb R^n)} \le C\|u\|_{W^{1,p}(\Omega)}.
 \end{equation}
@@ -1489,20 +1487,21 @@ Tu = u\big|_{\partial \Omega}, \qquad \text{für } u\in C(\overline{\Omega}) \ca
 \end{equation}
 \end{thm}
 Der Operator $T$ heißt \emph{Spuroperator} und $Tu$ ist die Spur von $u$ auf dem Rand $\delta \Omega$.
-\chapter{Einbettungssätze für $W^{m,p}(\Omega)$} (FIXME: refs anpassen)
-\begin{satz}\label{5.1} Sei $\Omega \subset \mathbb R^n$ offen und beschränkt mit Lipschitzrand. Dann gilt
+(FIXME: Konstruktion von E und Beweis von 4.7 fehlen)
+\chapter{Einbettungssätze für $W^{m,p}(\Omega)$} 
+\begin{satz}\label{satz 5.1} Sei $\Omega \subset \mathbb R^n$ offen und beschränkt mit Lipschitzrand. Dann gilt
 \begin{align*}
-W^{1,p}(\Omega) &\to L^q(\Omega) \begin{cases} p \le q \le p^*, \quad 1 \le p\le n\\  p \le q <\infty, \quad p =n \end{cases}\\
-W^{1,p}(\Omega) &\to C^{0,\gamma}(\overline{\Omega}) \quad \gamma = 1- \frac{n}{q}, \quad p >n,
+W^{1,p}(\Omega) &\to L^q(\Omega) \begin{cases} p \le q \le p^*, \quad 1 \le p < n\\  p \le q <\infty, \quad p =n \end{cases}\\
+W^{1,p}(\Omega) &\to C^{0,\gamma}(\overline{\Omega}), \quad \gamma = 1- \frac{n}{q}, \quad p >n,
 \end{align*}
 wobei $\frac{1}{p^*}= \frac{1}{p}-\frac{1}{n}$.
 \end{satz}
 \begin{proof}
-Wir betrachten zunächst den Fall $p \leq n$. Nach Theorem \ref{4.6} existiert eine stetige lineare Abbildung
+Wir betrachten zunächst den Fall $p<n$. Nach Theorem \ref{4.6} existiert eine stetige lineare Abbildung
 \begin{equation*}
 E:W^{1,p} (\Omega) \rightarrow W_0^{1,p}(\mathbb{R}^n).
 \end{equation*}
-Weiterhin gilt nach Aufgabe 4.3 und Theorem \ref{3.4}
+Weiterhin gelten nach Theorem \ref{thm 3.3} und Aufgabe 4.3:
 \\
 \\
 $(1) \qquad \qquad \qquad W_0^{1,p}(\mathbb{R}^n) \rightarrow L^q (\mathbb{R}^n), \qquad p \leq q \leq p^*$
@@ -1543,11 +1542,11 @@ Sei $\Omega \subset \mathbb R^n$ offen und beschränkt mit Lipschitzrand. Wenn
 \begin{enumerate}[a)]
 \item $m<\frac{n}{p}$, dann
 \begin{align*}
-W^{m,p}(\Omega) \to L^p(\Omega),&\ \quad p\le q \le p^*, \ \frac{1}{p^*} = \frac{1}{p} - \frac{m}{n}.
+W^{m,p}(\Omega) \to L^q(\Omega),&\ \quad p\le q \le p^*, \ \frac{1}{p^*} = \frac{1}{p} - \frac{m}{n}.
 \end{align*}
 \item $m= \frac{n}{p}$, dann
 \begin{equation}
-W^{m,p}(\Omega) \to L^p(\Omega), \quad p \le q <\infty.
+W^{m,p}(\Omega) \to L^q(\Omega), \quad p \le q <\infty.
 \end{equation}
 \item $m>\frac{n}{p}$, dann
 \begin{equation}
@@ -1558,7 +1557,7 @@ wobei $k \in \mathbb N_0$ die größte ganze Zahl kleiner als $m- \frac{p}{\gamm
 Für $W_0^{m,p}(\Omega)$ gelten die analogen Aussagen für beliebige $\Omega \subset \mathbb R^n$ offen.
 \end{thm}
 \begin{proof}
-$a)$ Nach Satz 5.1 gilt
+$a)$ Nach Satz \ref{satz 5.1} gilt
 \begin{align*}
 W^{m,p}(\Omega) \rightarrow W^{m-1,p_1} (\Omega) \rightarrow \ldots \rightarrow L^q(\Omega),
 \end{align*}
@@ -1583,22 +1582,22 @@ folgt.
 \begin{align*}
 \Vert u \Vert_{m-1, \gamma} \leq \text{const} \Vert u \Vert_{m,p} < \infty.
 \end{align*}
-Insbesondere gilt $u \in C^{m-1, \gamma}(\overline{\Omega})$. Aus Meyers-Serrin und der Vollständigkeit von $C^{m-1,\gamma}(\overline{\Omega})$ folgt nun der Behauptung.
-\\ Der Rest des Beweises verläuft analog zum Beweis von Theorem 3.6.
+Insbesondere gilt $u \in C^{m-1, \gamma}(\overline{\Omega})$. Aus Meyers-Serrin und der Vollständigkeit von $C^{m-1,\gamma}(\overline{\Omega})$ folgt nun die Behauptung.
+\\ Der Rest des Beweises verläuft analog zum Beweis von Theorem \ref{thm 3.6}.
 \end{proof}
 \begin{thm}
-Sei $\Omega \subset \mathbb R^n$ offen und beschränkt mit Lipschitzrand. Dann ist die Einbettung
+Sei $\Omega \subset \mathbb R^n$ offen und beschränkt mit Lipschitzrand. Dann gilt
 \begin{equation}
-W^{1,p}(\Omega) \to L^q(\Omega) \quad 1\le q < p^*
+W^{1,p}(\Omega) \hookrightarrow L^q(\Omega), \quad 1\le q < p^*
 \end{equation}
-kompakt für $\frac{1}{p^*}= \frac{1}{p} - \frac{1}{n}$ falls $p<n$ und $p^*=\infty$ falls $p \ge n$.
+für $\frac{1}{p^*}= \frac{1}{p} - \frac{1}{n}$ falls $p<n$ und $p^*=\infty$ falls $p \ge n$.
 \end{thm}
 \begin{proof}
 Wähle $\Omega_1 \subset \mathbb{R}^n$ offen und beschränkt mit $\Omega \subset \subset \Omega_1.$ Dann gilt
 \begin{align*}
-W^{1,p}(\Omega) \overset{E}{\rightarrow} W_0^{1,p}(\Omega) \overset{\text{kompakt}}{\rightarrow} L^q(\Omega_1) \overset{\text{stetig}}{\rightarrow} L^q(\Omega),
+W^{1,p}(\Omega) \overset{E}{\rightarrow} W_0^{1,p}(\Omega) \overset{\text{kompakt}}{\hookrightarrow} L^q(\Omega_1) \overset{\text{stetig}}{\rightarrow} L^q(\Omega),
 \end{align*}
-wobei die Kompaktheit von $W_0^{1,p}(\Omega) \rightarrow L^q(\Omega_1)$ aus der Bemerkung zum Theorem 3.8 folgt.
+wobei die Kompaktheit von $W_0^{1,p}(\Omega) \hookrightarrow L^q(\Omega_1)$ aus der Bemerkung von Rellich-Kondrachov folgt.
 \end{proof}
 \chapter{Die Sobolevräume $H^s(\mathbb R^n)$}
 (FIXME) Hauptteil der Beweise fehlt noch.
