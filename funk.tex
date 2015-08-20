@@ -1655,8 +1655,8 @@ Wir zeigen, dass für alle $\phi \in C_0^\infty (\mathbb{R}^n) $
 gilt, woraus dann $u_\alpha = \partial^\alpha u$ folgt.
 \\ Es gilt
 \begin{align*}
-\int \left(\partial^\alpha \overline{\phi}\right) u \mathrm{d}x &= <\partial^\alpha \phi, u> = <\widehat{\partial^\alpha \phi}, \widehat{u}> = <(i ~\cdot~)^\alpha \widehat{\phi}, \widehat{u} > = \int \overline{(ik)^\alpha \widehat{\phi}}(k) \cdot\widehat{u}(k)\mathrm{d}k \\& = (-1)^{|\alpha|} \int \widehat{\phi}(k) \widehat{u}(k) (ik)^\alpha \mathrm{d}k = (-1)^{|\alpha|} < \widehat{\phi},(i ~\cdot~)^\alpha \widehat{u} > 
-\\& = (-1)^{|\alpha|} <\phi, u_\alpha>.
+\int \left(\partial^\alpha \overline{\phi}\right) u \mathrm{d}x &= \langle\partial^\alpha \phi, u \rangle = \langle \widehat{\partial^\alpha \phi}, \widehat{u}\rangle = \langle(i ~\cdot~)^\alpha \widehat{\phi}, \widehat{u} \rangle = \int \overline{(ik)^\alpha \widehat{\phi}}(k) \cdot\widehat{u}(k)\mathrm{d}k \\& = (-1)^{|\alpha|} \int \widehat{\phi}(k) \widehat{u}(k) (ik)^\alpha \mathrm{d}k = (-1)^{|\alpha|} \langle \widehat{\phi},(i ~\cdot~)^\alpha \widehat{u} \rangle 
+\\& = (-1)^{|\alpha|} \langle\phi, u_\alpha\rangle.
 \end{align*}
 \ 
 \\$(b) $ \ Siehe Aufgabe $6.1$
@@ -1668,7 +1668,7 @@ H^s (\mathbb{R}^n):= \left\{ u \in \mathbb{L}^2(\mathbb{R}^n) | \ (k \mapsto |k|
 \end{align*}
 Das Skalarprodukt wird hier durch
 \begin{equation}\label{eq6.1}
-<u,v>_s := \int \overline{\widehat{u}(k)}\widehat{v}(k)(1+|k|^2)^s \mathrm{d}k 
+\langle u,v\rangle_s := \int \overline{\widehat{u}(k)}\widehat{v}(k)(1+|k|^2)^s \mathrm{d}k 
 \end{equation}
 definiert.
 \end{df}
@@ -1787,11 +1787,11 @@ Sei $\mathcal{S}'$ der Raum der temp. Distributionen, d.h. der Raum der stetigen
 \begin{df}
 Für $s\in \mathbb {R}$ ist
 \begin{equation}
-H^s(\mathbb R^n):= \left \{ u \in \mathcal S'(\mathbb R^n) \bigg | \int |\hat u(p)|^2 (1+p^2)^s\, dp < \infty \right \}
+H^s(\mathbb R^n):= \left \{ u \in \mathcal S'(\mathbb R^n) \bigg | \int |\hat u(p)|^2 (1+|p|^2)^s\, dp < \infty \right \}
 \end{equation}
 und für $u,v \in H^s(\mathbb R^n)$,
 \begin{equation}
-\langle u,v\rangle := \int \overline{\hat u(p)} \hat v(p) \, \mathrm dp.
+\langle u,v\rangle := \int \overline{\hat u(p)} \hat v(p)(1+|p|^2)^s \, \mathrm dp.
 \end{equation}
 \end{df}
 \begin{rem}
