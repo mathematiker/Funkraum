@@ -1600,29 +1600,98 @@ W^{1,p}(\Omega) \overset{E}{\rightarrow} W_0^{1,p}(\Omega) \overset{\text{kompak
 wobei die Kompaktheit von $W_0^{1,p}(\Omega) \hookrightarrow L^q(\Omega_1)$ aus der Bemerkung von Rellich-Kondrachov folgt.
 \end{proof}
 \chapter{Die Sobolevräume $H^s(\mathbb R^n)$}
-(FIXME) Hauptteil der Beweise fehlt noch.
 Sei $H^m(\mathbb R^n) := W^{m,2}(\mathbb R^n)$.
 \begin{satz}
-Sei $m\in \mathbb N_0$. Dann gilt
+Sei $m\in \mathbb N_0$, dann gilt
 \begin{enumerate}[(a)]
 \item $H^m(\mathbb R^n) = \{ u\in L^2(\mathbb R^n)| k \mapsto |k|^m \hat u(k) \text{ ist quadratintegrierbar } \}$ und für alle $u\in H^m(\mathbb R^n), |\alpha|\le m$ gilt $\widehat{\partial^\alpha u} (k) = (ik)^\alpha \hat u(k)$.
 \item Die Norm von $H^m(\mathbb R^n)$ ist äquivalent zur Norm
 \begin{equation}
-\left ( \int |\hat u(k)|^2 (1+|k|^2)^m \, \mathrm dk \right )^n.
+\left ( \int |\hat u(k)|^2 (1+|k|^2)^m \, \mathrm dk \right )^{\frac{1}{2}}.
 \end{equation}
 \end{enumerate}
 \end{satz}
-Für $s\in \mathbb R$ ist
-\begin{equation}
-H^s(\mathbb R^n):= \left \{ u \in \mathcal S'(\mathbb R^n) \bigg | \int |\hat u(p)|^2 (1+p^2)^s\, dp < \infty \right \}
-\end{equation}
-und für $u,v \in H^s(\mathbb R^n)$,
+\begin{proof}
+$(a)$ \ Falls $u \in C_0^{\infty}(\mathbb{R}^n)$, dann gilt
+\begin{align*}
+\widehat{\partial^\alpha u(k)}=(ik)^\alpha \widehat{u}(\xi).
+\end{align*}
+Falls $u \in H^m(\mathbb{R}^n)$ und $(u_l)_{l \in \mathbb{N}}$ eine Folge in $C_0^{\infty}(\mathbb{R}^n)$ mit $u_l \overset{H^m}{\to} u$ ist, dann gilt
+\begin{align*}
+ u_l \to \partial^\alpha u \qquad \text{in} \ \ L^2 \ (|\alpha| \leq m) \qquad \text{und damit nach Plancherel} \qquad \widehat{\partial^\alpha u_l} \to \widehat{\partial^\alpha u} \qquad \text{in} \ \ L^2.
+\end{align*}
+Also gilt 
+\begin{align*}
+(ik)^\alpha \widehat{u}_l(k) \to \widehat{\partial^\alpha u}(k) \qquad \text{f.ü. für eine Teilfolge.} 
+\end{align*}
+Außerdem gilt 
+\begin{align*}
+\widehat{u}_l(k) \to \widehat{ u}(k) \qquad \text{f.ü. für eine Teilfolge,}
+\end{align*}
+d.h.
+\begin{align*}
+(ik)^\alpha \widehat{u}_l(k) = \widehat{\partial^\alpha u}(k),\ |\alpha| \leq m \qquad \text{f.ü.}
+\end{align*}
+Ist $u \in H^m(\mathbb{R}^n)$, dann ist $\partial^\alpha u \in L^2(\mathbb{R}^n), \ |\alpha| \leq m,$ also $\widehat{\partial^\alpha u} \in L^2(\mathbb{R}^n)$ und somit ist
+\begin{align*}
+k \mapsto (ik)^\alpha \hat u(k) \qquad \text{  quadratintegrierbar .}
+\end{align*}
+Insbesondere gilt
+\begin{align*}
+(k \mapsto |k|^m \hat u(k)) \in L^2|k|^m \hat u(k)) \in L^2(\mathbb{R}^n).
+\end{align*}
+Für die andere Richtung betrachten wir ein $u \in L^2(\mathbb{R}^n)$ mit $|k|^m \hat u(k)$ in $L^2(\mathbb{R}^n)$. Für $|\alpha| \leq m$ gilt dann
+\begin{align*}
+(ik)^\alpha \widehat{u}(k) \in L^2(\mathbb{R}^n),
+\end{align*}
+also ex. ein $u_\alpha \in L^2(\mathbb{R}^n)$ mit 
+\begin{align*}
+\widehat{u_\alpha}(k) = (ik)^\alpha \widehat{u}(k).
+\end{align*}
+Wir zeigen, dass für alle $\phi \in C_0^\infty (\mathbb{R}^n) $
+\begin{align*}
+\int \overline{\phi} u_\alpha \mathrm{d}x = (-1)^{|\alpha|}\int \left(\partial^\alpha \overline{\phi}\right) u \mathrm{d}x
+\end{align*}
+gilt, woraus dann $u_\alpha = \partial^\alpha u$ folgt.
+\\ Es gilt
+\begin{align*}
+\int \left(\partial^\alpha \overline{\phi}\right) u \mathrm{d}x &= <\partial^\alpha \phi, u> = <\widehat{\partial^\alpha \phi}, \widehat{u}> = <(i ~\cdot~)^\alpha \widehat{\phi}, \widehat{u} > = \int \overline{(ik)^\alpha \widehat{\phi}}(k) \cdot\widehat{u}(k)\mathrm{d}k \\& = (-1)^{|\alpha|} \int \widehat{\phi}(k) \widehat{u}(k) (ik)^\alpha \mathrm{d}k = (-1)^{|\alpha|} < \widehat{\phi},(i ~\cdot~)^\alpha \widehat{u} > 
+\\& = (-1)^{|\alpha|} <\phi, u_\alpha>.
+\end{align*}
+\ 
+\\$(b) $ \ Siehe Aufgabe $6.1$
+\end{proof}
+\begin{df}
+Für $s \geq 0, s \in \mathbb R$ definiert man
+\begin{align*}
+H^s (\mathbb{R}^n):= \left\{ u \in \mathbb{L}^2(\mathbb{R}^n) | \ (k \mapsto |k|^s \widehat{u}(k)) \in \mathbb{L}^2(\mathbb{R}^n) \right\}.
+\end{align*}
+Das Skalarprodukt wird hier durch
 \begin{equation}\label{eq6.1}
-\langle u,v\rangle := \int \overline{\hat u(p)} \hat v(p) \, \mathrm dp.
+<u,v>_s := \int \overline{\widehat{u}(k)}\widehat{v}(k)(1+|k|^2)^s \mathrm{d}k 
 \end{equation}
+definiert.
+\end{df}
 \begin{thm}
 Für alle $s\ge 0$ ist $H^s(\mathbb R^n)$ versehen mit dem Skalarprodukt \eqref{eq6.1} ein Hilbertraum und $\mathcal S(\mathbb R^n)$ ist dicht in $H^s(\mathbb R^n)$. 
 \end{thm}
+\begin{proof}
+Sei die Funktion $\Lambda_s : H^s(\mathbb R^n) \rightarrow L^2(\mathbb R^n)$ durch $\Lambda_s(u) := \mathcal{F}^{-1}(1+|k|^2)^{\frac{s}{2}}\mathcal{F}(u)$ definiert. Es gilt nach Parseval
+\begin{align*}
+\Vert \Lambda_s u \Vert_2 =  \Vert \widehat{\Lambda_s u} \Vert_2 = \left(\int |\widehat{u}(k)|^2(1+|k|^2)^s\right)^{\frac{1}{2}} = \Vert u \Vert_{H^s}.
+\end{align*}
+Für $v \in L^2(\mathbb R^n)$ wird durch $\Lambda_{-s}v:= \mathcal{F}^{-1}(1+|k|^2)^{\frac{s}{2}}\mathcal{F}v$ die Inverse definiert. Also ist $\Lambda_s$ ein isometrischer Isomorhismus und da $L^2$ vollständig ist, ist damit auch $H^s$ vollständig.
+\\ Wir zeigen nun, dass $\mathcal{S}(\mathbb R^n)$ dicht in $H^s(\mathbb R^n)$ liegt:
+\\Sei dazu $u \in H^s(\mathbb{R}^n)$ und $(u_l)_{l \in \mathbb{N}} $ eine Folge von Funktionen in $C_0^{\infty}(\mathbb{R}^n)\subset \mathcal{S}(\mathbb{R}^n)$ mit 
+\begin{align*}
+\| u_l - \mathcal{F}\Lambda_s u\|_2 \to 0 \qquad (l \to \infty).
+\end{align*}
+Dann gilt
+\begin{align*}
+\int |u_l(p) - (1+|p|^2)^{\frac{s}{2}}\widehat{u}(p)|^2 \mathrm{d}p = \int |u_l(p)(1+|p|^2)^{-\frac{s}{2} }-\widehat{u}(p)|^2 (1+|p|^2)^s \mathrm{d}p = \|v_l - u\|_s^2
+\end{align*}
+mit $\widehat{v}_l(p):= u_l(p)(1+|p|^2)^{-\frac{s}{2}}$, was in $C_0^{\infty}(\mathbb{R}^n)$ ist, also ist $v_l \in \mathcal{S}(\mathbb R^n)$.
+\end{proof}
 \begin{lem}
 Sei $u\in H^s(\mathbb R^n)$ und $|\alpha|\le s$. Durch $u\mapsto \partial^\alpha u$ wird eine beschränkte lineare Abbildung
 \begin{equation}
@@ -1630,14 +1699,27 @@ Sei $u\in H^s(\mathbb R^n)$ und $|\alpha|\le s$. Durch $u\mapsto \partial^\alpha
 \end{equation}
 definiert.
 \end{lem}
-
-\begin{lem}
-Sei $g\in L^1(\mathbb R^n)$ und $k\in \mathbb N_0$ mit $\int |p|^k |g(p)|\, \mathrm dp < \alpha$. Dann ist die Funktion $u(x) = \int e^{ip\cdot x} g(p) \, \mathrm dp$ in $C^k(\mathbb R^n)$ und für $|\alpha|\le k$ gilt
+\begin{proof}
+Aus $u\in H^s(\mathbb R^n) \subset H^{|\alpha|} (\mathbb R^n)$ folgt $\partial^\alpha u \in L^2 (\mathbb{R}^n)$ und $\widehat{\partial^\alpha u}(p) = (ip)^\alpha \widehat{u}(p).$ Also gilt
+\begin{align*}
+\int | \widehat{\partial^\alpha u}(p)|^2 (1+|p|^2)^{s-|\alpha|} \mathrm{d}p &= \int |\widehat{u}(p)|^2 |(ip)^\alpha|^{2} (1+|p|^2)^{s - |\alpha|} \mathrm{d}p
+\\& \leq \int |\widehat{u}(p)|^2 |(ip)|^{2\alpha} (1+|p|^2)^{s - |\alpha|} \mathrm{d}p
+\\ & \leq \int |\widehat{u}(p)|^2 (1+|p|^2) \mathrm{d}p = \|u\|_s^2
+\end{align*}
+\end{proof}
+\begin{lem}\label{lem 6.4}
+Sei $g\in L^1(\mathbb R^n)$ und $k\in \mathbb N_0$ mit $\int |p|^k |g(p)|\, \mathrm dp < \infty$. Dann ist die Funktion $u(x) = \int e^{ip\cdot x} g(p) \, \mathrm dp$ in $C^k(\mathbb R^n)$ und für $|\alpha|\le k$ gilt
 \begin{equation}
 \partial^\alpha u(x) = \int e^{ip\cdot x} (ip)^\alpha g(p) \, \mathrm dp.
 \end{equation}
 \end{lem}
-
+\begin{proof}
+Siehe Aufgabe 6.2
+\end{proof}
+\ 
+\\
+\textbf{Anwendung:} 
+\\Ist $u \in L^2(\mathbb{R}^n)$ und $|p|^k\widehat{u}(p)$ integrierbar für ein $k\in \mathbb{N}_0$, dann ist $\widehat{u} \in L^2(\mathbb{R}^n)$ und $u(x) = (2\pi)^{-\frac{n}{2}}\int e^{ip \cdot x} \widehat{u}(p) \mathrm{d}p$ ist in $C^k(\mathbb{R}^n).$
 \begin{thm}
 Falls $s- \frac{n}{2}\ge k +\gamma$ mit $k\in \mathbb N_0$ und $\gamma \in (0,1)$, dann gilt
 \begin{equation}
@@ -1647,28 +1729,120 @@ und für $|\alpha|\le k$ gilt
 \begin{equation}
 |\partial^\alpha u(x)|\to 0 \quad (|x|\to \infty).
 \end{equation}
+Für $s = m \in \mathbb{N}$ folgt diese Einbettung aus
+\begin{align*}
+H^m = W^{m,2} \rightarrow C^{k,\gamma}.
+\end{align*}
 \end{thm}
-
-FIXME: Es fehlen drei Vorlesung. Heute ist der 9.6.15
-\setcounter{thm}{5}
+\begin{proof}
+Wir zeigen zuerst, dass $|\widehat{u}| |p|^k$ integrierbar ist. Es gilt
+\begin{align*}
+\int |\widehat{u}(p)| |p|^k \mathrm{d}p &\leq \int |\widehat{u}(p)| (1+|p|^2)^{\frac{k}{2}} \mathrm{d}p 
+\\ &=  \int  |\widehat{u}(p)| (1+|p|^2)^{\frac{s}{2}}\cdot \frac{1}{(1+|p|^2)^{{\frac{s}{2}} - \frac{k}{2}}} \mathrm{d}p 
+\\& < \|u\|_s \left( \int \frac{1}{(1+|p|^2)^{s-k}} \mathrm{d}p \right)^{\frac{1}{2}} < \infty,
+\end{align*}
+da $2(s-k) >n$, was aus $s > \frac{n}{2} + k$ folgt. Nach Lemma \ref{lem 6.4} ist $u \in C^k(\mathbb{R}^n)$ und 
+\begin{align*}
+| \partial^\alpha u(x)| \leq \left| \int e^{ip \cdot x} (ip)^\alpha \widehat{u}(p) \mathrm{d}p \right| \leq \int |p|^\alpha | \widehat{u}(p)|\mathrm{d}p \leq \int (1+|p|^2)^{\frac{k}{2}}|\widehat{u}(p)|\mathrm{d}p \leq C\|u\|_s
+\end{align*}
+für $|\alpha| \leq k$. Für diese $\alpha$ gilt außerdem $\partial^\alpha u \in H^{s-|\alpha|} \subset H^{s'}$, wenn $s'= \gamma + \frac{n}{2} \leq s-k$.
+\\ Nach Annahme an $\gamma$ gilt $s' - \frac{n}{2} \in (0,1).$ Es genügt also zu zeigen, dass $H^{s'}(\mathbb{R}^n) \rightarrow C^{0,\gamma}(\mathbb{R}^n)$ für $\gamma = s' - \frac{n}{2}$ gilt. Sei dazu $u \in H^{s'}(\mathbb{R}^n)$. Da $s'> \frac{n}{2}$ gilt, folgt aus obigem $\widehat{u} \in L^1(\mathbb{R}^n) = \cup L^2(\mathbb{R}^n)$ und somit
+\begin{align*}
+u(x) = (2 \pi)^{-\frac{n}{2}}\int e^{ip \cdot x} \widehat{u}(p)\mathrm{d}p.
+\end{align*}
+Also $u(x+z) - u(x) = (2 \pi)^{-\frac{n}{2}}\int (e^{ip \cdot z} -1)\widehat{u}(p)\mathrm{d}p$ und somit
+\begin{align*}
+\frac{|u(x+z) - u(x)|}{|z|^\gamma} \leq \int \frac{(e^{ip \cdot z} -1)}{|z|^\gamma}|\widehat{u}(p)|\mathrm{d}p &= \int \frac{(e^{ip \cdot z} -1)}{|z|^\gamma} (1+|p|)^{-\frac{s'}{2}}(1+|p|)^{\frac{s'}{2}}|\widehat{u}(p)|\mathrm{d}p 
+\\ & \leq \|u\|_{s'} \left(\int \frac{|e^{ip \cdot z} -1|^2}{|z|^2\gamma} \frac{1}{(1+|p|^2)^{s'}} \mathrm{d}p \right)^{\frac{1}{2}}.
+\end{align*}
+Bei dem letzten Integral substituieren wir $p= \frac{1}{|z|^n}q,\ \ \mathrm{d}p = |z|^{-n}\mathrm{d}q$, dann gilt
+\begin{align*}
+\int \frac{|e^{ip \cdot z} -1|^2}{|z|^2\gamma} \frac{1}{(1+|p|^2)^{s'}} \mathrm{d}p = \int \frac{|e^{iq \cdot \widehat{z}} -1|^2}{|z|^{2\gamma+n}}  \frac{1}{(1+|z|^{-2}|q|^2)^{s'}}\mathrm{d}q,
+\end{align*}
+wobei $\widehat{z}= \frac{z}{|z|}$. Es gilt $2\gamma +n = 2 s'$ und allgemein
+\begin{align*}
+|e^{it}-1 \leq \min(|t|,2).
+\end{align*}
+Also 
+\begin{align*}
+\int \frac{|e^{ip \cdot z} -1|^2}{|z|^2\gamma} \frac{1}{(1+|p|^2)^{s'}} \mathrm{d}p &int \frac{\min(|q|^2,4)}{|z|^{2s'}} \frac{1}{(1+|z|^{-2}|q|^2)^{s'}}\mathrm{d}q
+\\ & = \int \min(|q|^2,4) \frac{1}{(|z|^2 + |q|^2)^{s'}}\mathrm{d}q
+\\ & \leq \int \frac{\min(|q|^2,4)}{|q|^{2s'}}\mathrm{d}q < \infty,
+\end{align*}
+d.h. $|u|_{0,\gamma} \leq C\|u\|_{s'}$ mit $C \in \mathbb{R}$. Für $u \in H^s(\mathbb{R}^n)$ und $|\alpha| \leq k$ folgt
+\begin{align*}
+|\partial^\alpha u|_{0, \gamma} \leq C \|\partial^\alpha\|_{s'=\gamma + \frac{n}{2}} \leq C \|\partial^\alpha u \|_{s-k} \leq C \| \partial^\alpha u \|_{s-|\alpha|} \leq C \|u\|_s.
+\end{align*}
+Also
+\begin{align*}
+H^s \subset C^{k,\gamma}(\overline{\mathbb{R}^n}) \qquad \text{und} \qquad \|u\|_{k,\gamma} = \max_{|\alpha| \leq k} \|\partial^\alpha u\|_{\infty} + \max_{|\alpha| \leq k} |\partial^\alpha u|_{0,\gamma} \leq C \|u\|_s.
+\end{align*}
+Ausserdem gilt 
+\begin{align*}
+\partial^\alpha u(x) = (2 \pi)^{- \frac{n}{2}} \int e^{ip \cdot x} \widehat{u}(p) \mathrm{d}p \rightarrow 0, \qquad |x| \to \infty
+\end{align*}
+nach Riemann-Lebesgue, denn $\widehat{u} \in L^1(\mathbb{R}^n).$
+\end{proof}
+Sei $\mathcal{S}'$ der Raum der temp. Distributionen, d.h. der Raum der stetigen Funktionale von $\mathcal{S}$ nach $\mathbb{C}$. Für das Folgende ist wichtig, dass jede Funktion $f \in L_{\text{loc}}^1(\mathbb{R}^n)$ mit $x \mapsto f(x)(1+x^2)^{-N}$ in $L^2(\mathbb{R}^n)$ für $N \geq 0$ eine reguläre Distribution darstellt.
+\begin{df}
+Für $s\in \mathbb {R}$ ist
+\begin{equation}
+H^s(\mathbb R^n):= \left \{ u \in \mathcal S'(\mathbb R^n) \bigg | \int |\hat u(p)|^2 (1+p^2)^s\, dp < \infty \right \}
+\end{equation}
+und für $u,v \in H^s(\mathbb R^n)$,
+\begin{equation}
+\langle u,v\rangle := \int \overline{\hat u(p)} \hat v(p) \, \mathrm dp.
+\end{equation}
+\end{df}
+\begin{rem}
+\ \\
+\begin{enumerate}
+\item Für $s>t$ gilt $H^s(\mathbb{R}^n) \subset 
+H^t(\mathbb{R}^n).$
+\item $H^s(\mathbb{R}^n)$ ist ein Hilbertraum und $\mathcal{S}(\mathbb{R}^n)$ liegt dich in $H^s(\mathbb{R}^n)$, also $H^s(\mathbb{R}^n)= \overline{\mathcal{S}(\mathbb{R}^n)}^{\| \cdot\|_s}$.
+\item $\partial^\alpha : H^s(\mathbb{R}^n) \rightarrow H^{s- |\alpha|}(\mathbb{R}^n)$ ist ein beschränkter linearer Operator für alle $s \in \mathbb{R}, \alpha \in \mathbb{N}_0^n$.
+\end{enumerate}
+Die Beweise von $(2)$ und $(3)$ sind identisch zu den Beweisen im Fall $s \geq 0$.
+\end{rem}
+$H^{-s}$ ist dual zu $H^s$ in folgendem Sinne:
+\\
+Jedes Element $u \in H^{-s}(\mathbb{R}^n)$ ist ein lineares Funktional auf $\mathcal{S}$, was ein dichter Unterraum von $H^s(\mathbb{R}^n)$ ist. Es gilt für alle $\phi \in \mathcal{S}:$
+\begin{align*}
+u(\phi) = \check{\hat{u}}(\phi) = \hat{u}(\check{\phi}) = \int \hat{u}(p) \check{\phi}(-p)\mathrm{d}p.
+\end{align*}
+Daraus folgt
+\begin{align*}
+|u(\phi)| &= \left| \int \hat{u}(p)(1+|p|^2)^{-\frac{s}{2}}(1+p^2)^{\frac{s}{2}} \hat{\phi}(-p)\mathrm{d}p \right|
+\\ & \leq \|u\|_s \left( \int |\hat{\phi}(-p)|^2 (1+|p|^2)^s\mathrm{d}p\right)^{\frac{1}{2}} 
+\\ &=  \|u\|_s \|u\|_{-s}.
+\end{align*}
+D.h. $u: \mathcal{S} \subset H^s(\mathbb{R}^n)\rightarrow \mathbb{C}$ ist ein dicht definiertes beschr. lineares Funktional und lässt sich somit eindeutig fortsetzen zu einem Funktional $L_u \in \left(H^s\right)^{\ast}$.
+\\ Es gilt
+\begin{align*}
+L_u(v) = \int \hat{u}(p) \hat{v}(-p)\mathrm{d}p, \qquad v \in H^s(\mathbb{R}^n),
+\end{align*}
+denn $L_u(\phi) = u(\phi)$ für $\phi \in \mathcal{S}(\mathbb{R}^n)$ und $L_u$ ist beschränkt.
+\\ Es gilt \begin{align*}
+\| L_u \| \leq \|u\|_{-s}
+\end{align*}
 \begin{thm}\label{6.6}
-Jede Distribution $u\in H^{-s}(\mathbb R^n)$ lässt sich erweitern zu einem (eindeutig bestimmten linearen Funktional $L_u \in (H^s)^*$ wobei 
+Jede Distribution $u\in H^{-s}(\mathbb R^n)$ lässt sich erweitern zu einem (eindeutig bestimmten) linearen Funktional $L_u \in (H^s)^*$, wobei 
 \begin{equation}
 L_u(v) = \int \hat u(p) \hat v(-p)\, \mathrm dp \quad v\in H^s.
 \end{equation}
 Die Abbildung $L: H^{-s}\to (H^s)^*$, $u\mapsto L_u$ ist ein isometrischer Isomorphismus. 
 \end{thm}
 \begin{proof}
-Sei $L\in H^s(\mathbb R^n)^*$. Nach dem Satz von Riesz existiert $g\in H^s(\mathbb R^n)$ mit $\|g\|_s = \|L\|$ und für alle $v\in H^s$:
+Sei $L\in H^s(\mathbb R^n)^*$. Nach dem Satz von Riesz existiert ein $g\in H^s(\mathbb R^n)$ mit $\|g\|_s = \|L\|$ und für alle $v\in H^s$ gilt
 \begin{align*}
 L(v) &= \langle g,v\rangle_s \\
 &= \int \overline{\hat g(p)} \hat v(p) (1+p^2)^s \, \mathrm dp\\
 &\stackrel{p\to -p}= \int \overline{\hat g(-p)} (1+p^2)^s \hat v(p) \, \mathrm dp\\
-&= \int \hat u(p) \hat v(-p) \, \mathrm dp
+&= \int \hat u(p) \hat v(-p) \, \mathrm dp,
 \end{align*}
-wobei $\hat u(p):= \overline{\hat g(-p)} (1+p^2)^s$.
-
-$\hat u\in \mathcal S'$, denn $\hat g(p) (1+p^2)^{s/2}$ ist in $L^2$. Also ist $u:= \mathcal F^{-1}\hat u \in \mathcal S'$ und
+wobei $\hat u(p):= \overline{\hat g(-p)} (1+p^2)^s$.Es gilt 
+$\hat u\in \mathcal S'$, denn $\hat g(p) (1+p^2)^{s/2}$ ist in $L^2$. 
+\\Also ist $u:= \mathcal F^{-1}\hat u \in \mathcal S'$ und
 \begin{align}
 \int|\hat u (p)|^2 (1+p^2)^{-s}\, \mathrm dp&=\int |\hat g(-p)|^2 (1+p^2)^{2s-s}\, \mathrm dp\\
 &= \int |\hat g(p)|^2(1+p^2)^s\, \mathrm dp = \| g\|_s^2 <\infty.
@@ -1688,16 +1862,16 @@ u = \sum_{|\alpha|\le m} \partial^\alpha f_\alpha \quad \text{in } \mathcal S'.
 Umgekehrt ist jede Distribution der Form \eqref{eq:4.?} in $H^{-m}$.
 \end{satz}
 \begin{proof}
-Sei $u\in H^{-m}$. Nach Theorem \ref{4.6} und nach Riesz existiert $v\in H^m$ so dass für alle $\phi \in \mathcal S$:
+Sei $u\in H^{-m}$. Nach Theorem \ref{4.6} und Riesz existiert ein $v\in H^m$ so, dass für alle $\phi \in \mathcal S$:
 \begin{align}
 u(\phi) &= \langle v, \phi\rangle_m\\
 &= \sum_{|\alpha|\le m} \int \overline{\partial^\alpha v}(x) \partial^\alpha \phi(x)\, \mathrm dx\\
-&= \sum_{|\alpha|\le m} (-1)^{|\alpha|} \int \underbrace{f_\alpha(x)}_{in L^2} \partial^\alpha \phi(x) \, \mathrm dx\\
+&= \sum_{|\alpha|\le m} (-1)^{|\alpha|} \int \underbrace{f_\alpha(x)}_{\in L^2} \partial^\alpha \phi(x) \, \mathrm dx\\
 &= \sum_{|\alpha|\le m} \partial^\alpha f_\alpha (\phi).
 \end{align}
-Sei $f_\alpha= (-1)^{|\alpha|} \overline{\partial^\alpha v} \in L^2(\mathbb R^n)$.
+Hierbei sei $f_\alpha= (-1)^{|\alpha|} \overline{\partial^\alpha v} \in L^2(\mathbb R^n)$.
 
-Sei $f\in L^2$ und
+Sei nun $f_{\alpha} \in L^2$ und
 \begin{equation}
 u:= \sum_{|\alpha|\le m} \partial^\alpha f_\alpha \quad \text{in } \mathcal S'.
 \end{equation}
@@ -1705,13 +1879,13 @@ Dann ist
 \begin{equation}
 \hat u= \sum_{|\alpha|\le m} \widehat{\partial^\alpha f_\alpha} = \sum_{|\alpha|\le m} (ip)^\alpha \hat f_\alpha
 \end{equation}
-wobei $\hat f_\alpha\in L^2$. Also 
+wobei $\hat f_\alpha\in L^2$. Also gilt
 \end{proof}
 \begin{align}
-|\hat u(p)| (1+p^2)^{-m/2} &\le \sum_{|\alpha|\le m} |\hat f_\alpha (p)| |p|^{|\alpha|} \frac{1}{(1+p^2)^{m/2}} \\
-&\le \sum_{|\alpha\le m} 
+|\hat u(p)| (1+|p|^2)^{-m/2} &\le \sum_{|\alpha|\le m} |\hat f_\alpha (p)| |p|^{\alpha} \frac{1}{(1+|p|^2)^{m/2}} \\
+&\le \sum_{|\alpha|\le m} | \hat{f_\alpha}(p)|,
 \end{align}
-was quadratintegrierbar ist. Also $u\in H^{-m}$
+was quadratintegrierbar ist. Somit folgt $u\in H^{-m}$.
 \end{proof}
 \chapter{Anwendungen und Ergänzungen}
 \section{Elliptische Regularität}
