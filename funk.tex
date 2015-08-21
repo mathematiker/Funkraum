@@ -1720,7 +1720,7 @@ Siehe Aufgabe 6.2
 \\
 \textbf{Anwendung:} 
 \\Ist $u \in L^2(\mathbb{R}^n)$ und $|p|^k\widehat{u}(p)$ integrierbar für ein $k\in \mathbb{N}_0$, dann ist $\widehat{u} \in L^2(\mathbb{R}^n)$ und $u(x) = (2\pi)^{-\frac{n}{2}}\int e^{ip \cdot x} \widehat{u}(p) \mathrm{d}p$ ist in $C^k(\mathbb{R}^n).$
-\begin{thm}
+\begin{thm}\label{thm 6.5}
 Falls $s- \frac{n}{2}\ge k +\gamma$ mit $k\in \mathbb N_0$ und $\gamma \in (0,1)$, dann gilt
 \begin{equation}
 H^s(\mathbb R^n) \to C^{k,\gamma}(\overline{\mathbb R^n})
@@ -1891,7 +1891,7 @@ was quadratintegrierbar ist. Somit folgt $u\in H^{-m}$.
 \section{Elliptische Regularität}
 
 \begin{lem}\label{thm6.8}
-Sind $u,v\in H^s$ und $\Delta u=v$ dann gilt $u\in H^{s+2}$.
+Sind $u,v\in H^s$ und $\Delta u=v$, dann gilt $u\in H^{s+2}$.
 \end{lem}
 \begin{proof}
 Aus $\Delta u=v$ folgt $\widehat{\Delta u} (p) = \hat v(p)$, also
@@ -1905,36 +1905,32 @@ und somit
 Daraus folgt
 \begin{align}
 (1+p^2)^{(s+2)/2} \hat u(p) &= (1+p^2)^{s/2} (1+p^2) \hat u(p) \\
-&= (1+p^2)^{s/2} (\hat u(p) -  \hat v(p))
+&= (1+p^2)^{s/2} (\hat u(p) -  \hat v(p)),
 \end{align}
-was in $L^2$ ist, denn $u,v\in H^s$.
+was in $L^2$ ist, denn es gilt $u,v\in H^s$.
 \end{proof}
 \begin{thm}\label{4.9}
-Seien $u\in H^s(\mathbb R^n)$ eine Lösung der Schrödingergleichung
+Sei $u\in H^s(\mathbb R^n)$ eine Lösung der Schrödingergleichung
 \begin{equation}
--\Delta u + Vu = Eu
+-\Delta u + Vu = Eu,
 \end{equation}
-wobei $E\in \mathbb C$ und $V: \mathbb R^n\to \mathbb C$ messbar ist wenn $\Omega \subset \mathbb R^n$ offen ist und $V\big|_\Omega \in C^m(\Omega)$. Dann ist
+wobei $E\in \mathbb C$ und $V: \mathbb R^n\to \mathbb C$ messbar ist wenn $\Omega \subset \mathbb R^n$ offen ist und $V\big|_\Omega \in C^m(\Omega)$. Dann gilt
 \begin{equation}
-u\big|_\Omega = C^k(\Omega) \quad \text{für } k<m+2-\frac{n}{2}.
+u\big|_\Omega \in C^k(\Omega) \quad \text{für } k<m+2-\frac{n}{2}.
 \end{equation}
 \end{thm}
 \begin{proof}
-Nach Theorem \ref{4.5} (Sobolev-Lemma) genügt es zu zeigen, dass
+Nach dem Sobolev-Lemma (Thm. \ref{thm 6.5}) genügt es zu zeigen, dass
 \begin{equation}
-\phi u \in H^{m+2}(\mathbb R^n) \quad \text{für alle } \phi \in C_c^\infty(\Omega).
+\phi u \in H^{m+2}(\mathbb R^n) \quad \text{für alle } \phi \in C_0^\infty(\Omega)
 \end{equation}
-Dann folgt $\phi u \in C^k(\mathbb R^n)$ für alle $\phi \in C_c^\infty(\Omega)$ und somit $u\in C^k(\Omega)$.
-
-Wir zeigen induktiv, dass
+gilt, woraus dann $u\in C^k(\Omega)$ folgt.
+Wir zeigen induktiv
 \begin{equation}
-\phi u \in H^k(\mathbb R^n) \quad \text{alle } \phi \in C_0^\infty(\Omega)
+\phi u \in H^k(\mathbb R^n) \quad \text{für alle } \phi \in C_0^\infty(\Omega), \ k=2, \ldots, m+2.
 \end{equation}
-für $k=2, \ldots, m+2$.
-
-Aus $u\in H^3$ folgt $\phi u\in H^2$ für alle $\phi \in C_0^\infty(\Omega)$. Also gilt \eqref{4.?} für $k=2$. Wir rechnen nun den Induktionsschritt von $k=m+1$ auf $k=m+2$.
-
-Sei \eqref{eq:4.?} richtig für $k=m+1$. Dann gilt für $\phi \in C_0^\infty(\Omega)$
+Aus $u\in H^2$ folgt $\phi u\in H^2$ für alle $\phi \in C_0^\infty(\Omega)$. Also gilt der Induktionsanfang für $k=2$. Wir machen nun den Induktionsschritt von $k=m+1$ auf $k=m+2$.\\
+Sei die Behauptung richtig für $k=m+1$. Dann gilt für $\phi \in C_0^\infty(\Omega)$
 \begin{align}
 \Delta(\phi u) &= (\Delta \phi u) + 2\underbrace{\nabla \phi \cdot \nabla u}_{\operatorname{div}(\nabla \phi \cdot u)- \Delta \phi u} + \phi \Delta u\\
 &= - \Delta \phi u + 2\operatorname{div} (\nabla \phi \cdot u) + \phi(v-E) u
@@ -1948,14 +1944,14 @@ und somit
 \operatorname{div}(\nabla \phi \cdot u) \in H^m, \quad (v-E) \phi u \in H^m
 \end{equation}
 denn $V-E\in C^m(\Omega)$ und $\partial^\alpha(v-E)\in L^\infty(\supp \phi)$ für $|\alpha|\le m$.
-
-Also $\Delta (\phi u) \in H^m$ und somit $\phi u\in H^{m+2}$ nach Lemma \ref{thm6.8}. Das beweist \eqref{eq:4.?} für $k=m+2$.
+\\
+Also gilt $\Delta (\phi u) \in H^m$ und somit $\phi u\in H^{m+2}$ nach Lemma \ref{thm6.8}.
 
 \end{proof}
 
 
 \section{Das Dirichlet Prinzip}
-Sei $\Omega \subset \mathbb R^n$ offen beschränkt oder enthalten in einem Streifen, z.B. $\Omega \subset \{ x\in \mathbb R^n| 0 \le x_n \le d\}$.  Wir betrachten das RWP
+Sei $\Omega \subset \mathbb R^n$ offen und beschränkt, oder enthalten in einem Streifen, z.B. $\Omega \subset \{ x\in \mathbb R^n| 0 \le x_n \le d\}$.  Wir betrachten das RWP
 \begin{equation}\label{eq:4.??}
 \begin{cases}
 -\Delta u&= f \quad \text{in } \Omega,\\
@@ -1963,20 +1959,18 @@ u&=0 \quad \text{auf } \partial \Omega
 \end{cases}
 \end{equation}
 mit gegebener Funktion $f: \Omega \to \mathbb C$ und gesuchter Funktion $u$. Eine klassische Lösung von \eqref{eq:4.??} liegt in $C^2(\Omega) \cap C(\overline{\Omega})$.
-
 Das fordert $f\in C(\Omega)$ was oft zu restriktiv ist. Sei $u$ dennoch klassische Lösung von \eqref{eq:4.??}. 
-
 Wir multiplizieren $-\Delta u=f$ mit $\phi \in C_0^\infty(\Omega)$ und benutzen dass
 \begin{equation}
-\operatorname{div}(\phi \nabla u) = \nabla \phi \nabla u + \phi \Delta u
+\operatorname{div}(\phi \nabla u) = \nabla \phi \nabla u + \phi \Delta u.
 \end{equation}
-wegen $\int_{\partial\Omega} \phi \overline{\nabla u} \cdot \overline u \, \mathrm d\sigma =0$ folgt aus Gauß
+Wegen $\int_{\partial\Omega} \phi \overline{\nabla u} \cdot \overline u \, \mathrm d\sigma =0$ folgt aus Gauß
 \begin{equation}
 -\int_\Omega \phi \cdot \Delta u \, \mathrm dx = \int_\Omega \nabla \phi \nabla u \, \mathrm dx.
 \end{equation}
-Somit
+Somit gilt
 \begin{equation}
-\int \nabla \phi \nabla u \, \mathrm dx = \int \phi f \, \mathrm dx \quad \forall \phi \in C_0^\infty(\Omega)
+\int \nabla \phi \nabla u \, \mathrm dx = \int \phi f \, \mathrm dx \quad \forall \phi \in C_0^\infty(\Omega),
 \end{equation}
 was auch für $u\in H_0^1(\Omega)$ sinnvoll ist und sich auf alle $\phi \in H_0^1(\Omega)$ ausdehnen lässt (wegen $C_0^\infty(\Omega)\subset H_0^1(\Omega)$ dicht).  Das motiviert:
 \begin{df}
@@ -1988,9 +1982,9 @@ für alle $v\in H_0^1(\Omega)$.
 \end{df}
 
 \begin{thm}[Dirichlet--Riemann--Hilbert]
-Sei $\Omega \subset \mathbb R^n$ offen und enthalten in einem Streifen, z.B. $\Omega \in \mathbb R^n|0\le x_n\le d\}$. Dann hat das RWP \eqref{eq:4.??} genau dann eine schwache Lösung $U\in H_0^1(\Omega)$ und dieses $u$ ist der eindeutige Minimierer des Funktional $F: H_0^1(\Omega) \to \mathbb R$ definiert durch
+Sei $\Omega \subset \mathbb R^n$ offen und enthalten in einem Streifen, z.B. $\Omega \in \mathbb R^n|0\le x_n\le d\}$. Dann hat das RWP \eqref{eq:4.??} genau dann eine schwache Lösung $u\in H_0^1(\Omega)$ und dieses $u$ ist der eindeutige Minimierer des Funktional $F: H_0^1(\Omega) \to \mathbb R$ definiert durch
 \begin{equation}
-F(v) = \frac{1}{2} \int_\Omega |\nabla|^2\, \mathrm dx - \Re \int \overline v f\, \mathrm dx
+F(v) = \frac{1}{2} \int_\Omega |\nabla|^2\, \mathrm dx - \Re \int \overline v f\, \mathrm dx.
 \end{equation}
 \end{thm}
 \begin{proof}
@@ -1998,26 +1992,26 @@ Aus der Poincar\'e-Ungleichung (s. Blatt 3) folgt
 \begin{equation}
 \int_\Omega |\nabla u|^2\, \mathrm dx \ge c \int |v|^2\, \mathrm dx
 \end{equation}
-für alle $v\in H_0^1(\Omega)$ wobei $C>0$. Daher ist
+für alle $v\in H_0^1(\Omega)$, wobei $c>0$. Daher ist
 \begin{equation}
 \langle v,w\rangle := \int_\Omega \overline{\nabla v(x)} \cdot \nabla w(x) \, \mathrm dx
 \end{equation}
-ein Skalarprodukt in $H_0^1(\Omega)$ und $\| \cdot \| = \langle\cdot ,\cdot \rangle ^{1/2}$ ist äquivalent zur Norm von $H_=^1(\Omega)$. Sei $H= H_0^1(\Omega)$ versehen mit dem Skalarprodukt $\langle \cdot, \cdot \rangle$. Dann ist $H$ ein Hilbertraum und 
+ein Skalarprodukt in $H_0^1(\Omega)$ und $\| \cdot \| = \langle\cdot ,\cdot \rangle ^{1/2}$ ist äquivalent zur Norm von $H_0^1(\Omega)$. Sei $\mathcal{H}= H_0^1(\Omega)$ versehen mit dem Skalarprodukt $\langle \cdot, \cdot \rangle$, dann ist $\mathcal{H}$ ein Hilbertraum und 
 \begin{equation}
-H\to \mathbb C: v\mapsto \int \overline v f\, \mathrm dx
+\mathcal{H} \to \mathbb C: v\mapsto \int \overline v f\, \mathrm dx
 \end{equation}
-ist ein beschränktes antilineares Funktional. Nach Riesz existiert $u\in H=H_0^1(\Omega)$ mit
+ist ein beschränktes antilineares Funktional. Nach Riesz existiert ein $u\in \mathcal{H}$ mit
 \begin{equation}
 \int \overline v f \, \mathrm dx = \langle v, u\rangle = \int \overline{\nabla v(x)} \cdot \nabla u(x) \, \mathrm dx
 \end{equation}
-für alle $v\in H=H_0^1(\Omega)$. Also ist $u$ schwache Lösung von \eqref{eq:4.??}.
-
+für alle $v\in \mathcal{H}$. Also ist $u$ schwache Lösung des RWP \eqref{eq:4.??}.
+\\
 Nach Definition von $F$ gilt
 \begin{align}
 F(v) &= \frac{1}{2} \langle v,v\rangle - \Re \langle v, u\rangle\\
 &= \frac{1}{2} \left ( \langle v,v\rangle - \langle v, u\rangle - \langle u,v\rangle + \langle u,u\rangle \right ) - \frac{1}{2} \langle u,u\rangle\\
 &= \frac{1}{2} \langle v-u, v-u \rangle - \frac{1}{2} \langle u, u\rangle \\
-&= \frac{1}{2} \langle v-u, v-u\rangle + F(u)
+&= \frac{1}{2} \langle v-u, v-u\rangle + F(u),
 \end{align}
 denn
 \begin{equation}
@@ -2029,19 +2023,21 @@ F(u) = \frac{1}{2} \langle u, u\rangle - \Re \langle u, u\rangle = - \frac{1}{2}
 
 Wir erinnern
 \begin{equation}
-H^s(\mathbb R^n) = \{I\in \mathcal S'(\mathbb R^n): I \text{ regulär und } \int (1+x^2)^0 |I(x)|^2\, \mathrm dx <\infty\} (s\in \mathbb R) 
+H^s(\mathbb R^n) = \{I\in \mathcal S'(\mathbb R^n): \hat{f} \text{ regulär und } \int (1+x^2)^s |\hat{f}(x)|^2\, \mathrm dx <\infty\} \ \ (s\in \mathbb R) 
 \end{equation}
-und insbesondere $C_c^\infty(\Omega) \subset C_c^\infty(\mathbb R^n) \subset H^s(\mathbb R^n) (s\in \mathbb R)$.
+und insbesondere $C_0^\infty(\Omega) \subset C_0^\infty(\mathbb R^n) \subset H^s(\mathbb R^n)$ für $s \in \mathbb{R}$.
 
 \begin{df}
-$H_0^s(\Omega) := \overline{C_c^\infty(\Omega)}^{\|\cdot\|_s}$
+$H_0^s(\Omega) := \overline{C_0^\infty(\Omega)}^{\|\cdot\|_s}$
 \end{df}
 \begin{rem}
 \begin{enumerate}
-\item $H_0^s(\Omega) \to H_0^t (\mathbb R)$ für $s\ge t$ (denn $H^0(\mathbb R^n\subset H^t(\mathbb R^n)$ und $\|\cdot \|_t \le \| \cdot \|_s$ für $s\ge t$)
+\item $H_0^s(\Omega) \to H_0^t (\mathbb R)$ für $s\ge t$, denn $H^s(\mathbb{R}^n) \rightarrow H^t(\mathbb R^n)$ und $\|\cdot \|_t \le \| \cdot \|_s$ für $s\ge t$.
 
 \item $H_0^s(\Omega) \subset \{f\in \mathcal S'(\mathbb R^n)|\supp f\subset \overline{\Omega}\}$
-(Sei $f\in H_0^s(\Omega)$ mit $f=\lim_{k\to \infty} f_k$ in $H^s$ mit $f_k \in C_c^\infty(\Omega)$, dann gilt $f(\phi)=0$ für alle $\phi \in C_{\overline{\Omega}^c}^\infty$. Sei nämlich $\phi \in C_{\overline{\Omega}^c}^\infty$, dann $f_k(\phi) =0 (k\in \mathbb N)$
+\\
+\\
+Sei $f\in H_0^s(\Omega)$ mit $f=\lim_{k\to \infty} f_k$ in $H^s$ mit $f_k \in C_0^\infty(\Omega)$, dann gilt $f(\phi)=0$ für alle $\phi \in C_{0}^\infty(\overline{\Omega})$. Sei nämlich $\phi \in C_{0}^\infty(\overline{\Omega})$, dann $f_k(\phi) =0,$ $(k\in \mathbb N)$.
 
 Wegen 
 \begin{align*}
@@ -2053,24 +2049,24 @@ gilt $f(\phi) = \lim_{k\to \infty} f_k(\phi) =0$)
 \end{rem}
 
 \begin{lem}
-$(1+x^2)^s\le 2^{|s|} (1+(x-y)^2)^{|s|} (1+y^2)^s \quad (x,y\in \mathbb R^n, s\in \mathbb R)$
+Es gilt $(1+x^2)^s\le 2^{|s|} (1+(x-y)^2)^{|s|} (1+y^2)^s \quad (x,y\in \mathbb R^n, s\in \mathbb R)$
 \end{lem}
 \begin{proof}
 Sei $s\ge 0$, dann 
 \begin{equation}
 1+x^2 \le 1+ 2((x-y)^2+y^2 \le 2 (1+(x-y)^2)(1+y^2).
 \end{equation}
-Sei $s\ge 0$, dann folgt
+Sei $s < 0$, dann folgt
 \begin{equation}
 \frac{(1+x^2)^s}{(1+y^2)^s} = \frac{(1+y^2)^{|s|}}{(1+x^2)^{|s|}} \le 2^{|s|} (1+(y-x)^2)^{|s|}.
 \end{equation}
 \end{proof}
 \begin{lem}
-Sei $\phi \in C_c^\infty(\mathbb R^n)$ und $f\in H^s(\mathbb R^n)$ ($s\in \mathbb R$). Dann gilt
+Sei $\phi \in C_0^\infty (\mathbb R^n)$ und $f\in H^s(\mathbb R^n)$, $s\in \mathbb R$. Dann gilt
 \begin{equation}
 \widehat{\phi f} = (2\pi)^{-n/2} \hat \phi * \hat f\in \mathcal S' \cap C^\infty
 \end{equation}
-und $(\hat \phi * \hat f) (x) = \int \hat \phi(x-y) \hat f(y)\, \mathrm dx$ ($x\in \mathbb R^n$)
+und $(\hat \phi * \hat f) (x) = \int \hat \phi(x-y) \hat f(y)\, \mathrm dy$.
 \end{lem}
 \begin{proof}
 \textbf{Schritt 1:} $y\mapsto \hat \phi(x-y) \hat f(y)$ integrierbar und $\hat \phi * \hat f \in C^\infty(\mathbb R^n)$.
@@ -2112,18 +2108,17 @@ denn  $\hat f$ ist regulär und $\hat f \cdot (\check \phi * \psi)$ integrierbar
 \end{gather}
 \end{proof}
 
-\begin{satz}
-Sei $\Omega$ offen und beschränkt in $\mathbb R^n$, dann gilt $H_0^s(\Omega) \to H_0^1(\Omega)$ kompakt für $s>t$.
+\begin{satz}(Rellich für $H_0^s$- Räume)
+Sei $\Omega$ offen und beschränkt in $\mathbb R^n$, dann gilt $H_0^s(\Omega) \hookrightarrow H_0^1(\Omega)$ für $s>t$.
 \end{satz}
 
 \begin{proof}
-Sei $(f_k)$ beschränkt in $H_0^s(\Omega) \subset \{f\in \mathcal S': \supp f\subset \overline \Omega \}$, dann gilt $f_k=\phi \cdot f_k (k\in \mathbb N)$, wobei $\phi \in C_c^\infty(\mathbb R^n)$ mit $\phi|_{\Omega} =1$ ($\Omega \subset \subset \Omega_1 \subset \subset \mathbb R^n$) (weil $\supp f_k \subset \overline \Omega$)
-
+Sei $(f_k)$ beschränkt in $H_0^s(\Omega) \subset \{f\in \mathcal S': \supp f\subset \overline \Omega \}$, dann gilt $f_k=\phi \cdot f_k, \ k\in \mathbb N$, wobei $\phi \in C_0^\infty(\mathbb R^n)$ mit $\phi|_{\Omega} =1$ ($\Omega \subset \subset \Omega_1 \subset \subset \mathbb R^n$) (weil $\supp f_k \subset \overline \Omega$)
 und außerdem
 \begin{gather}
 \hat f_k = (2\pi)^{-n/2} \hat \phi * \hat f_k \in C^\infty
 \end{gather}
-nach Lemma 2.
+nach vorherigem Lemma.
 
 \textbf{Schritt 1:} $\mathcal M_k:= \{\hat f_k\big |_K : k\in \mathbb N\}$ beschränkt in $C(K)$ und gleichmäßig gleichgradig stetig ($K\subset \subset \mathbb R^n$)
 
@@ -2162,7 +2157,7 @@ bzw.
 
 \chapter{Interpolationstheorie}
 Sei $S:=\{z\in \mathbb C|0\le \Re z \le 1\}$
-\begin{lem}\label{4.1}
+\begin{lem}\label{lem 8.1}
 Sei $F:S\to \mathbb C$ beschränkt stetig und analytisch im Inneren von $s$. Für $0\le \theta\le 1$. Sei 
 \begin{equation}
 M_\theta:= \sup_{<\in \mathbb R} |F(\theta+iy)|.
@@ -2222,7 +2217,7 @@ Nach dem oben gezeigtem gilt $|G(z)|\le 1$. Also folgt aus \eqref{date:16.6}, da
 \end{proof}
 
 \begin{df}
-Ein Maßraum $(\Omega, \mu)$ heißt $\sigma$-endlich falls $\Omega$ die abzählbare Vereinigung messbarer mengen mit endlichen Maß ist.
+Ein Maßraum $(\Omega, \mu)$ heißt $\sigma$-endlich, falls $\Omega$ die abzählbare Vereinigung messbarer Mengen mit endlichen Maß ist.
 \end{df}
 \begin{bsp}
 $\mathbb R^n$ versehen mit dem Lebesgue-Maß ist $\sigma$-endlich.
@@ -2306,9 +2301,9 @@ Dann
 \begin{align*}
 F(\theta) = \int Tf(x) g(x) \, \mathrm dx.
 \end{align*}
-wir wollen nun Lemma 1 (fixme) auf $F$ anwenden.  Nach Annahme an $f,g$.
+wir wollen nun Lemma \ref{lem 8.1} auf $F$ anwenden.  Nach Annahme an $f$ und $g$ gilt
 \begin{equation}
-f(x) = \sum_{i} \alpha_i \chi_{A_i} (x)
+f(x) = \sum_{i} \alpha_i \chi_{A_i} (x),
 \end{equation}
 \begin{equation}
 g(x) = \sum_{k} \beta_k \chi_{B_k} (x)
@@ -2345,7 +2340,7 @@ Analog
 \end{align*}
 Die Beschränktheit von $F$ auf $S$ folgt aus \eqref{eq:16.6bes}.  
 
-Aus Lemma 1 (fixme) folgt nun
+Aus Lemma \ref{lem 8.1} folgt nun
 \begin{align*}
 |F(\theta)| &\le M_0^{1-\theta} \| f\|_p^{p/p_0(1-\theta)} \| g\|_{q'} ^{q'/q_0(1-\theta)} M_1^\theta \| f\|_p^{p/p_1 \theta} \| g\|_{q'}^{q'/q_1 \theta}\\
 &= M_0^{1-\theta} M_1^\theta \| f\|_p^{p/p(\theta)} \| g\|_{q'}^{q'/q'(\theta)}\\
@@ -2409,7 +2404,7 @@ Durch Interpolation (Riesz-Thorin) bekommen wir für $1\le p \le 2$ und $\frac{1
 \begin{equation}
 \| e^{i\Delta t}\phi\|_q \le (4\pi |t|)^{-n(\frac{1}{p} - \frac{1}{2})}\| \phi\|_p
 \end{equation}
-für alle $|t|>0$.  Solche Abschätzungen finden Anwendung in der Streutheorie. (Existenz der Wellenpakte für Potenzialstreeung) FIXME.
+für alle $|t|>0$. Solche Abschätzungen finden Anwendung in der Streutheorie (Existenz der Wellenpakte für Potentialstreuung).
 
 \section{Der Interpolationssatz von \textsc{Marcinkiewicz}}
 
