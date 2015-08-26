@@ -665,7 +665,7 @@ $$
 \end{enumerate} 
 \end{satz}
 \begin{proof}
-Sei $D\subset \Omega$ eine abzählbar und dicht und sei $(B(x_j, r_j))_{j\in \mathbb N}$ die Folge der abgeschlossenen Kugeln welche alle Kugeln $\overline{B(x, r)}$ mit $X\subset D, r\in \mathbb Q$ und $\overline{B(x,r)}\subset U$ für ein $U\in \mathcal O$ umfasst.
+Sei $D\subset \Omega$ eine abzählbare, dichte Menge und sei $(B(x_j, r_j))_{j\in \mathbb N}$ die Folge der abgeschlossenen Kugeln welche alle Kugeln $\overline{B(x, r)}$ mit $x \in D, r\in \mathbb Q$ und $\overline{B(x,r)}\subset U$ für ein $U\in \mathcal O$ umfasst.
 Sei $V_j= \{x||x-x_j|<\frac{r_j}{2}\} \subset B(x_j, r_j)$.  Dann existiert $\phi_j \in C_0^\infty(\Omega)$ mit
 \begin{enumerate}[(i)]
 \item $0\le \phi_j \le 1$
@@ -677,16 +677,19 @@ Sei $V_j= \{x||x-x_j|<\frac{r_j}{2}\} \subset B(x_j, r_j)$.  Dann existiert $\ph
 \psi_1&:= \phi_1 \\
 \psi_2 &:= (1-\phi_1) \phi_2\\
 &\vdots \\
-\psi_j &:= (1-\phi_1)(1-\phi_2) \cdots (1- \phi_{i-1}) \phi_i.
+\psi_i &:= (1-\phi_1)(1-\phi_2) \cdots (1- \phi_{i-1}) \phi_i.
 \end{align*}
 
-Dann gilt $0 \le \psi_j \le 1$, $\text{supp}(\psi_j) \subset \text{supp}(\phi_j) \subset \overline{B(x_i, r_i)}$ und
+Dann gilt $0 \le \psi_j \le 1$, $\text{supp}(\psi_j) \subset \text{supp}(\phi_j) \subset \overline{B(x_j, r_j)}$ und
 $$
-\psi_1 + \psi_2 + \ldots + \psi_i = 1- \prod (1-\phi_i)
+\psi_1 + \psi_2 + \ldots + \psi_i = 1- \prod_{j=1}^i (1-\phi_j)
 $$
-(FIXME)
-Da $\phi_i =1$ in $V_i$ folgt $\psi_1 + \psi_2 + \cdots + \psi_i =1$ in $V_1 \cup V_2 \cup V_3 \cup \ldots \cup V_j$. Sei $K\subset \Omega$ kompakt, dann existiert $m\in \mathbb N$ mit $K\subset \bigcup_{j=1}^m V_j =:W $ denn
-(FIXME)
+\\
+Da $\phi_i =1$ in $V_i$ folgt $\psi_1 + \psi_2 + \cdots + \psi_j =1$ in $V_1 \cup V_2 \cup V_3 \cup \ldots \cup V_j$. Sei $K\subset \Omega$ kompakt, dann existiert ein $m\in \mathbb N$ mit $K\subset \bigcup_{j=1}^m V_j =:W $, denn $\bigcup V_j = \Omega$.
+\\ Also gilt
+\begin{align*}
+\sum_{i=1}^m \psi_i = 1 \ \ \text{in} \ \ W.
+\end{align*}
 \end{proof}
 
 \begin{lem}\label{2.6}
@@ -725,20 +728,21 @@ Für $1\le p <\infty$ ist $C^\infty(\Omega) \cap W^{m,p}(\Omega)$ dicht in $W^{m
 \begin{proof}
 Für $k\in \mathbb N$ sei
 $$
-\Omega_k = \{x\in \Omega |\text{dist} (x, \Omega^c) >\frac{1}{k} \quad \text{ und } |x| <k\}.
+\Omega_k = \{x\in \Omega |\ \text{dist} (x, \Omega^c) >\frac{1}{k} \ \  \text{ und } |x| <k\}.
 $$
-Dann $\Omega_1 \subset \Omega_2 \subset \cdots \subset \Omega$ und $\bigcup_{k\ge 1} \Omega_k = \Omega$ für 
-$k\ge 2$. Sei $$U_k = \Omega_{k+1} \cap \overline{\Omega_{k-1}}^c = \Omega_{k+1} \setminus \overline{\Omega_{k-1}}$$
-und $U_1= \Omega_1$ Dann $\Omega = \bigcup_{k=1}^\infty U_k$. Sei $(\phi_j)$ eine der offene Überdeckung $\Omega = \bigcup_{i \ge 1} U_i$ untegeordnete lokal endliche Zerlegung der Eins (Satz 5) und sei $(\psi_k)_{k\ge 1}$ wie folgt definiert. $\psi_1$ ist die Summe der $\phi_i$ mit $\supp(\phi_i) \subset U_1$. $\phi_2$ ist die Summe der $\phi_i$ mit $\text{supp}(\phi_i) \subset U_2$ aber $\text{supp}(\phi_i) \not \subset U_1$ etc.  Dann ist $\psi_k \in C_0^\infty(\Omega)$ dann $\overline U_k$ kompakt und somit ist $\psi_k$ eine endliche Summe. Außerdem $0 \le \psi_k \le 1, \sum \psi_k(x)=1$ in $\Omega$, $\text{supp}(\psi_k) \subset U_k$.  Sei $\varepsilon>0$ und $\varepsilon_k >0$ so klein, dass  
+Dann gilt $\Omega_1 \subset \Omega_2 \subset \cdots \subset \Omega$ und $\bigcup_{k\ge 1} \Omega_k = \Omega$ für 
+$k\ge 2$. Sei $$U_k: = \Omega_{k+1} \cap \overline{\Omega_{k-1}}^c = \Omega_{k+1} \setminus \overline{\Omega_{k-1}}$$ für 
+$k\ge 2$
+und $U_1= \Omega_1$. Dann $\Omega = \bigcup_{k=1}^\infty U_k$. Sei $(\phi_j)$ eine der offenen Überdeckung $\Omega = \bigcup_{i \ge 1} U_i$ untegeordnete lokal endliche Zerlegung der Eins (Satz 5) und sei $(\psi_k)_{k\ge 1}$ wie folgt definiert. $\psi_1$ ist die Summe der $\phi_i$ mit $\supp(\phi_i) \subset U_1$. $\phi_2$ ist die Summe der $\phi_i$ mit $\text{supp}(\phi_i) \subset U_2$ aber $\text{supp}(\phi_i) \not \subset U_1$ etc.  Dann ist $\psi_k \in C_0^\infty(\Omega)$ denn $\overline U_k$ kompakt und somit ist $\psi_k$ eine endliche Summe. Außerdem $0 \le \psi_k \le 1, \sum \psi_k(x)=1$ in $\Omega$, $\text{supp}(\psi_k) \subset U_k$.  Sei $\varepsilon>0$ und $\varepsilon_k >0$ so klein, dass  
 $$
-\text{supp}(J_{\varepsilon_k} * ( \psi_k U)) \subset U_k
+\text{supp}(J_{\varepsilon_k} * ( \psi_k u)) \subset U_k
 $$
 und $$\| J_{\varepsilon_k}*\underbrace{(\psi_k u)}_{\in W^{m,p}}- \psi_k u\|_{W^{m,p}(\Omega_k)} < 2^{-k}\varepsilon$$
 (nach Lemma 6). Definiere 
 $$
-\phi:= \sum_{k\ge 1} J_{\varepsilon_k} * (\psi_\varepsilon U)
+\phi:= \sum_{k\ge 1} J_{\varepsilon_k} * (\psi_\varepsilon u).
 $$
-auf jeder kompakten Menge $K\subset \Omega$ sind nur endlich viele Summanden $\neq 0$ also $\phi \in C^\infty(\Omega)$. In $\Omega_k$ gilt
+Auf jeder kompakten Menge $K\subset \Omega$ sind nur endlich viele Summanden $\neq 0$ also $\phi \in C^\infty(\Omega)$. In $\Omega_k$ gilt
 \begin{align*}
 u(x) &= \sum_{j=1}^{k+1} \psi_j(x) u(x)\\
 \phi(x) &= \sum_{j=1}^{k+1} J_{\varepsilon_i} * (\psi_j u) (x).
