@@ -1372,7 +1372,7 @@ Es folgt
 \end{equation}
 \end{proof}
 
-\begin{satz}
+\begin{satz}\label{thm4.4}
  Sei $\Omega\subset \mathbb R^n$ offen. Dann gilt $C^{0,1}(\overline{\Omega})\subset W^{1,\infty}(\Omega)$ und für $u\in C^{0,1}(\overline{\Omega})$ gilt
  \begin{equation}
   \max_{i=1,\ldots, n} \| \partial_i u\|_\infty\le |u|_{0,1}.
@@ -1572,7 +1572,36 @@ Tu = u\big|_{\partial \Omega}, \qquad \text{für } u\in C(\overline{\Omega}) \ca
 \end{equation}
 \end{thm}
 Der Operator $T$ heißt \emph{Spuroperator} und $Tu$ ist die Spur von $u$ auf dem Rand $\delta \Omega$.
-(FIXME: Konstruktion von E und Beweis von 4.7 fehlen)
+
+\begin{proof}
+Seien $T_1, T_2$ Spuroperatoren, dann gilt $T_1 u=T_2u$ für alle $U\in C(\overline{\Omega}) \cap W^{1,p}(\Omega)$. Da $C(\overline{\Omega}) \cap W^{1,p}(\Omega) \supset C^\infty(\overline{\Omega}) \cap W^{1,p}(\Omega)$ dicht in $W^{1,p}(\Omega)$ ist (Satz \ref{thm3.9}), folgt aus der Beschränktheit von $T_1, T_2$, dass $T_1 = T_2$ auf $W^{1,p}(\Omega)$. Sei $\partial \Omega = \bigcup_{i=1}^N U_i$ eine offene Überdeckung von $\partial \Omega$, so dass $\partial \Omega \cap U_i$ Graph einer Lipschitz-Abbildung $h_i: B(0, \eta_i) \to \mathbb R$ ist (bis auf Drehung/ Verschiebung).  Sei $\phi_1, \ldots, \phi_N$ eine untergeordnete Zerlegung der Eins. Wir definieren auf $C(\overline{\Omega}) \cap W^{1,p}(\Omega)$ durch $Tu = u\big |_{\partial \Omega_1}$. 
+
+Es ist $\| Tu\|_{L^p(\partial \Omega} \le C \| u\|_{1,p}$ zu zeigen.  Sei $u\in C(\overline{\Omega}) \cap W^{1,p}(\Omega)$ gilt
+\begin{equation}
+\| Tu\|_p = \| T \sum_{i=1}^N \phi_i u\|_p \le \sum_{i=1}^N \| T\underbrace{\phi_i u}_{=u_i}\|_p,
+\end{equation} 
+wobei 
+\begin{equation}
+\| Tu_i\|_p^p = \int_{B(0,R_i)} |u_i(x', h(x'))|^p \sqrt{1+ (\nabla h_i)^2} \, \mathrm dx' \le C_i \int B(0, \eta_i) |u_i(x', h(x'))|^p \, \mathrm dx'
+\end{equation}
+nach Satz \ref{thm4.4} und 
+\begin{align*}
+|u_i(x', h(x'))|^p &= \int_{h(x')}^r \frac{\partial}{\partial x_n} |u_i(x', x_n)|^p\, \mathrm dx_n \\
+&= \int_{h(x')}^r \frac{p}{2} |u_i(x', x_n)|^{p-2} ((\partial_n \overline {u_i}) u_i + \overline{u_i} \partial_n u_i)\\
+&\le \int_{h(x')}^r (p-1) (|u_i|^p + |\nabla u_i|^p) \, \mathrm dx_n
+\end{align*}
+für ein $r>0$ geeignet gewählt, sodass $u_i(x', r)=0$ für alle $x' \in B(0, \eta)$. Zuletzt haben wir die Youngsche Ungleichung in der Form
+\begin{equation}
+a^{p-1} b \le \frac{p-1}{p} a^p + \frac{1}{p} b^p
+\end{equation}
+verwendet.  Also gilt
+\begin{align*}
+\int_{B(0, \eta_i)} |u_i(x', h_i(x'))|^p \, \mathrm dx' \le C \int_{B(0, \eta_i)} \int_{h_i(x')}^r ( |u_i|^p + |\nabla u_i|^p ) \, \mathrm dx_n \, \mathrm dx' \le C \| u_i\|_{W^{1,p}(\Omega\cap U_i)}^p.
+\end{align*}
+
+Wir schließen daraus, dass $\| Tu\| \le C\|u\|_{1,p}$. $T$ ist also beschränkt und wegen der Vollständigkeit von $L^p(\partial \Omega)$ auf ganz $W^{1,p}(\Omega)$ fortsetzbar.
+\end{proof}
+
 \chapter{Einbettungssätze für $W^{m,p}(\Omega)$} 
 \begin{satz}\label{satz 5.1} Sei $\Omega \subset \mathbb R^n$ offen und beschränkt mit Lipschitzrand. Dann gilt
 \begin{align*}
