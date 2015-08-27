@@ -1244,8 +1244,9 @@ kompakt und
  
  \chapter{Fortsetzungs- und Randoperatoren}
 
- Wir wollen nun Einbettungssätze für $W^{m,p}(\Omega)$ beweisen. Diese führen wir auf Einbettungssätze für $W^{1,p}(\Omega)$ zurück.  
+ Wir wollen nun Einbettungssätze für $W^{m,p}(\Omega)$ beweisen. Diese führen wir im nächsten Kapitel auf Einbettungssätze für $W^{1,p}(\Omega)$ zurück.  
 
+\section{Fortsetzungsoperator}
  Die Idee ist die Funktion $u \in W^{1,p}(\Omega)=W_0^{1,p}(\mathbb{R}^n)$ fortzusetzen zu Funktionen $\tilde{u} \in W^{1,p}(\widetilde{ \Omega})$ mit $\tilde{u }= u$ in $\Omega\subset \widetilde{\Omega}$.   Dann können wir die bekannten Sätze auf $W_0^{1,p}(\widetilde{\Omega)}$ anwenden.   Genauer suchen wir eine beschränkte lineare Abbildung $E: W^{1,p}(\Omega)\to W_0^{1,p}(\widetilde{\Omega)}$ mit $Eu=u$ in $\Omega$.  Die Existenz von $E$ impliziert dass $C^\infty(\overline{\Omega}) \cap W^{1,p}(\Omega)$ dicht in $W^{1,p}(\Omega)$ liegt.
  
  \textbf{Erinnerung:} Nach Meyers-Serrin ist $C^\infty(\Omega) \cap W^{1,p}(\Omega)$ dicht in $W^{1,p}(\Omega)$ wobei $C^\infty(\Omega) \supset C^\infty(\overline{\Omega})$.
@@ -1479,7 +1480,87 @@ Dann ist $Eu\in C^1(\overline{\mathbb R^n})$ und
 \begin{equation}
  \| Eu\|_{W^{1,p}(\mathbb R^n)} \le C\|u\|_{W^{1,p}(\Omega)}.
 \end{equation}
+In derselben Weise definieren wir
+\begin{equation}
+E_{\eta, r} : C^\infty(\overline{B(0,\eta) \times (0,r)}) \cap W^{1,p}(B(0,R) \times (0,r)) \to W^{1,p}(B(0,R) \times (-r,r)).
+\end{equation}
+Dieser Operator ist beschränkt und lässt sich daher fortsetzen auf $W^{1,p}(B(0,R) \times (0,r))$ (Satz \eqref{3.9}).
+
+\textbf{Konstruktion von $E$}.  Da $\partial \Omega$ kompakt und Lipschitz ist, existiert eine offene Überdeckung $\partial \Omega \subset \bigcup_{i=1}^N U_i$ und Lipschitz-Abbildung $h: B(0,\eta_i) \to \mathbb R$, sodass (nach Verschiebung und Drehung) das Koordinaten-System 
+\begin{equation}
+\Omega \cap U_i = \{ (x', x_n) \in U_i | x_n > h_i(x'), x' \in B(0, \eta_i)\}.
+\end{equation}
+Wir dürfen annehmen, dass $U_I$ zylinderförmig ist, d.h. $U_i = B(0, \eta_i) \times (-\rho_i, \rho_i)$. Wir wählen $U_0 \subset \subset \Omega$, so dass 
+\begin{equation}
+\overline{\Omega} \subset \bigcup_{i=0}^N U_i
+\end{equation}
+und bezeichnen mit $(\phi_i)_{i=0}^N$ eine untergeoordnete Zerlegung der Eins, d.h. $\supp(\phi_i) \subset U_i, \sum_{i=1}^N \phi_i \equiv 1$ auf $\overline{\Omega}$.  Wir werden nachstehend beschränkte lineare Abbildung $E_i: W^{1,p}(\Omega \cap U_i) \to W_0^{1,p}(\mathbb R^n)$ konstruieren mit $E_i(\phi_i u)\big |_\Omega = \phi_i u$ für alle $u\in W^{1,p}(\Omega \cap U_i)$. 
+
+Zur Konstruktion von $E$ wählen wir $\phi \in C_0^\infty(\Omega_1)$ mit $\phi =1$ auf $\overline{\Omega}$. Für $u\in W^{1,p}(\Omega)$ setzen wir
+\begin{equation}
+Eu = \Phi\left ( \sum_{i=1}^N E_i(\phi_i u) \right )\bigg |_{\Omega_1} + \phi_0 u
+\end{equation}
+wobei wir uns $\phi_0 u\in W_0^{1,p}(\Omega)$ durch Null auf $\Omega_1$ fortgesetzt denken. Dann ist $Eu\in W_0^{1,p}(\Omega_1)$,
+\begin{equation}
+Eu \big |_\Omega= \sum_{i=1} E_i (\phi_i u) \big |_\Omega + \phi_0 u= \sum_{i=1}^N(\phi_i u)+ \phi_0 u=u
+\end{equation}
+und $\| Eu\|_{W^{1,p}(\Omega_1)} \le C \| u\|_{W^{1,p}(\Omega)}$.
+
+\textbf{Konstruktion von $E_i$}. Sei $\tilde U_i= \{ (x', x_n) | (x', x_n + h_i(x')) \in U_i\}$
+
+Weil die Abbildung $(x', x_n) \mapsto (x', x_n \pm h_i (x'))$ Lipschitzstetig ist,, werden durch
+\begin{align*}
+T_i v(x', x_n) &= v(x', x_n + h(x'))\\
+T_i' v(x', x_n) &= v(x', x_n - h(x'))
+\end{align*}
+beschränkte lineare Abbildung
+\begin{equation}
+T_i: W^{1,p}(\Omega \cap U_i) \to W^{1,p}(\mathbb R^n_+ \cap \tilde U_i)
+\end{equation}
+definiert (Satz \ref{4.5}) . Wir benötigen außerdem die beschränkte lineare Abbildung 
+\begin{align}
+S_i : W^{1,p}(\tilde U_i \cap \mathbb R^n_+) &\to W^{1,p}(\tilde U_i)\\
+\psi_i: W^{1,p}(U_i) \to W_0^{1,p}(\mathbb R^n).
+\end{align}
+Dann ist
+\begin{equation}
+E_i = \psi_i \circ T_i' \circ S_i \circ T_i: W_0^{1,p}(\Omega) \cap U_i \to W_0^{1,p}(\mathbb R^n)
+\end{equation}
+beschränkt und nach Konstruktion (siehe unten)
+\begin{equation}
+T_i' S_i T_i \phi_i u\big |_\Omega = \phi_i u.
+\end{equation}
+Wir definieren $\psi_i$ durch Multiplikation mit einer Funktion $\psi_i' \in C_0^\infty(U_i)$ mit $\psi_i'=1$ auf $\supp(\phi_i)$ und anschließende Fortsetzung auf $\mathbb R$ durch Null. 
+
+$S_i$ ist im Wesentlichen der Spiegelungsoperator. Genauer ist $S_i$ eine Abbildung von $W^{1,p}$-Räumen mit folgen Gebieten
+\begin{equation}
+\tilde U_i \cap \mathbb R_+^n \to B(0, \eta_i) \times (0,r) \to B(0, \eta_i) \times (-r,r) \to U_i.
+\end{equation}
+Im ersten Schritt multiplizieren wir mit einer Funktion $\tilde \phi_i\in C_0^\infty(\tilde U_i)$ und setzen dann durch Null fort auf $B(0, \eta_i) \times (0,r)$ wobei $\tilde \phi_i=1$ auf $\supp(T_i \phi_i u)$. Im zweiten Schritt wenden wir $E_{\eta_i, p_i}$ an. Im dritten Schritt multiplizieren wir wieder mit $\phi_i^2$ und schränkten die Funktion dann auf $\tilde U_i$ ein. Grob gesagt:
+\begin{equation}
+S_i= \tilde \phi E_{\eta, r} \tilde \phi_i.
+\end{equation} 
+Man überzeugt sich leicht, dass
+\begin{equation}
+T_i' S_i T_i \phi_i u = \phi_i u.
+\end{equation}
 \end{proof}
+
+\section{Der Spuroperator}
+Sei $\Omega \subset \mathbb R^n$ offen und beschränkt mit Lipschitzrand. Dann lässt sich $\partial \Omega$ ein Maß $\sigma$ definieren mit der Eigenschaft
+\begin{equation}
+\sigma(\Gamma) = \int_{g^{-1}(\Gamma)} \sqrt{1+|\nabla h(x)|^2}\, \mathrm dx
+\end{equation}
+wenn $\Gamma \subset \partial \Omega$ und $\partial \Omega \cap U$ der Graph einer Lipschitz-Abbildung $x\mapsto h(x)$ ist und $g(x) = (x, h(x))$ die zugehöriger Parametrisierung von $\partial \Omega \cap U$ ist (vgl. K. Jänich Vektoranalysis).
+
+Somit ist auch $L^p(\partial \Omega) \to L^p(\partial\Omega, \sigma)$ erklärt und vollständig. Sei  $u\in C(\overline{\Omega}) \cap W^{1,p}(\Omega)$. Dann ist $u\big |_{\partial \Omega}$ eine stetige Funktion auf $\partial \Omega$ und die Abbildung
+\begin{equation}
+T: C(\overline{\Omega}) \cap W^{1,p}(\Omega) \to C(\partial \Omega), u\mapsto u\big |_{\partial \Omega}
+\end{equation}
+ist linear. Wir wollen diesen \glqq Spuroperator\grqq auf ganz $W^{1,p}(\Omega)$ fortsetzen.
+
+
+
 \begin{thm}[Spursatz] \label{4.7}
 Sei $\Omega \subset \mathbb R^n$ offen und beschränkt mit Lipschitz-Rand. Dann existiert eine beschränkte, lineare Abbildung
 \begin{equation}
